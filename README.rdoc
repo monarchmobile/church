@@ -28,13 +28,13 @@ link:files/vendor/rails/actionpack/README.html.
 
 == Getting Started
 
-1. At the command prompt, create a new Rails application:
+1. At the command prompt, clone this app:
        git clone git@github.com:monarchmobile/church.git church
 
-2. A the command prompt, seed selected table with following command
-  rake start:build_all
+2. A the command prompt, seed local database with:
+      rake start:build_all
 
-3. update application_helper update_list method with the following:
+3. update app/helpers/application_helper.rb update_list method with the following:
   def update_list
     models = ActiveRecord::Base.connection.tables.collect{|t| t.underscore.singularize.camelize}
     models.each do |m|
