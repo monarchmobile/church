@@ -1,0 +1,13 @@
+#add_your_church span {
+ 	color:blue;
+ 	text-decoration: none;
+ 	cursor:pointer;
+ 	&:hover {
+ 		text-decoration: underline;
+ 		
+ 	}
+ }
+
+ #new_church_name {
+ 	display:none;
+ }

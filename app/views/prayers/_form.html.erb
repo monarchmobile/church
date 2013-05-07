@@ -1,0 +1,48 @@
+<%= form_for @prayer, validate: true do |f| %>
+
+  <%= render 'shared/errors', object: @prayer %> 
+  <h1>I would like to pray for</h1>
+  
+  <div class="field"> 
+    <%= f.label :pray_for_first_name %> <br />
+    <%= f.text_field :pray_for_first_name %><%= required_field %>
+  </div>
+  <div class="field">
+    <%= f.collection_select :category, Category.find(:all), :id, :name, :prompt =>"Select a Category" %><%= required_field %>
+  </div>
+
+  <% if current_user %>
+    <%= f.hidden_field :email, value: current_user.email %>
+    <%= f.hidden_field :requestor_first_name, value: current_user.first_name %>
+    <%= f.hidden_field :requestor_last_name, value: current_user.last_name %>
+    <%= f.hidden_field :affiliation_id, value: current_user.affiliation %>
+  <% else %>
+    <div class="field">
+      <%= f.label :user_email, "Your email" %><%= required_field %><br />
+      <%= f.text_field :user_email %>
+    </div>
+    <div class="field">
+      <%= f.label :user_first_name, "Your first name" %><br />
+      <%= f.text_field :user_first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :user_last_name, "Your last name"%><br />
+      <%= f.text_field :user_last_name %>
+    </div>
+    
+  <% end %>
+   <div class="field">
+      <%= render('shared/affiliation', f: f) %>
+    </div>
+  <% week = Date.today + 7.days %>
+  <% month = Date.today + 30.days %>
+  
+  <div class="field">
+    <%= f.label :duration %><%= required_field %><br />
+    <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]] %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

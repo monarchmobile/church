@@ -1,0 +1,22 @@
+
+	<h1>Categories</h1> 
+	<div class="column_title pages">
+		<%= content_tag :p, link_to("+ New", new_category_path), class: "new_instance_button" %>
+		<ul>
+			<li class="title">Name</li>
+		</ul>
+		
+	</div>
+
+	<ul class="model_table">
+		<% @categories.each do |category| %>
+			<li>
+				<ul class="instance_detail">
+					<%= content_tag :li, category.name, class:"name" %>
+					
+					<%= render "shared/crud_btns", object: category %>
+				</ul>
+				<br class="clear">
+			</li>
+		<% end %>
+	</ul>

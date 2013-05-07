@@ -1,0 +1,12 @@
+<%= form_for(@affiliation) do |f| %>
+  <%= render 'shared/errors', object: @affiliation %> 
+  <% end %>
+
+  <div class="field">
+    <%= f.label :church %><br />
+    <%= f.text_field :church %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

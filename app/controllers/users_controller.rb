@@ -14,6 +14,16 @@ class UsersController < ApplicationController
     load_user
     @admin_roles = Role.all
   end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+        format.html { redirect_to @user, :notice => "The #{@user.title} user was successfully created" }
+        format.js
+      else
+        format.html { redirect_to "new", :notice => "user could not be created. Please fill out all ** fields"}
+      end
+  end
   
   def update
     all_user_states

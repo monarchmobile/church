@@ -13,6 +13,10 @@ Church::Application.routes.draw do
   resources :profiles
   resources :links
   resources :partials
+  resources :categories
+  resources :prayers
+  resources :affiliations
+
 
   match "announcement_partial", :to => "announcements#announcement_partial"
   match "blog_partial", :to => "blogs#blog_partial"
@@ -58,5 +62,5 @@ Church::Application.routes.draw do
 
   match 'dashboard', :to => 'static_pages#dashboard'
   
-  root :to => "pages#show", :id => 'home'
+  root :to => "prayers#new"
 end

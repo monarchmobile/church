@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   has_and_belongs_to_many :roles
   before_create :setup_role
+  has_many :prayers
   ## acts_as_orderer
 
   def self.approved
