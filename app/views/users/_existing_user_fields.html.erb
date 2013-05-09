@@ -1,0 +1,9 @@
+
+  <div class="old_user_fields">
+    <%= content_tag :li, user.first_name if user %>
+    <%= content_tag :li, user.last_name if user %>
+    <%= content_tag :li, user.affiliation.church if user.affiliation %>
+  </div>
+
+
+

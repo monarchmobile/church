@@ -1,9 +1,12 @@
-class UsersController < ApplicationController
-  before_filter :authenticate_user!
+class UsersController < Devise::RegistrationsController
   layout :resolve_layout
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     all_user_states
+  end
+
+  def new
+    @guest_roles = Role.find(:all, :conditions => ["name IN (?)", ["Intercessor", "Coordinator"]])
   end
 
   def show
@@ -17,12 +20,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-        format.html { redirect_to @user, :notice => "The #{@user.title} user was successfully created" }
+    if params[:user][:role_ids]
+      @user.role_ids = params[:user][:role_ids]
+    end
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, :notice => "The #{@user.email} user was successfully created" }
         format.js
       else
-        format.html { redirect_to "new", :notice => "user could not be created. Please fill out all ** fields"}
+        format.html { redirect_to "new"}
       end
+    end
+    
   end
   
   def update
@@ -73,6 +82,19 @@ class UsersController < ApplicationController
       User.update_all({position: index+1}, {id: id})
     end
     render "update.js"
+  end
+
+  def search
+    email = params[:email]
+    @user = User.find_by_email(email)
+    if @user.blank?
+      @found = false
+    else
+      @found = true
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   def load_user

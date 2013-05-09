@@ -22,6 +22,7 @@ class PrayersController < ApplicationController
 
   def new
     @prayer = Prayer.new
+    # @user = User.search(params[:search])
     # comments = @prayer.comments.build
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +37,7 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(params[:prayer])
+    @prayer.user = @user
 
     respond_to do |format|
       if @prayer.save

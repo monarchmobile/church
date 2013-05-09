@@ -8,10 +8,12 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 	attr_accessible :first_name, :last_name, :role, :username, :approved
-  attr_accessible :role_ids, :as => :admin
+  attr_accessible :new_church_name, :affiliation_id
+  attr_accessible :role_ids
   has_and_belongs_to_many :roles
   before_create :setup_role
   has_many :prayers
+  belongs_to :affiliation
   ## acts_as_orderer
 
   def self.approved
@@ -32,6 +34,14 @@ class User < ActiveRecord::Base
 
   def fullname
   	[first_name, last_name].join(" ")
+  end
+
+  def self.search(search)
+    if search
+      where('email LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
   end
 
   def fullname=(name)

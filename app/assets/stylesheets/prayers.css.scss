@@ -1,7 +1,12 @@
-#add_your_church span {
- 	color:blue;
- 	text-decoration: none;
- 	cursor:pointer;
+.add_your_church span { 
+ 	color: #fff;
+text-decoration: none;
+cursor: pointer;
+width: 75px;
+height: 20px;
+background: rgb(65, 101, 129);
+border-radius: 5px;
+padding: 2px 5px;
  	&:hover {
  		text-decoration: underline;
  		
@@ -9,5 +14,7 @@
  }
 
  #new_church_name {
- 	display:none;
+ 	
  }
+
+ .hidden { display: none; }

@@ -1,0 +1,7 @@
+alert("<%= @found %>")
+if (<%= @found %> == false ) {
+	$("#new_user_fields").removeClass("hidden")
+	$("#existing_user_fields").remove()
+} else if (<%= @found %> == true ){
+	$("#existing_user_fields").html("<%= j render 'users/existing_user_fields', user: @user %>")
+}

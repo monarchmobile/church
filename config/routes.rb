@@ -1,11 +1,15 @@
 Church::Application.routes.draw do
-  devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout'}
+  devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout'}, :controllers => { :registrations => "users" }
 
 
   mount Ckeditor::Engine => '/ckeditor'
 
 	# mount Ckeditor::Engine => '/ckeditor'
-
+  # match "users/search", :to => "users#search"
+  devise_scope :user do  
+    match "/users/search" => "users#search" 
+    match "/users" => "users#index"
+  end
   resources :roles
   resources :users do 
     collection { post :sort }

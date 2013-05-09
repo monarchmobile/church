@@ -21,8 +21,9 @@
     end
   end
 
-  def event_partial
-    @events_partial = Describe.new(Event).partial
+   def event_partial
+    reset_current_state(Event)
+    @events_partial = Describe.new(Event).partial.published
     @model_name = "Event"
     render 'shared/quick_partial_view', model_name: @model_name
   end

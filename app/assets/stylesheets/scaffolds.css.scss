@@ -15,13 +15,12 @@ $s_font:sans-serif; /* Secondary Font*/
 $h_font:sans-serif; /* Header Font (if different from Primary)*/
 
 body {
-  background: url("water.jpg") repeat-x scroll 0 0px;
-  background: url("water.jpg") repeat-x scroll 0 0px, -moz-linear-gradient(center top , #FFFFFF 30%, #9ac5e4 70%) repeat scroll 0 0 transparent;
-  background: url("water.jpg") repeat-x scroll 0 0px, -webkit-linear-gradient(top , #FFFFFF 30%, #9ac5e4 70%) repeat scroll 0 0 transparent;
-  background: url("water.jpg") repeat-x scroll 0 0px, -ms-linear-gradient(top , #FFFFFF 30%, #9ac5e4 70%) repeat scroll 0 0 transparent;
-  background: url("water.jpg") repeat-x scroll 0 0px, -linear-gradient(to bottom , #FFFFFF 30%, #9ac5e4 70%) repeat scroll 0 0 transparent;
   margin: 0;
   padding: 0;
+}
+
+.hidden {
+  display:none;
 }
 
 // #water {
@@ -192,7 +191,7 @@ label {
 }
 
 .main {
-    background: transparent url(white-opac.png) 0 0 repeat;
+    
     padding: 1px 10px 40px 10px;
     box-shadow: 0 0 13px -4px;
     min-height: 700px;

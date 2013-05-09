@@ -33,7 +33,8 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def announcement_partial
-    @announcements_partial = Describe.new(Announcement).partial
+		reset_current_state(Announcement)
+    @announcements_partial = Describe.new(Announcement).partial.published
     @model_name = "Announcement"
     render 'shared/quick_partial_view', model_name: @model_name
   end

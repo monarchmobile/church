@@ -1,5 +1,5 @@
 class Affiliation < ActiveRecord::Base
-  attr_accessible :church, :city, :state
+  attr_accessible :church, :city, :state, :user_ids
 
   has_many :users
 

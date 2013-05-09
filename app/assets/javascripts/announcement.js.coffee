@@ -1,10 +1,11 @@
 jQuery ->
 # index
-	$("#published_announcements").sortable
-    axis: "y"
-    handle: ".handle"
-    update: ->
-      $.post $(this).data("update-url"), $(this).sortable("serialize")
+	if $("#published_announcements")[0]
+		$("#published_announcements").sortable
+	    axis: "y"
+	    handle: ".handle"
+	    update: ->
+	      $.post $(this).data("update-url"), $(this).sortable("serialize")
 
   # starts at date
 	$(".announcement_message_starts_at").datepicker(dateFormat: "dd-mm-yy")
@@ -42,3 +43,14 @@ jQuery ->
 # _form
 	$("#announcement_starts_at").datepicker(dateFormat: "dd-mm-yy")
 	$("#announcement_ends_at").datepicker(dateFormat: "dd-mm-yy")
+
+	$("body").delegate "select#announcement_current_state", "change", ->
+		if $(this).val() == "1"
+			$("input[type=submit]").val("Save Draft")
+			$(".schedule_container").hide()
+		if $(this).val() == "2"
+			$("input[type=submit]").val("Schedule For")
+			$(".schedule_container").show()
+		else if $(this).val() == "3"
+			$("input[type=submit]").val("Publish Now")
+			$(".schedule_container").hide()

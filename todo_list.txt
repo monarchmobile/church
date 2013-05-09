@@ -1,17 +1,2 @@
-outpouring
-flag
-church
-
-**change heroku gmail password in config for staging and production
-**church
-	add all relevant keys to church heroku
-
-
---run this
-drop users table from staging
-rails g migration add_users_to_prayers user:references
-
-
-what church do you belong to 
-	or click to add a church
-
+# models/customer/private.rb
+# models/customer/public.rb

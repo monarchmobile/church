@@ -1,3 +1,5 @@
+
+
 <%= form_for @prayer, validate: true do |f| %>
 
   <%= render 'shared/errors', object: @prayer %> 
@@ -15,25 +17,30 @@
     <%= f.hidden_field :email, value: current_user.email %>
     <%= f.hidden_field :requestor_first_name, value: current_user.first_name %>
     <%= f.hidden_field :requestor_last_name, value: current_user.last_name %>
-    <%= f.hidden_field :affiliation_id, value: current_user.affiliation %>
+    <%= f.hidden_field :affiliation_id, value: current_user.affiliation_id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
   <% else %>
     <div class="field">
       <%= f.label :user_email, "Your email" %><%= required_field %><br />
       <%= f.text_field :user_email %>
+
     </div>
-    <div class="field">
-      <%= f.label :user_first_name, "Your first name" %><br />
-      <%= f.text_field :user_first_name %>
+    <div id="new_user_fields" class="hidden">
+      <div class="field">
+        <%= f.label :user_first_name %><br />
+        <%= f.text_field :user_first_name %>
+      </div>
+      <div class="field">
+        <%= f.label :user_last_name, "Your last name"%><br />
+        <%= f.text_field :user_last_name %>
+      </div>
+      <div class="field">
+        <%= render('shared/affiliation', f: f) %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :user_last_name, "Your last name"%><br />
-      <%= f.text_field :user_last_name %>
-    </div>
-    
+    <div id="existing_user_fields"></div>
   <% end %>
-   <div class="field">
-      <%= render('shared/affiliation', f: f) %>
-    </div>
+   
   <% week = Date.today + 7.days %>
   <% month = Date.today + 30.days %>
   

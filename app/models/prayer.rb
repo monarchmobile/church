@@ -1,7 +1,7 @@
 class Prayer < ActiveRecord::Base  
   attr_accessible :duration, :request, :pray_for_first_name, :pray_for_last_name
-  attr_accessible :share_with, :category
-  attr_accessible :user_first_name, :user_last_name, :user_email, :church
+  attr_accessible :share_with, :category, :user_id
+  attr_accessible :user_first_name, :user_last_name, :user_email, :affiliation
   attr_accessible :new_church_name, :church_city, :church_state
   # attr_accessible :comments_attributes
 
@@ -13,9 +13,9 @@ class Prayer < ActiveRecord::Base
   # a prayer belongs to user, needs user_id and association
   # a 
   # set new affliation from request form
-  attr_accessor :user_first_name, :user_last_name, :user_email, :church
+  attr_accessor :user_first_name, :user_last_name, :user_email, :affiliation
   attr_accessor :new_church_name, :church_city, :church_state
-  before_save :create_affiliation_from_church
+  # before_save :create_affiliation_from_church
   before_save :create_user
   # after_save :send_new_prayer
 
@@ -47,19 +47,37 @@ class Prayer < ActiveRecord::Base
 
   def create_user
     user = User.where(email: user_email)
-    if user.blank?
+    if user.blank? # new user
       date = Date.today.to_s
       password = user_email+date
-      @user = User.new(:first_name => user_first_name, :last_name => user_last_name, :email => user_email, password: password, password_confirmation: password)      
+      if affiliation.blank?
+        create_affiliation_from_church
+        church_id = @affiliation.id
+      else 
+        church_id = affiliation
+      end
+
+      @user = User.new(:first_name => user_first_name, :last_name => user_last_name, :email => user_email, password: password, password_confirmation: password, affiliation_id: church_id) 
+    
       @user.save!
       guest = Role.find_by_name("Guest").id 
       @user.role_ids=[guest]
+      self.user_id = @user.id
     end
   end
 
   def create_affiliation_from_church
-  	Affiliation.create(:church => new_church_name, :city => church_city, :state => church_state) unless new_church_name.blank?
+  	@affiliation = Affiliation.create(:church => new_church_name, :city => church_city, :state => church_state) unless new_church_name.blank?
   end
+
+  def affiliation=(id)
+    @affiliation = id
+  end
+
+  def affiliation
+    @affiliation
+  end
+
 
   # def send_new_prayer
   # 	RequestMailer.new_prayer_request(self).deliver

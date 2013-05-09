@@ -44,6 +44,21 @@ module ApplicationHelper
     Status.find(id).status_name
   end
 
+  def reset_current_state(model)
+    scheduled = Status.find_by_status_name("scheduled").id
+    published = Status.find_by_status_name("published").id
+    draft = Status.find_by_status_name("draft").id
+    anns = Describe.new(model).partial
+    anns.each do |a|
+      if !a.starts_at.blank? && a.starts_at <= Date.today && a.current_state == scheduled
+        a.update_attributes(current_state: published)
+      end
+      
+      if !a.ends_at.blank? && a.ends_at <= Date.today-1 && a.current_state == published
+        a.update_attributes(current_state: draft)
+      end
+    end
+  end
 # ###################### END Stock Methods END #######################
 
 ###################### page #################
