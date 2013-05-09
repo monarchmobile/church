@@ -9,6 +9,7 @@ Church::Application.routes.draw do
   devise_scope :user do  
     match "/users/search" => "users#search" 
     match "/users" => "users#index"
+    resources :users
   end
   resources :roles
   resources :users do 
