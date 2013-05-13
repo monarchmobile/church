@@ -1,7 +1,9 @@
-alert("<%= @found %>")
-if (<%= @found %> == false ) {
-	$("#new_user_fields").removeClass("hidden")
-	$("#existing_user_fields").remove()
-} else if (<%= @found %> == true ){
-	$("#existing_user_fields").html("<%= j render 'users/existing_user_fields', user: @user %>")
+
+if (<%= @found %> == true ){
+	$("#user_exists").show()
+} else if (<%= @found %> == false) {
+	$("#user_does_not_exist").show()
+	$("#user_exists").hide()()
+} else {
+	$("#no_search_yet").show()
 }

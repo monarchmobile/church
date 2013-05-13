@@ -34,9 +34,26 @@ new prayer
 		existing affiliation
 
 
-<%= form_tag :url => url_for(:controller => "users", :action => "search"), remote: true  %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag %>
-      </p>
-<% end %>
+  who to prayer for?
+  category
+  duration
+  if current_user
+    hidden_fields
+  else
+    if found
+    enter your email for search
+    if user exists
+      spits out user info
+      hidden_fields
+    else
+      first_name
+      last_name
+      affilition
+    end
+  end
+  submit
+
+  user found
+  user not found
+  no search yet
+  

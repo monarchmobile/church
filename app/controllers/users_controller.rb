@@ -92,6 +92,7 @@ class UsersController < Devise::RegistrationsController
     else
       @found = true
     end
+    # render :js => "window.location = '/?found=#{@found}'"
     respond_to do |format|
       format.js
     end

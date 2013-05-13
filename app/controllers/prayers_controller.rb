@@ -21,6 +21,7 @@ class PrayersController < ApplicationController
 
 
   def new
+    @found = params[:found]
     @prayer = Prayer.new
     # @user = User.search(params[:search])
     # comments = @prayer.comments.build

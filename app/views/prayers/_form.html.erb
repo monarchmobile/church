@@ -1,5 +1,3 @@
-
-
 <%= form_for @prayer, validate: true do |f| %>
 
   <%= render 'shared/errors', object: @prayer %> 
@@ -12,35 +10,6 @@
   <div class="field">
     <%= f.collection_select :category, Category.find(:all), :id, :name, :prompt =>"Select a Category" %><%= required_field %>
   </div>
-
-  <% if current_user %>
-    <%= f.hidden_field :email, value: current_user.email %>
-    <%= f.hidden_field :requestor_first_name, value: current_user.first_name %>
-    <%= f.hidden_field :requestor_last_name, value: current_user.last_name %>
-    <%= f.hidden_field :affiliation_id, value: current_user.affiliation_id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  <% else %>
-    <div class="field">
-      <%= f.label :user_email, "Your email" %><%= required_field %><br />
-      <%= f.text_field :user_email %>
-
-    </div>
-    <div id="new_user_fields" class="hidden">
-      <div class="field">
-        <%= f.label :user_first_name %><br />
-        <%= f.text_field :user_first_name %>
-      </div>
-      <div class="field">
-        <%= f.label :user_last_name, "Your last name"%><br />
-        <%= f.text_field :user_last_name %>
-      </div>
-      <div class="field">
-        <%= render('shared/affiliation', f: f) %>
-      </div>
-    </div>
-    <div id="existing_user_fields"></div>
-  <% end %>
-   
   <% week = Date.today + 7.days %>
   <% month = Date.today + 30.days %>
   
@@ -48,8 +17,49 @@
     <%= f.label :duration %><%= required_field %><br />
     <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]] %>
   </div>
+
+  <!-- User already logged in -->
+  <% if current_user %>
+    <%= f.hidden_field :email, value: current_user.email %>
+    <%= f.hidden_field :requestor_first_name, value: current_user.first_name %>
+    <%= f.hidden_field :requestor_last_name, value: current_user.last_name %>
+    <%= f.hidden_field :affiliation_id, value: current_user.affiliation_id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <!-- User NOT logged in -->
+  <% else %>
+    
+    <!-- User already exists -->
+    <div class="hidden user_info_container" id="user_exists"
+      <div id="existing_user_fields"></div>
+    </div>
+
+    <!-- User does NOT exist -->
+    <div class="hidden user_info_container" id="user_does_not_exist">
+        <div class="field">
+          <%= f.label :user_first_name %><br />
+          <%= f.text_field :user_first_name %>
+        </div>
+        <div class="field">
+          <%= f.label :user_last_name, "Your last name"%><br />
+          <%= f.text_field :user_last_name %>
+        </div>
+        <div class="field">
+          <%= render('shared/affiliation', f: f) %>
+        </div>
+    </div>
+    <!-- NO search performed yet -->
+    <div class="user_info_container" id="no_search_yet">
+      <div class="field">
+        <%= f.label :user_email, "Your email" %><%= required_field %><br />
+        <%= f.text_field :user_email %>
+      </div>
+    </div>
+
+  <% end %>
   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  
 <% end %>
