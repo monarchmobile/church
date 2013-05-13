@@ -128,6 +128,8 @@ module ApplicationHelper
     Role.find_by_name(role).id
   end
 
+  
+
 end
 
 

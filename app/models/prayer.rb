@@ -78,6 +78,22 @@ class Prayer < ActiveRecord::Base
     @affiliation
   end
 
+  def self.beg_of_last_week
+    Date.today.beginning_of_week-7.days
+  end
+
+  def self.end_of_last_week
+    Date.today.end_of_week-7.days
+  end
+
+  def self.expiring_within_the_week
+    where("created_at >= ? AND created_at < ?", beg_of_last_week.beginning_of_day+2.hours, end_of_last_week)
+  end
+
+  def self.expiring_within_the_month
+    where("created_at >= ? AND created_at < ?", beg_of_last_week-30.days, end_of_last_week-30.days)
+  end
+
 
   # def send_new_prayer
   # 	RequestMailer.new_prayer_request(self).deliver

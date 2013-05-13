@@ -1,35 +1,25 @@
-<h1>Listing prayer_reqs</h1>
 
-<table>
-  <tr>
-    <th>Request</th>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Affiliation</th>
-    <th>Duration</th>
-    <th>Category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <h1>Prayers</h1> 
+    <div class="column_title pages">
+        <%= content_tag :p, link_to("+ New", new_prayer_path), class: "new_instance_button" %>
+        <ul>
+            <li class="title">Pray for</li>
+        </ul>
+        
+    </div>
 
-<% @prayer_reqs.each do |prayer_req| %>
-  <tr>
-    <td><%= prayer_req.request %></td>
-    <td><%= prayer_req.first_name %></td>
-    <td><%= prayer_req.last_name %></td>
-    <td><%= prayer_req.email %></td>
-    <td><%= prayer_req.affiliation.church %></td>
-    <td><%= prayer_req.expiration %></td>
-    <td><%= prayer_req.category.name %></td>
-    <td><%= link_to 'Show', prayer_req %></td>
-    <td><%= link_to 'Edit', edit_prayer_req_path(prayer_req) %></td>
-    <td><%= link_to 'Destroy', prayer_req, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <%= content_tag :h3, "This weeks Prayers (#{@recent_prayers.count})" %>
+    <ul class="model_table">
+        <%= render @recent_prayers %>
+    </ul>
+    <%= content_tag :h3, "Prayers created between last Monday this past Monday (#{@prayers_with_week_duration.count})" %>
+    <ul class="model_table">
+        <%= render @prayers_with_week_duration %>
+    </ul>
 
-<br />
+    <%= content_tag :h3, "Prayers created between 30 days ago and last Monday (#{@prayers_with_month_duration.count})" %>
+    <ul class="model_table">
+        <%= render @prayers_with_month_duration %>
+    </ul>
 
-<%= link_to 'New Prayer req', new_prayer_req_path %>
+<%= link_to 'New Prayer req', new_prayer_path %>

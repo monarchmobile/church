@@ -1,8 +1,10 @@
 class PrayersController < ApplicationController 
-
+  layout :resolve_layout
   def index
-    @prayers = Prayer.all
-
+    
+    @recent_prayers = Prayer.where("created_at >= ?", Date.today.beginning_of_week)
+    @prayers_with_week_duration = Prayer.expiring_within_the_week
+    @prayers_with_month_duration = Prayer.expiring_within_the_month
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @prayers }
