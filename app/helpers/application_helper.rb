@@ -123,6 +123,11 @@ module ApplicationHelper
     end
   end
 
+  def role_id(role)
+    role = role.to_s.camelize
+    Role.find_by_name(role).id
+  end
+
 end
 
 

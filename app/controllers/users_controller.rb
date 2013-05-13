@@ -103,8 +103,10 @@ class UsersController < Devise::RegistrationsController
   end
 
   def all_user_states
-    @users_waiting_to_be_approved = User.not_approved.order_by_name
-    @approved_users = User.approved.order_by_name
+    @intercessors_waiting_to_be_approved = User.not_approved.with_role(role_id(:intercessor))
+    @admins_waiting_to_be_approved = User.not_approved.with_role(role_id(:admin))
+    @approved_intercessors = User.approved.with_role(role_id(:intercessor))
+    @approved_admins = User.approved.with_role(role_id(:admin))
    
   end
 end

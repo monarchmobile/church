@@ -32,6 +32,9 @@ class User < ActiveRecord::Base
    return !!self.roles.find_by_name(role.to_s)
   end
 
+  scope :with_role, lambda { |role_id| { :joins => :roles, 
+                                             :conditions => {:roles => {:id => role_id} } } }
+
   def fullname
   	[first_name, last_name].join(" ")
   end

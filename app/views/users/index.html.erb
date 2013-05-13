@@ -11,14 +11,25 @@
 	</ul>
 	
 </div>
-
-<ul class="model_table userStatus" id="users_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Users Waiting To Be Approved (#{@users_waiting_to_be_approved.count})" %>
-	<%= render @users_waiting_to_be_approved %>
+<%= content_tag :h2, "Waiting to be Approved" %>
+<ul class="model_table userStatus" id="intercessors_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
+	<%= content_tag :h3, "Intercessors(#{@intercessors_waiting_to_be_approved.count})" %>
+	<%= render @intercessors_waiting_to_be_approved %>
 </ul>
 
-<ul class="model_table userStatus" id="approved_users" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Approved Users (#{@approved_users.count})" %>
-	<%= render @approved_users %>
+<ul class="model_table userStatus" id="admins_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
+	<%= content_tag :h3, "Admins (#{@admins_waiting_to_be_approved.count})" %>
+	<%= render @admins_waiting_to_be_approved %>
+</ul>
+
+<%= content_tag :h2, "Approved" %>
+<ul class="model_table userStatus" id="approved_intercessors" data-update-url="<%= sort_users_url %>">
+	<%= content_tag :h3, "Intercessors (#{@approved_intercessors.count})" %>
+	<%= render @approved_intercessors %>
+</ul>
+
+<ul class="model_table userStatus" id="approved_admins" data-update-url="<%= sort_users_url %>">
+	<%= content_tag :h3, "Admins (#{@approved_admins.count})" %>
+	<%= render @approved_admins %>
 </ul>
 

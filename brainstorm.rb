@@ -20,40 +20,18 @@ private/registrations", :sessions => 'main' } do
  end
 
 
+Lists to manage prayer requests
+lists will be available to each coordinator representing a church
+current_user.is? :coordinator
+  list of interecessors
+    waiting to be approved
+      approved = false, role = intercessor
+    approved
+      list of prayers
+        this week and the rest divided up
 
+current_user.is? :interecessor 
+  list of prayers
+    new this week
+    the rest split amoungst all interecessor 
 
-test prayers
-
-User Prayer Affiliation
-
-new prayer 
-	new user 
-		new affiliation ***DONE
-		existing affiliation ***DONE
-	old user
-		existing affiliation
-
-
-  who to prayer for?
-  category
-  duration
-  if current_user
-    hidden_fields
-  else
-    if found
-    enter your email for search
-    if user exists
-      spits out user info
-      hidden_fields
-    else
-      first_name
-      last_name
-      affilition
-    end
-  end
-  submit
-
-  user found
-  user not found
-  no search yet
-  
