@@ -39,8 +39,7 @@ if user [1,2]
   you see everything
 if user [3]\
 
-depending on role, you get to see certain things
-created_at+7.days > Date.today.beginning_of_week.beginning_of_day+2.hours && <= Date.today-7.days
-
+go straing to user/show page, doing intercessor
+  all prayers with the same affiliation intercessor
 
 

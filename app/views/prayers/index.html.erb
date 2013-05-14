@@ -12,12 +12,12 @@
     <ul class="model_table">
         <%= render @recent_prayers %>
     </ul>
-    <%= content_tag :h3, "Prayers created between last Monday this past Monday (#{@prayers_with_week_duration.count})" %>
+    <%= content_tag :h3, "Prayers created between last Monday & this past Monday (#{@prayers_with_week_duration.count})" %>
     <ul class="model_table">
         <%= render @prayers_with_week_duration %>
     </ul>
 
-    <%= content_tag :h3, "Prayers created between 30 days ago and last Monday (#{@prayers_with_month_duration.count})" %>
+    <%= content_tag :h3, "Prayers created between 30 days ago & last Monday (#{@prayers_with_month_duration.count})" %>
     <ul class="model_table">
         <%= render @prayers_with_month_duration %>
     </ul>

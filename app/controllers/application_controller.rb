@@ -19,6 +19,13 @@
 	  end
 	end
 
+	def recent_prayers_for_intercessor
+		affiliation = Affiliation.find(current_user.affiliation_id)
+		@recent_prayers = Prayer.where("created_at >= ?", Date.today.beginning_of_week).includes(:user).where(:user => {affiliation_id: affiliation.id})
+    @prayers_with_week_duration = Prayer.expiring_within_the_week
+    @prayers_with_month_duration = Prayer.expiring_within_the_month
+	end
+
 	private
 
 	def resolve_layout

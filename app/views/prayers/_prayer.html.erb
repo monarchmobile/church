@@ -3,7 +3,7 @@
       <ul class="instance_detail">
           <%= content_tag :li, prayer.pray_for_first_name, class:"name" %>
           
-          <%= render "shared/crud_btns", object: prayer %>
+          <%= render "shared/crud_btns", object: prayer if current_user.role? :admin %>
       </ul>
       <br class="clear">
 

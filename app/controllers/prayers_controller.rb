@@ -1,5 +1,5 @@
 class PrayersController < ApplicationController 
-  layout :resolve_layout
+  layout 'dashboard', :except => [:new]
   def index
     
     @recent_prayers = Prayer.where("created_at >= ?", Date.today.beginning_of_week)

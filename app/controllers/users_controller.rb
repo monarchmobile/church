@@ -11,6 +11,7 @@ class UsersController < Devise::RegistrationsController
 
   def show
     load_user
+    recent_prayers_for_intercessor
   end
 
   def edit

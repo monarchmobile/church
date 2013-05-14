@@ -3,7 +3,7 @@
     <ul class="right"> 
       <% if user_signed_in? %>
             <%= content_tag :li, link_to("Dashboard", dashboard_path) if can? :manage, @page %>
-            <%= link_to content_tag(:li, "#{current_user.fullname}"), edit_user_registration_path %>
+            <%= link_to content_tag(:li, "#{current_user.fullname}"), user_path(current_user) %>
       <% end %>
     </ul>
      
