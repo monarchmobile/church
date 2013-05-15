@@ -1,2 +1,24 @@
 # models/customer/private.rb
 # models/customer/public.rb
+
+
+prayer#index
+	prayer_for	category	affiliation
+
+	coor approve interecessor for his church
+	admin can approve for all churchs
+
+	prayer index
+		this week
+		last week
+		past month if interecessor
+		all for affiliation if coordinator
+		all prayers if admin
+			break down by affiliation
+			ability to delete prayer if admin
+
+	mailings
+		new email for each request
+		email each mon 2am
+
+	pdf format to print out a list

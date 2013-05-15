@@ -28,11 +28,23 @@
 
   <!-- User NOT logged in -->
   <% else %>
+
+    <!-- NO search performed yet -->
+    <div class="user_info_container" id="no_search_yet">
+      <div class="field">
+        <%= f.label :user_email, "Your email" %><%= required_field %><br />
+        <%= f.text_field :user_email %>
+      </div>
+    </div>
     
     <!-- User already exists -->
-    <div class="hidden user_info_container" id="user_exists"
+    <div class="hidden user_info_container" id="user_exists">
       <div id="existing_user_fields"></div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
     </div>
+
 
     <!-- User does NOT exist -->
     <div class="hidden user_info_container" id="user_does_not_exist">
@@ -47,19 +59,15 @@
         <div class="field">
           <%= render('shared/affiliation', f: f) %>
         </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
     </div>
-    <!-- NO search performed yet -->
-    <div class="user_info_container" id="no_search_yet">
-      <div class="field">
-        <%= f.label :user_email, "Your email" %><%= required_field %><br />
-        <%= f.text_field :user_email %>
-      </div>
-    </div>
+    
+    
 
   <% end %>
   
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+    
   
 <% end %>

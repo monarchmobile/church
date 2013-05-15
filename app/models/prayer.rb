@@ -57,7 +57,7 @@ class Prayer < ActiveRecord::Base
         church_id = affiliation
       end
 
-      @user = User.new(:first_name => user_first_name, :last_name => user_last_name, :email => user_email, password: password, password_confirmation: password, affiliation_id: church_id) 
+      @user = User.new(:first_name => user_first_name, :last_name => user_last_name, :email => user_email, password: password, password_confirmation: password, affiliation_id: church_id, approved: false) 
     
       @user.save!
       guest = Role.find_by_name("Guest").id 
@@ -92,6 +92,10 @@ class Prayer < ActiveRecord::Base
 
   def self.expiring_within_the_month
     where("created_at >= ? AND created_at < ?", beg_of_last_week-30.days, end_of_last_week-30.days)
+  end
+
+  def category_name(id)
+    category = Category.find(id).name
   end
 
 

@@ -40,11 +40,12 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.new(params[:prayer])
-    @prayer.user = @user
+    user = User.find_by_email(params[:prayer][:user_email])
+    @prayer.user = user
 
     respond_to do |format|
       if @prayer.save
-        format.html { redirect_to @prayer, notice: 'Prayer req was successfully created.' }
+        format.html { redirect_to current_user || root_path, notice: 'Prayer req was successfully created.' }
         format.json { render json: @prayer, status: :created, location: @prayer }
       else
         format.html { render action: "new" }

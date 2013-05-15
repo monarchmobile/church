@@ -2,6 +2,8 @@
 
       <ul class="instance_detail">
           <%= content_tag :li, prayer.pray_for_first_name, class:"name" %>
+          <%= content_tag :li, prayer.category_name(prayer.category), class:"name" %>
+          <%= content_tag :li, prayer.user.affiliation.church, class:"name" %>
           
           <%= render "shared/crud_btns", object: prayer if current_user.role? :admin %>
       </ul>
