@@ -19,10 +19,9 @@ body {
   padding: 0;
 }
 
-#new_church_name {
-    display:none;
- }
-
+.hidden {
+  display:none;
+}
 // #water {
 //   background: #ffffff url(water.jpg) 0 0 repeat-x;
 //   height: 300px;
