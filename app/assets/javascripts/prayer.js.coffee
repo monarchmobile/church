@@ -16,6 +16,13 @@ jQuery ->
 	    $this.parent().next().addClass "hidden"
 	  else if $this.parent().next().is(":hidden")
 	  	$this.parent().next().removeClass "hidden"
+	  	$("select#prayer_affiliation").val("")
+
+	$("body").delegate "select#prayer_affiliation", "change", ->
+		if $(this).val() is ""
+			$("#new_church_name").show()
+		else
+			$("#new_church_name").hide()
 
 	
 	
