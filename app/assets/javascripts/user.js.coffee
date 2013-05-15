@@ -31,16 +31,16 @@ jQuery ->
 	  $this = $(this)
 	  if $this.parent().next().is(":visible")
 	    console.log "hidden"
-	    $this.parent().next().hide()
+	    $this.parent().next().addClass "hidden"
 	  else if $this.parent().next().is(":hidden")
 	    console.log "showing"
-	    $this.parent().next().show()
+	    $this.parent().next().removeClass "hidden"
 	    $("select#user_affiliation").val ""
 
 	$("body").delegate "select#user_affiliation", "change", ->
 		if $(this).val() is ""
-			$("#new_church_name").show()
+			$("#new_church_name").removeClass "hidden"
 		else
-			$("#new_church_name").hide()
+			$("#new_church_name").addClass "hidden"
 
 		
