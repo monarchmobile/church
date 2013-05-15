@@ -27,7 +27,7 @@ jQuery ->
 			select.closest("form").submit()
 			$(this).html("Approved").addClass("green_background").removeClass("red_background")
 
-	$("body").delegate ".add_your_church span", "click", ->
+	$("body").delegate "#new_user .add_your_church span", "click", ->
 	  $this = $(this)
 	  if $this.parent().next().is(":visible")
 	    console.log "hidden"

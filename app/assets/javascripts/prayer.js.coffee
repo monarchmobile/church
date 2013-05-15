@@ -10,21 +10,21 @@ jQuery ->
 	    type: "post"
 
 
-	$("body").delegate ".add_your_church span", "click", ->
-	  $this = $(this)
-	  if $this.parent().next().is(":visible")
-	    console.log "hidden"
-	    $this.parent().next().hide()
-	  else if $this.parent().next().is(":hidden")
-	    console.log "showing"
-	    $this.parent().next().show()
-	    $("select#prayer_affiliation").val ""
+	# $("body").delegate ".add_your_church span", "click", ->
+	#   $this = $(this)
+	#   if $this.parent().next().is(":visible")
+	#     console.log "hidden"
+	#     $this.parent().next().hide()
+	#   else if $this.parent().next().is(":hidden")
+	#     console.log "showing"
+	#     $this.parent().next().show()
+	#     $("select#prayer_affiliation").val ""
 
-	$("body").delegate "select#prayer_affiliation", "change", ->
-		if $(this).val() is ""
-			$("#new_church_name").show()
-		else
-			$("#new_church_name").hide()
+	# $("body").delegate "select#prayer_affiliation", "change", ->
+	# 	if $(this).val() is ""
+	# 		$("#new_church_name").show()
+	# 	else
+	# 		$("#new_church_name").hide()
 
 	
 	

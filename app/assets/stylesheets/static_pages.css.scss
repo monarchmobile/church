@@ -4,13 +4,16 @@
 $p_color: #b6b5b4;
 $s_color: #be6208;
 
+
+ .hidden {
+  display:none;
+ }
+
 body {
   background: url(image_path('gray_back2.jpg')) repeat;
   margin:0px;
   padding: 0px;
 }
-
-.hidden { display: none; }
 
 br.clear {
   clear:both;
