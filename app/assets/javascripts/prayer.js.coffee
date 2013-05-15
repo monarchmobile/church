@@ -11,12 +11,14 @@ jQuery ->
 
 
 	$("body").delegate ".add_your_church span", "click", ->
-		$this = $(this)
-		if $this.parent().next().is(":visible")
-	    $this.parent().next().addClass "hidden"
+	  $this = $(this)
+	  if $this.parent().next().is(":visible")
+	    console.log "hidden"
+	    $this.parent().next().hide()
 	  else if $this.parent().next().is(":hidden")
-	  	$this.parent().next().removeClass "hidden"
-	  	$("select#prayer_affiliation").val("")
+	    console.log "showing"
+	    $this.parent().next().show()
+	    $("select#prayer_affiliation").val ""
 
 	$("body").delegate "select#prayer_affiliation", "change", ->
 		if $(this).val() is ""
