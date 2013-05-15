@@ -11,7 +11,7 @@ class UsersController < Devise::RegistrationsController
 
   def show
     load_user
-    recent_prayers_for_intercessor
+    recent_prayers_for_intercessor if current_user
   end
 
   def edit
@@ -20,16 +20,20 @@ class UsersController < Devise::RegistrationsController
   end
 
   def create
+    
     @user = User.new(params[:user])
+    
+    
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]
     end
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, :notice => "The #{@user.email} user was successfully created" }
+        sign_in(@user)
+        format.html {redirect_to @user, :notice => "The #{@user.email} user was successfully created" }
         format.js
       else
-        format.html { redirect_to "new"}
+        format.html { redirect_to "new", :notice => "something went wrong"}
       end
     end
     

@@ -22,3 +22,6 @@ prayer#index
 		email each mon 2am
 
 	pdf format to print out a list
+
+	set affiliation to nothing if someone clicks "here"
+	flash not showing up

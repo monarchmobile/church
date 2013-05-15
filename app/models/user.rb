@@ -8,10 +8,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 	attr_accessible :first_name, :last_name, :role, :username, :approved
-  attr_accessible :new_church_name, :affiliation_id
+  attr_accessible :affiliation, :affiliation_id
+  attr_accessible :new_church_name, :church_city, :church_state
+  attr_accessor :new_church_name, :church_city, :church_state, :affiliation
   attr_accessible :role_ids
   has_and_belongs_to_many :roles
   before_create :setup_role
+  before_create :attach_affiliation
   has_many :prayers
   belongs_to :affiliation
   ## acts_as_orderer
@@ -51,6 +54,20 @@ class User < ActiveRecord::Base
   	split = name.split(" ")
   	first_name = split[0]
   	last_name = split[1]
+  end
+
+  def attach_affiliation
+    if affiliation.blank?
+      create_affiliation_from_church
+      church_id = @affiliation.id
+    else 
+      church_id = affiliation
+    end
+    self.affiliation_id = church_id
+  end
+
+  def create_affiliation_from_church
+    @affiliation = Affiliation.create(:church => new_church_name, :city => church_city, :state => church_state) unless new_church_name.blank?
   end
 
   private
