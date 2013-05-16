@@ -1,6 +1,8 @@
 ---
 black_opac.png: black_opac-097383ebe830527d4f5d39c65d726f5a.png
 black_opac/index.png: black_opac-097383ebe830527d4f5d39c65d726f5a.png
+crud.png: crud-3f5abfd957f45deabf1719e0f313b63b.png
+crud/index.png: crud-3f5abfd957f45deabf1719e0f313b63b.png
 gray_back2.jpg: gray_back2-a0bdf2cfcc17b4da10a50eac3d24a06d.jpg
 gray_back2/index.jpg: gray_back2-a0bdf2cfcc17b4da10a50eac3d24a06d.jpg
 green.png: green-ef3340e1fbcaf3f06d2e3c0934675f43.png
@@ -17,8 +19,8 @@ application.js: application-8e6af33fd891f8dae7a2b3c1879b4668.js
 application/index.js: application-8e6af33fd891f8dae7a2b3c1879b4668.js
 application.css: application-c33ced32d20632a22b8ca9b60a8725b2.css
 application/index.css: application-c33ced32d20632a22b8ca9b60a8725b2.css
-static_pages.css: static_pages-aeb8a4c8d062cebe1fd25d544aad566b.css
-static_pages/index.css: static_pages-aeb8a4c8d062cebe1fd25d544aad566b.css
+static_pages.css: static_pages-421747fadbc9c6547fbaa46ea74c8ebb.css
+static_pages/index.css: static_pages-421747fadbc9c6547fbaa46ea74c8ebb.css
 ckeditor/application.js: ckeditor/application-6d796595ef93aaeb19a9474406efa939.js
 ckeditor/application/index.js: ckeditor/application-6d796595ef93aaeb19a9474406efa939.js
 ckeditor/config.js: ckeditor/config-7114d1e00ccb3505e145e6c6dc1fbd22.js

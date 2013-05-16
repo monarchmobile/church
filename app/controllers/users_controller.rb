@@ -41,7 +41,6 @@ class UsersController < Devise::RegistrationsController
   end
   
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
     
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]
@@ -49,7 +48,7 @@ class UsersController < Devise::RegistrationsController
       
     respond_to do |format|
       if params[:user][:role_ids]
-        if @user.update_attributes(params[:user], :as => :admin)
+        if @user.update_attributes(params[:user])
           all_user_states
           format.html { redirect_to users_path}
           format.js
