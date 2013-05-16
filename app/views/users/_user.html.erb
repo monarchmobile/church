@@ -9,7 +9,7 @@
 
 			<!-- button to approve users -->
 			<%= form_for user, :html => {:class => 'user_ajax_edit'}, :url => { :controller => "users", :action => :update, id: user.id }, remote: true do |a| %>		
-				<%= a.select :approved, [['Approved', true], ['Not Approved Yet', false]] %>
+				<%= a.hidden_field :approved, :value => user.approved, :id => "user_approved_#{user.id}", class: "user_approved_ajax" %>
 				<%= content_tag :div, user_approved_status(user), class: "user_approval_status index_form_btns #{green_if_approved(user)}" %>
 			<% end %>
 

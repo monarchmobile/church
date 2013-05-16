@@ -41,7 +41,7 @@ class UsersController < Devise::RegistrationsController
   end
   
   def update
-    
+    approved_status = params[:user][:approved] if params[:user][:approved]
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]
     end
@@ -51,19 +51,21 @@ class UsersController < Devise::RegistrationsController
         if @user.update_attributes(params[:user])
           all_user_states
           format.html { redirect_to users_path}
-          format.js
         else
           format.html { redirect_to dashboard_path}
           format.js
         end
-      else 
+      elsif !approved_status.blank?
+        if @user.update_attributes(approved: approved_status)
+          all_user_states
+          format.js
+        end
+      else
         if @user.update_attributes(params[:user])
           all_user_states
           format.html { redirect_to users_path}
-          format.js
         else
           format.html { redirect_to dashboard_path}
-          format.js
         end
       end
 
