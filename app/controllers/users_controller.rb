@@ -41,7 +41,6 @@ class UsersController < Devise::RegistrationsController
   end
   
   def update
-    all_user_states
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     
     if params[:user][:role_ids]
@@ -51,6 +50,7 @@ class UsersController < Devise::RegistrationsController
     respond_to do |format|
       if params[:user][:role_ids]
         if @user.update_attributes(params[:user], :as => :admin)
+          all_user_states
           format.html { redirect_to users_path}
           format.js
         else
@@ -110,8 +110,10 @@ class UsersController < Devise::RegistrationsController
 
   def all_user_states
     @intercessors_waiting_to_be_approved = User.not_approved.with_role(role_id(:intercessor))
+    @coordinators_waiting_to_be_approved = User.not_approved.with_role(role_id(:coordinator))
     @admins_waiting_to_be_approved = User.not_approved.with_role(role_id(:admin))
     @approved_intercessors = User.approved.with_role(role_id(:intercessor))
+    @approved_coordinators = User.approved.with_role(role_id(:coordinator))
     @approved_admins = User.approved.with_role(role_id(:admin))
    
   end

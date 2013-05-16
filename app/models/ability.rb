@@ -33,6 +33,7 @@ class Ability
 
     elsif user.role? :Intercessor   ### INTERCESSOR ###
       can :read, Prayer
+      can :show, User
     end
   end
 end
