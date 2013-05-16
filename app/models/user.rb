@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   before_create :setup_role
   before_create :attach_affiliation
-  has_many :prayers
+  has_many :prayers, dependent: :destroy
   belongs_to :affiliation
   ## acts_as_orderer
 
@@ -57,13 +57,19 @@ class User < ActiveRecord::Base
   end
 
   def attach_affiliation
+    # if affiliation.blank?
+    #   create_affiliation_from_church
+    #   church_id = @affiliation.id
+    # else 
+    #   church_id = affiliation
+    # end
+    # self.affiliation_id = church_id
     if affiliation.blank?
       create_affiliation_from_church
-      church_id = @affiliation.id
-    else 
-      church_id = affiliation
+      affiliation = @affiliation
+    
     end
-    self.affiliation_id = church_id
+    self.affiliation = affiliation
   end
 
   def create_affiliation_from_church

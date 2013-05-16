@@ -48,22 +48,27 @@ class Prayer < ActiveRecord::Base
   def create_user
     user = User.where(email: user_email)
     if user.blank? # new user
-      date = Date.today.to_s
-      password = user_email+date
+      create_new_user
       if affiliation.blank?
         create_affiliation_from_church
-        church_id = @affiliation.id
-      else 
-        church_id = affiliation
+        new_affiliation = @affiliation
+        @user.affiliation_id = new_affiliation.id
+        @user.save
+      else
+        @user.affiliation_id = affiliation.to_i
+        @user.save
       end
 
-      @user = User.new(:first_name => user_first_name, :last_name => user_last_name, :email => user_email, password: password, password_confirmation: password, affiliation_id: church_id, approved: false) 
-    
-      @user.save!
       guest = Role.find_by_name("Guest").id 
       @user.role_ids=[guest]
       self.user_id = @user.id
     end
+  end
+
+  def create_new_user
+    date = Date.today.to_s
+    password = user_email+date
+    @user = User.create(:first_name => user_first_name, :last_name => user_last_name, :email => user_email, password: password, password_confirmation: password, approved: false)
   end
 
   def create_affiliation_from_church
