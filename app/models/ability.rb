@@ -16,7 +16,8 @@ class Ability
     #guest
     can :create, Prayer 
     can :search, User 
-    can :create, Affiliation  
+    can :create, Affiliation 
+    can :create, User 
 
     if user.role? :SuperAdmin       ### SUPERADMIN ###
       can :manage, :all 
