@@ -38,7 +38,3 @@ end
 
 
 
-# can [:index], :all    #show index  
-      # can [:show], :all    #show show   
-      # can [:index], User    # does not work
-      # can [:show], User    #show show
