@@ -1,3 +1,5 @@
+<%= @approved_status %>
+
 $("#intercessors_waiting_to_be_approved").html("<%= j render @intercessors_waiting_to_be_approved %>").prepend("<h3>Intercessors (<%=@intercessors_waiting_to_be_approved.count%>)")
 $("#coordinators_waiting_to_be_approved").html("<%= j render @coordinators_waiting_to_be_approved %>").prepend("<h3>Coordinators (<%=@coordinators_waiting_to_be_approved.count%>)")
 $("#admins_waiting_to_be_approved").html("<%= j render @admins_waiting_to_be_approved %>").prepend("<h3>Admins (<%=@admins_waiting_to_be_approved.count%>)")

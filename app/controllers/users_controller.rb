@@ -11,12 +11,12 @@ class UsersController < Devise::RegistrationsController
   end
 
   def show
-    
+    load_user
     recent_prayers_for_intercessor if current_user
   end
 
   def edit
-    
+    load_user
     @admin_roles = Role.all
   end
 
@@ -41,7 +41,8 @@ class UsersController < Devise::RegistrationsController
   end
   
   def update
-    approved_status = params[:user][:approved] if params[:user][:approved]
+    load_user
+    @approved_status = params[:user][:approved] if params[:user][:approved]
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]
     end
@@ -50,22 +51,22 @@ class UsersController < Devise::RegistrationsController
       if params[:user][:role_ids]
         if @user.update_attributes(params[:user])
           all_user_states
-          format.html { redirect_to users_path}
+          format.html { redirect_to users_path, :notice => "role udpdate good"}
         else
-          format.html { redirect_to dashboard_path}
+          format.html { redirect_to dashboard_path, :notice => "role udpdate bad"}
           format.js
         end
-      elsif !approved_status.blank?
-        if @user.update_attributes(approved: approved_status)
+      elsif !@approved_status.blank?
+        if @user.update_attributes(approved: @approved_status)
           all_user_states
           format.js
         end
       else
         if @user.update_attributes(params[:user])
           all_user_states
-          format.html { redirect_to users_path}
+          format.html { redirect_to users_path, :notice => "user udpdate good"}
         else
-          format.html { redirect_to dashboard_path}
+          format.html { redirect_to dashboard_path, :notice => "user udpdate good"}
         end
       end
 
@@ -74,6 +75,7 @@ class UsersController < Devise::RegistrationsController
   end
     
   def destroy
+    load_user
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     
     unless @user == current_user

@@ -2,7 +2,7 @@ jQuery ->
 
 	$("body").delegate ".user_ajax_edit .user_approval_status", "click", ->
 		$this = $(this).prev()
-		if $this is "true"
+		if $this.val() is "true"
 			$this.val(false)
 			$(this).html("Not Approved").removeClass("green_background").addClass("red_background")
 			console.log("submit as not approved")
