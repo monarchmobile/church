@@ -19,7 +19,7 @@
 </ul>
 <!-- coordinators waiting -->
 <ul class="model_table userStatus" id="coordinators_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "coordinators(#{@coordinators_waiting_to_be_approved.count})" %>
+	<%= content_tag :h3, "Coordinators(#{@coordinators_waiting_to_be_approved.count})" %>
 	<%= render @coordinators_waiting_to_be_approved %>
 </ul>
 <!-- admins waiting -->
@@ -36,7 +36,7 @@
 </ul>
 <!-- approved coordinators-->
 <ul class="model_table userStatus" id="approved_coordinators" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "coordinators (#{@approved_coordinators.count})" %>
+	<%= content_tag :h3, "Coordinators (#{@approved_coordinators.count})" %>
 	<%= render @approved_coordinators %>
 </ul>
 <!-- approved admins-->
