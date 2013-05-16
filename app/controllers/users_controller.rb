@@ -59,6 +59,7 @@ class UsersController < Devise::RegistrationsController
         end
       else 
         if @user.update_attributes(params[:user])
+          all_user_states
           format.html { redirect_to users_path}
           format.js
         else
