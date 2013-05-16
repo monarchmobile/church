@@ -1,4 +1,5 @@
 class UsersController < Devise::RegistrationsController
+  load_and_authorize_resource
   layout :resolve_layout
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
@@ -10,12 +11,12 @@ class UsersController < Devise::RegistrationsController
   end
 
   def show
-    load_user
+    
     recent_prayers_for_intercessor if current_user
   end
 
   def edit
-    load_user
+    
     @admin_roles = Role.all
   end
 
@@ -42,7 +43,7 @@ class UsersController < Devise::RegistrationsController
   def update
     all_user_states
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
-    load_user
+    
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]
     end
@@ -72,7 +73,7 @@ class UsersController < Devise::RegistrationsController
     
   def destroy
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
-    load_user
+    
     unless @user == current_user
       @user.destroy
       redirect_to users_path, :notice => "User deleted."

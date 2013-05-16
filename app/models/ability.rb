@@ -3,37 +3,42 @@ class Ability
   
   def initialize(user)
     # Always performed
-    can :access, :ckeditor   # needed to access Ckeditor filebrowser
+    # can :access, :ckeditor   # needed to access Ckeditor filebrowser
 
     # Performed checks for actions:
-    can [:read, :create, :destroy], Ckeditor::Picture
-    can [:read, :create, :destroy], Ckeditor::AttachmentFile
-    can :read, :all
-    can [:create], User
+    # can [:read, :create, :destroy], Ckeditor::Picture
+    # can [:read, :create, :destroy], Ckeditor::AttachmentFile
+    # can [:create], User
               # allow everyone to read everything
               # add ability to create comments
     user ||= User.new   
-    if user.role? :SuperAdmin
+
+    #guest
+    can :create, Prayer 
+    can :search, User 
+    can :create, Affiliation  
+
+    if user.role? :SuperAdmin       ### SUPERADMIN ###
       can :manage, :all 
-    elsif user.role? :Admin      ### ADMIN ###
+
+    elsif user.role? :Admin         ### ADMIN ###
       can :manage, :all
-      can :assign_roles, User
-      can :dashboard
-      can :access, :rails_admin
-      # can [:read, :edit], Frame
-      # can :manage, [Role, User]
-      # piggybak specific
-      can :manage, Piggybak.config.manage_classes.map(&:constantize)
-      Piggybak.config.extra_abilities.each do |extra_ability|
-        can extra_ability[:abilities], extra_ability[:class_name].constantize
+      
+    elsif user.role? :Coordinator   ### MODERATOR ###
+      can :update, User do |u|
+        u.affiliation == user.affiliation && user.role?(:Coordinator) #checks if comment belongs to user
       end
-    elsif user.role? :Moderator   ### MODERATOR ###
-      can :read, [Article, Comment]
-      can [:create, :edit, :update], [Comment, Article]
-    elsif user.role? :Guest       ### GUEST ###
-       can :read, :all
-       can :create, Comment   
-       # can [:edit, :update], 
-     end
+      can :read, Prayer
+
+    elsif user.role? :Intercessor   ### INTERCESSOR ###
+      can :read, Prayer
+    end
   end
 end
+
+
+
+# can [:index], :all    #show index  
+      # can [:show], :all    #show show   
+      # can [:index], User    # does not work
+      # can [:show], User    #show show

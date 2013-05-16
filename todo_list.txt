@@ -3,7 +3,7 @@
 
 
 prayer#index
-	prayer_for	category	affiliation
+	prayer_for	category	affiliation 
 
 	coor approve interecessor for his church
 	admin can approve for all churchs
