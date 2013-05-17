@@ -31,6 +31,9 @@ class PrayersController < ApplicationController
     end
   end
 
+  def prayer_partial
+    
+  end
 
   def edit
     

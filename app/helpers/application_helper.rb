@@ -46,6 +46,7 @@ module ApplicationHelper
     Status.find(id).status_name
   end
 
+  
   def reset_current_state(model)
     scheduled = Status.find_by_status_name("scheduled").id
     published = Status.find_by_status_name("published").id
