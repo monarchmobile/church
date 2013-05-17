@@ -44,24 +44,16 @@ prayer#index
 
 (30-min)reenable abilities  ** DONE** 
 
+(1 hour) 10:40 -- **DONE **
+	user edit page
+	user index page coords/vs admin ablity to see users
+		
+
 (45-min) [3 min] 
 	get flash messages working
 	{} in sign up form
 
-(1 hour) 10:40 --
-	user edit page
-	interecessor
-		no roles
-		first_name, last_name, church_name, email
-	coord
-	roles
-
-	admin
-		roles
-
 (30-min)
 	user#create redirect to thank you page
-
-
 
 (45-min) user index/ person should only show up in one list if have multiple roles

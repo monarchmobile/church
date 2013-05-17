@@ -14,8 +14,8 @@
 		<%= f.text_field :email %>
 	</div>
 
-	<% if current_user.role?(:Admin, :Superadmin, :Coordinator) %>
-		<%= render 'users/choose_role', f: f if current_user.role? : %>
+	<% if current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin), role_id(:Coordinator)] %>
+		<%= render 'users/choose_role', f: f  %>
 	<% end %>
 
   <div class="actions">

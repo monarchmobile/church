@@ -52,7 +52,11 @@ class UsersController < Devise::RegistrationsController
       else
         if @user.update_attributes(params[:user])
           all_user_states
-          format.html { redirect_to users_path, :notice => "user udpdate good"}
+          if current_user.role_ids && [role_id(:SuperAdmin), role_id(:Admin), role_id(:Coordinator)]
+            format.html { redirect_to users_path, :notice => "user udpdate good"}
+          else
+            format.html { redirect_to @user, :notice => "changes updated" }
+          end
         else
           format.html { redirect_to dashboard_path, :notice => "user udpdate good"}
         end
