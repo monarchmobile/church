@@ -17,10 +17,11 @@ class PagesController < ApplicationController
 		reset_current_state(Event)
 		reset_current_state(Blog)
 		@partials = Partial.all
-		
+		@prayer = Prayer.new
 		@announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
 		@blogs_partial = Describe.new(Blog).published.limit(5).order("starts_at DESC")
 		@events_partial = Describe.new(Event).published.limit(5).order("starts_at DESC")
+
 	end
 
 	def edit 

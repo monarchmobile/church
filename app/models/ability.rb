@@ -26,7 +26,7 @@ class Ability
       
     elsif user.role? :Coordinator   ### MODERATOR ###
       # can :dashboard
-      can [:manage], User do |u|
+      can :manage, User do |u|
         u.affiliation == user.affiliation && user.role?(:Coordinator) #checks if comment belongs to user
       end
       

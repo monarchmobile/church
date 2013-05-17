@@ -43,6 +43,7 @@ class PartialsController < ApplicationController
 	end
 
 	def destroy
+		@partial.page_ids=[]
 		@partial.destroy
 		respond_to do |format|
 			format.html { redirect_to partials_path }

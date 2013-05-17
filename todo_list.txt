@@ -53,7 +53,11 @@ prayer#index
 	get flash messages working
 	{} in sign up form
 
-(30-min)
+(30-min)  ** DONE **
 	user#create redirect to thank you page
 
+1)intercessor on user/index can see all... not sure why
+
 (45-min) user index/ person should only show up in one list if have multiple roles
+
+prayer request make into partial

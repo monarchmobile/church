@@ -67,5 +67,5 @@ Church::Application.routes.draw do
 
   match 'dashboard', :to => 'static_pages#dashboard'
   
-  root :to => "prayers#new"
+  root :to => "pages#show", :id => 'home'
 end
