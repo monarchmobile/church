@@ -1,8 +1,20 @@
 <%= form_for @user, :validate => true do |f| %>  
   <%= render 'shared/errors', object: @user %>
 
+	<div class="field">
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name %>
+	</div>
+	<div class="field">
+		<%= f.label :last_name %>
+		<%= f.text_field :last_name %>
+	</div>
+	<div class="field">
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
 
-<%= render 'users/choose_role', f: f %>
+	<%= render 'users/choose_role', f: f %>
 
   <div class="actions">
     <%= f.submit "Update Profile" %>

@@ -48,15 +48,7 @@ class UsersController < Devise::RegistrationsController
     end
       
     respond_to do |format|
-      if params[:user][:role_ids]
-        if @user.update_attributes(params[:user])
-          all_user_states
-          format.html { redirect_to users_path, :notice => "role udpdate good"}
-        else
-          format.html { redirect_to dashboard_path, :notice => "role udpdate bad"}
-          format.js
-        end
-      elsif !@approved_status.blank?
+      if !@approved_status.blank?
         if @user.update_attributes(approved: @approved_status)
           all_user_states
           format.js

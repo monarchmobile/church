@@ -1,10 +1,17 @@
 <%= form_for(@affiliation) do |f| %>
   <%= render 'shared/errors', object: @affiliation %> 
-  <% end %>
 
   <div class="field">
     <%= f.label :church %><br />
     <%= f.text_field :church %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.select(:state, Arrays::STATES, { prompt: true }) %><%= required_field %>
   </div>
   <div class="actions">
     <%= f.submit %>

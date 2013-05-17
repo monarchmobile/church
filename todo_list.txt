@@ -27,15 +27,25 @@ prayer#index
 	flash not showing up
 
 
-1)ablity to add churchs and categories
-categories crashing when included as supermodel visible
+(15-min) 9:40 -- 9:54   **DONE **
+	categories crashing when included as supermodel visible
 
-2)if current user, show create prayer button on prayer request
+(1-hour) 9:55 -- 10:20
+	ablity to add 
+		churchs ** DONE** 
+		categories ** DONE **
 
-3){} in sign up form
+(15-min) 10:21 -- 10:30
+	if current user, show create prayer button on prayer request
+(45-min)
+	get flash messages working
+	{} in sign up form
 
-3)admin cannot edit interecessor
-
+(1 hour)
+	enable editing
+	admin cannot edit interecessor
+(1 hour)
+	user edit page
 	interecessor
 		no roles
 		first_name, last_name, church_name, email
@@ -45,6 +55,7 @@ categories crashing when included as supermodel visible
 	admin
 		roles
 
-4)user#create redirect to thank you page
+(30-min)
+	user#create redirect to thank you page
 
-5)reenable abilities
+(30-min)reenable abilities

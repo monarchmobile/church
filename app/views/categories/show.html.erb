@@ -3,7 +3,6 @@
 	<li>
 		<ul class="instance_detail">
 			<%= content_tag :li, @category.name, class:"name" %><br />
-			<%= content_tag :div, raw(@category.description), class: "view_all" %>
 			<ul class="crud_buttons">
 
 				<%= content_tag :li, link_to("edit", edit_category_path(@category)), class:"edit" %>

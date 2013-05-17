@@ -20,11 +20,15 @@
 
   <!-- User already logged in -->
   <% if current_user %>
-    <%= f.hidden_field :email, value: current_user.email %>
-    <%= f.hidden_field :requestor_first_name, value: current_user.first_name %>
-    <%= f.hidden_field :requestor_last_name, value: current_user.last_name %>
-    <%= f.hidden_field :affiliation_id, value: current_user.affiliation_id %>
+    <%= f.hidden_field :user_email, value: current_user.email %>
+    <%= f.hidden_field :user_first_name, value: current_user.first_name %>
+    <%= f.hidden_field :user_last_name, value: current_user.last_name %>
+    <%= f.hidden_field :affiliation, value: current_user.affiliation_id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 
   <!-- User NOT logged in -->
   <% else %>

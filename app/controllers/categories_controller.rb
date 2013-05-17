@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-
+  layout :resolve_layout
   def index
     @categories = Category.all
 
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
     @category = Category.new
 
     respond_to do |format|
-      format.js
+      format.html
     end
   end
 
@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.js
+        format.html { redirect_to categories_path}
       else
         format.html { render action: "new" }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
