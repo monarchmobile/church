@@ -1,5 +1,6 @@
 class AffiliationsController < ApplicationController
   layout :resolve_layout
+  load_and_authorize_resource
   def index
     @affiliations = Affiliation.order("church ASC")
 
@@ -9,7 +10,6 @@ class AffiliationsController < ApplicationController
   end
 
   def show
-    @affiliation = Affiliation.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -25,7 +25,6 @@ class AffiliationsController < ApplicationController
   end
 
   def edit
-    @affiliation = Affiliation.find(params[:id])
   end
 
   def create
@@ -41,7 +40,6 @@ class AffiliationsController < ApplicationController
   end
 
   def update
-    @affiliation = Affiliation.find(params[:id])
 
     respond_to do |format|
       if @affiliation.update_attributes(params[:affiliation])
@@ -53,7 +51,6 @@ class AffiliationsController < ApplicationController
   end
 
   def destroy
-    @affiliation = Affiliation.find(params[:id])
     @affiliation.destroy
 
     respond_to do |format|
