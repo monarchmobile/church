@@ -1,7 +1,10 @@
 <% models_list.each do |visible| %>
 	<% count = visible.name.constantize.all.count %>
 	<% model_name = visible.name.downcase %>
-		<%= content_tag :li, link_to("#{visible.name}s (#{count})", send("#{model_name}s_path")) %>
-
+		<% if visible.name == "Category" %>
+			<%= content_tag :li, link_to("#{visible.name}s (#{count})", send("categories_path")) %>
+		<% else %>
+			<%= content_tag :li, link_to("#{visible.name}s (#{count})", send("#{model_name}s_path")) %>
+		<% end %>
 <% end %>
 <%= content_tag :li, link_to("Supermodel", supermodels_path) if current_user.role? :SuperAdmin %>

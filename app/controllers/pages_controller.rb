@@ -16,9 +16,10 @@ class PagesController < ApplicationController
 		reset_current_state(Event)
 		reset_current_state(Blog)
 		@partials = Partial.all
-		@announcements_partial = Announcement.limit(5).order("starts_at DESC").published
-		@blogs_partial = Blog.limit(5).order("starts_at DESC").published
-		@events_partial = Event.limit(5).order("starts_at DESC").published
+		
+		@announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
+		@blogs_partial = Describe.new(Blog).published.limit(5).order("starts_at DESC")
+		@events_partial = Describe.new(Event).published.limit(5).order("starts_at DESC")
 		find_page
 	end
 

@@ -25,3 +25,26 @@ prayer#index
 
 	set affiliation to nothing if someone clicks "here"
 	flash not showing up
+
+
+1)ablity to add churchs and categories
+categories crashing when included as supermodel visible
+
+2)if current user, show create prayer button on prayer request
+
+3){} in sign up form
+
+3)admin cannot edit interecessor
+
+	interecessor
+		no roles
+		first_name, last_name, church_name, email
+	coord
+	roles
+
+	admin
+		roles
+
+4)user#create redirect to thank you page
+
+5)reenable abilities

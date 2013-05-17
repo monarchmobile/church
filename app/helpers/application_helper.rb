@@ -128,6 +128,14 @@ module ApplicationHelper
     Role.find_by_name(role).id
   end
 
+  # static_pages _table_list.  Allows category to become categories
+  # <%= pluralize_without_count(item.categories.count, 'Category', ':') %>
+  def pluralize_without_count(count, noun, text = nil)
+    if count != 0
+      count == 1 ? "#{noun}#{text}" : "#{noun.pluralize}#{text}"
+    end
+  end
+
   
 
 end
