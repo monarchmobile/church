@@ -25,14 +25,18 @@ class Ability
       can :manage, :all
       
     elsif user.role? :Coordinator   ### MODERATOR ###
-      can :update, User do |u|
+      # can :dashboard
+      can [:manage], User do |u|
         u.affiliation == user.affiliation && user.role?(:Coordinator) #checks if comment belongs to user
       end
+      
       can :read, Prayer
 
     elsif user.role? :Intercessor   ### INTERCESSOR ###
       can :read, Prayer
-      can :show, User
+      can :manage, User do |u|
+        u == user
+      end
     end
   end
 end

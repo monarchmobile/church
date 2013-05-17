@@ -89,10 +89,6 @@
     end
   end
 
-  def find_blog
-    @blog = Blog.find(params[:id])
-  end
-
   def sort
     all_blog_states
     params[:blog].each_with_index do |id, index|

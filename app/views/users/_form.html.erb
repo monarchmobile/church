@@ -14,7 +14,9 @@
 		<%= f.text_field :email %>
 	</div>
 
-	<%= render 'users/choose_role', f: f %>
+	<% if current_user.role?(:Admin, :Superadmin, :Coordinator) %>
+		<%= render 'users/choose_role', f: f if current_user.role? : %>
+	<% end %>
 
   <div class="actions">
     <%= f.submit "Update Profile" %>

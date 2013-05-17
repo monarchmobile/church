@@ -2,7 +2,6 @@ class UsersController < Devise::RegistrationsController
   load_and_authorize_resource
   layout :resolve_layout
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
     all_user_states
   end
 
@@ -95,6 +94,8 @@ class UsersController < Devise::RegistrationsController
   end
 
   def all_user_states
+    @intercessors_waiting_to_be_approved_within_coordinators_church = User.not_approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
+    @approved_intercessors_within_coordinators_church = User.approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
     @intercessors_waiting_to_be_approved = User.not_approved.with_role(role_id(:intercessor))
     @coordinators_waiting_to_be_approved = User.not_approved.with_role(role_id(:coordinator))
     @admins_waiting_to_be_approved = User.not_approved.with_role(role_id(:admin))

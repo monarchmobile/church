@@ -11,37 +11,60 @@
 	</ul>
 	
 </div>
+<!-- WAITING TO BE APPROVED -->
 <%= content_tag :h2, "Waiting to be Approved" %>
-<!-- intercessors waiting -->
-<ul class="model_table userStatus" id="intercessors_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Intercessors(#{@intercessors_waiting_to_be_approved.count})" %>
-	<%= render @intercessors_waiting_to_be_approved %>
-</ul>
-<!-- coordinators waiting -->
-<ul class="model_table userStatus" id="coordinators_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Coordinators(#{@coordinators_waiting_to_be_approved.count})" %>
-	<%= render @coordinators_waiting_to_be_approved %>
-</ul>
-<!-- admins waiting -->
-<ul class="model_table userStatus" id="admins_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Admins (#{@admins_waiting_to_be_approved.count})" %>
-	<%= render @admins_waiting_to_be_approved %>
-</ul>
+<!-- coordinator page -->
+<% if current_user.role? :Coordinator %>
+	<!-- coordintators church: intercessors waiting -->
+	<ul class="model_table userStatus" id="intercessors_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
+		<%= content_tag :h3, "Intercessors(#{@intercessors_waiting_to_be_approved_within_coordinators_church.count})" %>
+		<%= render @intercessors_waiting_to_be_approved_within_coordinators_church %>
+	</ul>
 
+<!-- Admin/Superadmin page -->
+<% elsif current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin)] %>
+	<!-- intercessors waiting -->
+	<ul class="model_table userStatus" id="intercessors_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
+		<%= content_tag :h3, "Intercessors(#{@intercessors_waiting_to_be_approved.count})" %>
+		<%= render @intercessors_waiting_to_be_approved %>
+	</ul>
+	<!-- coordinators waiting -->
+	<ul class="model_table userStatus" id="coordinators_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
+		<%= content_tag :h3, "Coordinators(#{@coordinators_waiting_to_be_approved.count})" %>
+		<%= render @coordinators_waiting_to_be_approved %>
+	</ul>
+	<!-- admins waiting -->
+	<ul class="model_table userStatus" id="admins_waiting_to_be_approved" data-update-url="<%= sort_users_url %>">
+		<%= content_tag :h3, "Admins (#{@admins_waiting_to_be_approved.count})" %>
+		<%= render @admins_waiting_to_be_approved %>
+	</ul>
+<% end %>
+
+<!-- APPROVED -->
 <%= content_tag :h2, "Approved" %>
-<!-- approved intercessors-->
-<ul class="model_table userStatus" id="approved_intercessors" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Intercessors (#{@approved_intercessors.count})" %>
-	<%= render @approved_intercessors %>
-</ul>
-<!-- approved coordinators-->
-<ul class="model_table userStatus" id="approved_coordinators" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Coordinators (#{@approved_coordinators.count})" %>
-	<%= render @approved_coordinators %>
-</ul>
-<!-- approved admins-->
-<ul class="model_table userStatus" id="approved_admins" data-update-url="<%= sort_users_url %>">
-	<%= content_tag :h3, "Admins (#{@approved_admins.count})" %>
-	<%= render @approved_admins %>
-</ul>
+<% if current_user.role? :Coordinator %>
+	<!-- coordintators church: approved intercessors-->
+		<ul class="model_table userStatus" id="approved_intercessors" data-update-url="<%= sort_users_url %>">
+			<%= content_tag :h3, "Intercessors (#{@approved_intercessors_within_coordinators_church.count})" %>
+			<%= render @approved_intercessors_within_coordinators_church %>
+		</ul>
+
+<!-- Admin/Superadmin page -->
+<% elsif current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin)] %>	
+	<!-- approved intercessors-->
+	<ul class="model_table userStatus" id="approved_intercessors" data-update-url="<%= sort_users_url %>">
+		<%= content_tag :h3, "Intercessors (#{@approved_intercessors.count})" %>
+		<%= render @approved_intercessors %>
+	</ul>
+	<!-- approved coordinators-->
+	<ul class="model_table userStatus" id="approved_coordinators" data-update-url="<%= sort_users_url %>">
+		<%= content_tag :h3, "Coordinators (#{@approved_coordinators.count})" %>
+		<%= render @approved_coordinators %>
+	</ul>
+	<!-- approved admins-->
+	<ul class="model_table userStatus" id="approved_admins" data-update-url="<%= sort_users_url %>">
+		<%= content_tag :h3, "Admins (#{@approved_admins.count})" %>
+		<%= render @approved_admins %>
+	</ul>
+<% end %>
 
