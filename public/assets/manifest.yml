@@ -1,4 +1,6 @@
 ---
+background.jpg: background-befba855e6fa5efb07aa9e917a876c2f.jpg
+background/index.jpg: background-befba855e6fa5efb07aa9e917a876c2f.jpg
 black_opac.png: black_opac-097383ebe830527d4f5d39c65d726f5a.png
 black_opac/index.png: black_opac-097383ebe830527d4f5d39c65d726f5a.png
 crud.png: crud-3f5abfd957f45deabf1719e0f313b63b.png
@@ -7,6 +9,10 @@ gray_back2.jpg: gray_back2-a0bdf2cfcc17b4da10a50eac3d24a06d.jpg
 gray_back2/index.jpg: gray_back2-a0bdf2cfcc17b4da10a50eac3d24a06d.jpg
 green.png: green-ef3340e1fbcaf3f06d2e3c0934675f43.png
 green/index.png: green-ef3340e1fbcaf3f06d2e3c0934675f43.png
+heading1.png: heading1-1ef6534390d8619c3841aac31c86fac5.png
+heading1/index.png: heading1-1ef6534390d8619c3841aac31c86fac5.png
+heading2.png: heading2-5d3994ee251f90cc08b17ea0372a82c3.png
+heading2/index.png: heading2-5d3994ee251f90cc08b17ea0372a82c3.png
 icons.png: icons-3f5abfd957f45deabf1719e0f313b63b.png
 icons/index.png: icons-3f5abfd957f45deabf1719e0f313b63b.png
 menu_shadow.png: menu_shadow-2102e9c6ef6ac4be3c9e4c1167fc49c9.png
@@ -15,10 +21,20 @@ rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 sidebar.png: sidebar-d5de5af205743db88ca2dee524ed4ccc.png
 sidebar/index.png: sidebar-d5de5af205743db88ca2dee524ed4ccc.png
+slideshow-bible.jpg: slideshow-bible-e147010ce5ff8eed4146e8a4b463b500.jpg
+slideshow-bible/index.jpg: slideshow-bible-e147010ce5ff8eed4146e8a4b463b500.jpg
+slideshow-journey.jpg: slideshow-journey-d95c5bb4f97cbd75266e67a849b5e11d.jpg
+slideshow-journey/index.jpg: slideshow-journey-d95c5bb4f97cbd75266e67a849b5e11d.jpg
+slideshow-prayer.jpg: slideshow-prayer-66000cc9833d864ed44a70af0fe4159a.jpg
+slideshow-prayer/index.jpg: slideshow-prayer-66000cc9833d864ed44a70af0fe4159a.jpg
+web-logo.png: web-logo-b5167e7f8bbd99b90d96a57d11115675.png
+web-logo/index.png: web-logo-b5167e7f8bbd99b90d96a57d11115675.png
+white-opac.png: white-opac-e536376728c0b4f77430bb143531cc01.png
+white-opac/index.png: white-opac-e536376728c0b4f77430bb143531cc01.png
 application.js: application-bbff040f23442eb6da29d4c2261ff494.js
 application/index.js: application-bbff040f23442eb6da29d4c2261ff494.js
-application.css: application-c33ced32d20632a22b8ca9b60a8725b2.css
-application/index.css: application-c33ced32d20632a22b8ca9b60a8725b2.css
+application.css: application-321f2603ed9cb6bba3e5319454441ab9.css
+application/index.css: application-321f2603ed9cb6bba3e5319454441ab9.css
 static_pages.css: static_pages-15de4dc3638f5753e5c97f2a57058788.css
 static_pages/index.css: static_pages-15de4dc3638f5753e5c97f2a57058788.css
 ckeditor/application.js: ckeditor/application-6d796595ef93aaeb19a9474406efa939.js

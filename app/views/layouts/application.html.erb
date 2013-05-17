@@ -14,21 +14,45 @@
   
   <%= render "shared/header" %>
   <%= render "shared/announcements" %>
-
     <div class="container main">
      
 
-      <div class="main_col">
-        <div class="error">
-          <% flash.each do |name, msg| %>
-            <%= content_tag :p, msg, id: "flash_#{name}" %>
-          <% end %>
-        </div>
 
-        <%= yield %>
-        <br class="clear"/>
-      </div> 
+      <div class="error">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :p, msg, id: "flash_#{name}" %>
+        <% end %>
+      </div>
+      <div class="header">
+        <div class="col1">
+          <div class="logo">
+            <%= image_tag "web-logo.png" %>
+          </div>
+        </div>
+        <div class="col2 slideshow">
+            <%= image_tag "slideshow-prayer.jpg" %>
+        </div>
+      </div>
+      <br class="clear" />
+      <div class="band">
+        <h2>Request Prayer</h2>
+      </div>
+      <div class="second_tier">
+        <div class="col1">
+          <div class="side_table">
+            <%= yield %>
+          </div>
+
+        </div>
+        <div class="col2">
+            
+        </div>
+      </div>
+
+
       <br class="clear"/>
+
+    <br class="clear"/>
     </div>
     
   <%= render "shared/footer" %>

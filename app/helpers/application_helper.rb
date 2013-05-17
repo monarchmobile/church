@@ -32,6 +32,8 @@ module ApplicationHelper
     end
   end
 
+  # this removes events and blogs from dashboard, not needed as of yet
+
   def check_status(blog)
     if blog.published == true
       "published"
