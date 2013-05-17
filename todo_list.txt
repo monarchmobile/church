@@ -35,16 +35,20 @@ prayer#index
 		churchs ** DONE** 
 		categories ** DONE **
 
-(15-min) 10:21 -- 10:30
+(1 hour) 10:30--10:40 **DONE **
+	enable editing
+	admin cannot edit interecessor
+
+(15-min) 10:21 -- 10:30 **DONE **
 	if current user, show create prayer button on prayer request
-(45-min)
+
+(30-min)reenable abilities  ** DONE** 
+
+(45-min) [3 min] 
 	get flash messages working
 	{} in sign up form
 
-(1 hour)
-	enable editing
-	admin cannot edit interecessor
-(1 hour)
+(1 hour) 10:40 --
 	user edit page
 	interecessor
 		no roles
@@ -58,4 +62,6 @@ prayer#index
 (30-min)
 	user#create redirect to thank you page
 
-(30-min)reenable abilities
+
+
+(45-min) user index/ person should only show up in one list if have multiple roles

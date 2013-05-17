@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController 
-	before_filter :authenticate_user!, :except => [:show] # devise method
 	layout 'dashboard'
+	load_and_authorize_resource
 	def new 
 		@profile = Profile.new	
 	end
@@ -10,11 +10,11 @@ class ProfilesController < ApplicationController
 	end
 
 	def show 
-		find_profile
+		
 	end
 
 	def edit 
-		find_profile
+		
 	end
 
 	def create 
@@ -30,7 +30,6 @@ class ProfilesController < ApplicationController
 	end
 
 	def update
-		find_profile
 		respond_to do |format|
 			if @profile.update_attributes(params[:profile])
 				format.html { redirect_to @profile, :notice => "The #{@profile.name} profile was succesfully updated"}
@@ -42,16 +41,11 @@ class ProfilesController < ApplicationController
 	end
 
 	def destroy
-		find_profile
 		@profile.destroy
 		respond_to do |format|
 			format.html { redirect_to root_url}
 			format.js
 		end
-	end
-
-	def find_profile 
-		@profile = Profile.find(params[:id])
 	end
 
 end

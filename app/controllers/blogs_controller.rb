@@ -1,7 +1,7 @@
  class BlogsController < ApplicationController 
   before_filter :authenticate_user!, :except => [:show] # devise method
   layout :resolve_layout
-
+  load_and_authorize_resource
   def index
     all_blog_states
     @blogs = Blog.all
@@ -13,7 +13,6 @@
   end
   
   def show
-    find_blog
     @comments = @blog.comments
     @comment = @blog.comments.build
 
@@ -41,7 +40,6 @@
 
  
   def edit
-    find_blog
     authorize! :edit, @blog
    
   end
@@ -62,7 +60,6 @@
 
  
   def update
-    find_blog
     authorize! :update, @blog
     all_blog_states
     position = params[:blog][:position]
@@ -83,7 +80,6 @@
   end
 
   def destroy
-    find_blog 
     authorize! :destroy, @blog
     @blog.destroy
 
@@ -107,7 +103,6 @@
 
   def blog_status
     all_blog_states
-    find_blog
     current_state = params[:blog][:current_state]
     total_published = @published_blogs.count
     published = Status.find_by_status_name("published").id
@@ -126,7 +121,6 @@
 
   def blog_starts_at
     
-    find_blog
     starts_at = params[:blog][:starts_at]
     current_state = params[:blog][:current_state]
     total_published = @published_blogs.count
@@ -145,7 +139,6 @@
 
   def blog_ends_at
     
-    find_blog
     ends_at = params[:blog][:ends_at]
     current_state = params[:blog][:current_state]
     total_published = @published_blogs.count

@@ -1,6 +1,6 @@
 class RolesController < ApplicationController 
-	before_filter :authenticate_user!, :except => [:show] # devise method
 	layout 'dashboard'
+	load_and_authorize_resource
 	def new 
 		@role = Role.new	
 	end
@@ -10,11 +10,9 @@ class RolesController < ApplicationController
 	end
 
 	def show 
-		find_role
 	end
 
 	def edit 
-		find_role
 	end
 
 	def create 
@@ -30,7 +28,6 @@ class RolesController < ApplicationController
 	end
 
 	def update
-		find_role
 		respond_to do |format|
 			if @role.update_attributes(params[:role])
 				format.html { redirect_to @role, :notice => "The #{@role.name} role was succesfully updated"}
@@ -42,16 +39,11 @@ class RolesController < ApplicationController
 	end
 
 	def destroy
-		find_role
 		@role.destroy
 		respond_to do |format|
 			format.html { redirect_to root_url}
 			format.js
 		end
-	end
-
-	def find_role 
-		@role = Role.find(params[:id])
 	end
 
 end

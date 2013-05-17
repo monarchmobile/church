@@ -1,6 +1,6 @@
  class EventsController < ApplicationController 
-  before_filter :authenticate_user!, :except => [:show] # devise method
   layout :resolve_layout
+  load_and_authorize_resource
 
   def index
     all_event_states
@@ -13,8 +13,6 @@
   end
   
   def show
-    find_event
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -39,13 +37,10 @@
 
  
   def edit
-    find_event
-    authorize! :edit, @event
    
   end
 
   def create
-    authorize! :create, @event
     @event = Event.new(params[:event])
     respond_to do |format|
       if @event.save
@@ -60,8 +55,6 @@
 
  
   def update
-    find_event
-    authorize! :update, @event
     all_event_states
     position = params[:event][:position]
     current_state = params[:event][:current_state]
@@ -81,18 +74,12 @@
   end
 
   def destroy
-    find_event 
-    authorize! :destroy, @event
     @event.destroy
 
     respond_to do |format|
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
-  end
-
-  def find_event
-    @event = Event.find(params[:id])
   end
 
   def sort
@@ -105,7 +92,6 @@
 
   def event_status
     all_event_states
-    find_event
     current_state = params[:event][:current_state]
     total_published = @published_events.count
     published = Status.find_by_status_name("published").id
@@ -124,7 +110,6 @@
 
   def event_starts_at
     all_event_states
-    find_event
     starts_at = params[:event][:starts_at]
     current_state = params[:event][:current_state]
     total_published = @published_events.count
@@ -143,7 +128,6 @@
 
   def event_ends_at
     all_event_states
-    find_event
     ends_at = params[:event][:ends_at]
     current_state = params[:event][:current_state]
     total_published = @published_events.count

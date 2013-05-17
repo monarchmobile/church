@@ -16,6 +16,7 @@ class Ability
     can :search, User 
     can :create, Affiliation 
     can :create, User 
+    can :show, Page
 
     if user.role? :SuperAdmin       ### SUPERADMIN ###
       can :manage, :all 

@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
 	before_filter :authenticate_user!
+	load_and_authorize_resource
 	def new
 		@link = Link.new
 		respond_to do |format|

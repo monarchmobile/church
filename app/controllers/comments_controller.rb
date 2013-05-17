@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  load_and_authorize_resource
   def index
     @comments = Comment.all
 
@@ -11,8 +11,6 @@ class CommentsController < ApplicationController
 
 
   def show
-    @comment = Comment.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @comment }
@@ -22,7 +20,6 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
@@ -31,7 +28,7 @@ class CommentsController < ApplicationController
 
 
   def edit
-    @comment = Comment.find(params[:id])
+
   end
 
 
@@ -52,7 +49,6 @@ def create
 
 
   def update
-    @comment = Comment.find(params[:id])
     @blog = @comment.blog
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
@@ -66,7 +62,6 @@ def create
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
 
     respond_to do |format|

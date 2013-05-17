@@ -10,7 +10,6 @@ class AffiliationsController < ApplicationController
   end
 
   def show
-
     respond_to do |format|
       format.html
     end

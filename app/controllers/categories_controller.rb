@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   layout :resolve_layout
+  load_and_authorize_resource
   def index
     @categories = Category.all
 
@@ -11,8 +12,6 @@ class CategoriesController < ApplicationController
 
 
   def show
-    load_category
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @category }
@@ -30,7 +29,6 @@ class CategoriesController < ApplicationController
 
 
   def edit
-    load_category
   end
 
 
@@ -48,8 +46,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    load_category
-
     respond_to do |format|
       if @category.update_attributes(params[:category])
         format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
@@ -62,7 +58,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    load_category
     @category.destroy
 
     respond_to do |format|
@@ -71,7 +66,4 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def load_category
-  	@category = Category.find(params[:id])
-  end
 end

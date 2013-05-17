@@ -1,7 +1,7 @@
 class PrayersController < ApplicationController 
   layout 'dashboard', :except => [:new]
+  load_and_authorize_resource
   def index
-    
     @recent_prayers = Prayer.where("created_at >= ?", Date.today.beginning_of_week)
     @prayers_with_week_duration = Prayer.expiring_within_the_week
     @prayers_with_month_duration = Prayer.expiring_within_the_month
@@ -13,8 +13,6 @@ class PrayersController < ApplicationController
 
 
   def show
-    load_prayer
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @prayer }
@@ -35,7 +33,7 @@ class PrayersController < ApplicationController
 
 
   def edit
-    load_prayer
+    
   end
 
   def create
@@ -56,8 +54,6 @@ class PrayersController < ApplicationController
 
 
   def update
-    load_prayer
-
     respond_to do |format|
       if @prayer.update_attributes(params[:prayer])
         format.html { redirect_to @prayer, notice: 'Prayer req was successfully updated.' }
@@ -71,7 +67,6 @@ class PrayersController < ApplicationController
 
 
   def destroy
-    load_prayer
     @prayer.destroy
 
     respond_to do |format|
@@ -80,8 +75,5 @@ class PrayersController < ApplicationController
     end
   end
 
-  protected
-    def load_prayer 
-      @prayer = Prayer.find(params[:id])
-    end
+
 end

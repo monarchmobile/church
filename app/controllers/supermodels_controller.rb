@@ -1,6 +1,7 @@
 class SupermodelsController < ApplicationController
  
 	layout 'dashboard'
+	load_and_authorize_resource
 
 	def new 
 		@supermodel = Supermodel.new
@@ -12,7 +13,6 @@ class SupermodelsController < ApplicationController
 	end
 
 	def show
-		find_supermodel
 	end
 
 	def create
@@ -28,13 +28,11 @@ class SupermodelsController < ApplicationController
 		end
 	end
 
-	def edit
-		find_supermodel 
+	def edit 
 
 	end
 
 	def update
-		find_supermodel
 		authorize! :update, @supermodel
 		all_supermodel_states
 		respond_to do |format|
@@ -49,11 +47,6 @@ class SupermodelsController < ApplicationController
 
 	end
 
-
-	def find_supermodel
-		@supermodel = Supermodel.find(params[:id])
-	end
-
 	def sort
 		all_supermodel_states
 		params[:supermodel].each_with_index do |id, index|
@@ -64,7 +57,6 @@ class SupermodelsController < ApplicationController
 	end
 
 	def model_status
-		find_supermodel
 		all_supermodel_states
 		visible = params[:supermodel][:visible]
 		@supermodel.update_attributes({visible: visible})

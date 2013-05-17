@@ -1,6 +1,7 @@
 class PagesController < ApplicationController 
-	before_filter :authenticate_user!, :except => [:show] # devise method
+	# before_filter :authenticate_user!, :except => [:show] # devise method
 	layout :resolve_layout
+	load_and_authorize_resource
 	def new 
 		@page = Page.new
 		all_page_states
@@ -20,11 +21,9 @@ class PagesController < ApplicationController
 		@announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
 		@blogs_partial = Describe.new(Blog).published.limit(5).order("starts_at DESC")
 		@events_partial = Describe.new(Event).published.limit(5).order("starts_at DESC")
-		find_page
 	end
 
 	def edit 
-		find_page
 		all_page_states
 	end
 
@@ -41,7 +40,6 @@ class PagesController < ApplicationController
 	end
 
 	def update
-		find_page
 		all_page_states
 		position = params[:page][:position]
 		current_state = params[:page][:current_state]
@@ -61,7 +59,6 @@ class PagesController < ApplicationController
 	end
 
 	def destroy
-		find_page
 		@page.link_ids=[]
 		@page.destroy
 		respond_to do |format|
@@ -69,11 +66,6 @@ class PagesController < ApplicationController
 			format.js
 		end
 	end
-
-	def find_page 
-		@page = Page.find(params[:id])
-	end
-
 
 	def sort
 		all_page_states
@@ -85,7 +77,6 @@ class PagesController < ApplicationController
 
 	def status
 		all_page_states
-		find_page
 		current_state = params[:page][:current_state]
 		total_published = @published_pages.count
 		published = Status.find_by_status_name("published").id

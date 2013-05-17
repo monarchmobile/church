@@ -1,7 +1,7 @@
 class AnnouncementsController < ApplicationController 
 
 	layout :resolve_layout
-	
+	load_and_authorize_resource	
 	def index
 		all_announcement_states
 		@announcements = Announcement.all
@@ -25,7 +25,6 @@ class AnnouncementsController < ApplicationController
 	end
 	
 	def show
-		find_announcement
 		respond_to do |format|
 			format.html { render @announcement }
 			format.js
@@ -40,7 +39,6 @@ class AnnouncementsController < ApplicationController
   end
   
 	def edit
-		find_announcement
 		respond_to do |format|
 			format.html { render 'edit' }
 			format.js
@@ -49,7 +47,6 @@ class AnnouncementsController < ApplicationController
 
 	def update
 		all_announcement_states
-		find_announcement
 		position = params[:announcement][:position]
 		current_state = params[:announcement][:current_state]
 		published = Status.find_by_status_name("published").id
@@ -65,7 +62,6 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def destroy
-		find_announcement
 		@announcement.destroy
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
@@ -75,7 +71,6 @@ class AnnouncementsController < ApplicationController
 
 	def announcement_status
 		all_announcement_states
-		find_announcement
 		current_state = params[:announcement][:current_state]
 		total_published = @published_announcements.count
 		published = Status.find_by_status_name("published").id
@@ -93,7 +88,6 @@ class AnnouncementsController < ApplicationController
 
 	def announcement_starts_at
 		all_announcement_states
-		find_announcement
 		starts_at = params[:announcement][:starts_at]
 		current_state = params[:announcement][:current_state]
 		total_published = @published_announcements.count
@@ -112,7 +106,6 @@ class AnnouncementsController < ApplicationController
 
 	def announcement_ends_at
 		all_announcement_states
-		find_announcement
 		ends_at = params[:announcement][:ends_at]
 		current_state = params[:announcement][:current_state]
 		total_published = @published_announcements.count
@@ -127,10 +120,6 @@ class AnnouncementsController < ApplicationController
 	  all_announcement_states
 		render "update.js"
 		
-	end
-
-	def find_announcement
-		@announcement = Announcement.find(params[:id])
 	end
 
 	def sort

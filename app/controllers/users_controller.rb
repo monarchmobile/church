@@ -11,12 +11,10 @@ class UsersController < Devise::RegistrationsController
   end
 
   def show
-    load_user
     recent_prayers_for_intercessor
   end
 
   def edit
-    load_user
     @admin_roles = Role.all
   end
 
@@ -41,7 +39,6 @@ class UsersController < Devise::RegistrationsController
   end
   
   def update
-    load_user
     @approved_status = params[:user][:approved] if params[:user][:approved]
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]
@@ -61,13 +58,10 @@ class UsersController < Devise::RegistrationsController
           format.html { redirect_to dashboard_path, :notice => "user udpdate good"}
         end
       end
-
     end
- 
   end
     
   def destroy
-    load_user
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     
     unless @user == current_user
@@ -98,10 +92,6 @@ class UsersController < Devise::RegistrationsController
     respond_to do |format|
       format.js
     end
-  end
-
-  def load_user
-    @user = User.find(params[:id])
   end
 
   def all_user_states
