@@ -94,14 +94,14 @@ class UsersController < Devise::RegistrationsController
   end
 
   def all_user_states
-    @intercessors_waiting_to_be_approved_within_coordinators_church = User.not_approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
-    @approved_intercessors_within_coordinators_church = User.approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
-    @intercessors_waiting_to_be_approved = User.not_approved.with_role(role_id(:intercessor))
-    @coordinators_waiting_to_be_approved = User.not_approved.with_role(role_id(:coordinator))
-    @admins_waiting_to_be_approved = User.not_approved.with_role(role_id(:admin))
-    @approved_intercessors = User.approved.with_role(role_id(:intercessor))
-    @approved_coordinators = User.approved.with_role(role_id(:coordinator))
-    @approved_admins = User.approved.with_role(role_id(:admin))
+    @coor_list_ints_waiting = User.not_approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
+    @coor_list_ints_approved = User.approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
+    @admin_list_ints_waiting = User.not_approved.with_role(role_id(:intercessor))
+    @admin_list_coords_waiting = User.not_approved.with_role(role_id(:coordinator))
+    @admin_list_admins_waiting = User.not_approved.with_role(role_id(:admin))
+    @admin_list_ints_approved = User.approved.with_role(role_id(:intercessor))
+    @admin_list_coords_approved = User.approved.with_role(role_id(:coordinator))
+    @admin_list_admins_approved = User.approved.with_role(role_id(:admin))
    
   end
 end

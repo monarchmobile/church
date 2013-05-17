@@ -1,10 +1,14 @@
 <%= @approved_status %>
 
-$("#intercessors_waiting_to_be_approved").html("<%= j render @intercessors_waiting_to_be_approved %>").prepend("<h3>Intercessors (<%=@intercessors_waiting_to_be_approved.count%>)")
-$("#coordinators_waiting_to_be_approved").html("<%= j render @coordinators_waiting_to_be_approved %>").prepend("<h3>Coordinators (<%=@coordinators_waiting_to_be_approved.count%>)")
-$("#admins_waiting_to_be_approved").html("<%= j render @admins_waiting_to_be_approved %>").prepend("<h3>Admins (<%=@admins_waiting_to_be_approved.count%>)")
+$("#coor_list_ints_waiting").html("<%= j render @coor_list_ints_waiting %>").prepend("<h3>Intercessors (<%=@coor_list_ints_waiting.count%>)")
+
+$("#admin_list_ints_waiting").html("<%= j render @admin_list_ints_waiting %>").prepend("<h3>Intercessors (<%=@admin_list_ints_waiting.count%>)")
+$("#admin_list_coords_waiting").html("<%= j render @admin_list_coords_waiting %>").prepend("<h3>Coordinators (<%=@admin_list_coords_waiting.count%>)")
+$("#admin_list_admins_waiting").html("<%= j render @admin_list_admins_waiting %>").prepend("<h3>Admins (<%=@admin_list_admins_waiting.count%>)")
+
+$("#coor_list_ints_approved").html("<%= j render @coor_list_ints_approved %>").prepend("<h3>Intercessors (<%=@coor_list_ints_approved.count%>)")
 
 
-$("#approved_intercessors").html("<%= j render @approved_intercessors %>").prepend("<h3>Intercessors (<%=@approved_intercessors.count%>)")
-$("#approved_coordinators").html("<%= j render @approved_coordinators %>").prepend("<h3>Coordinators (<%=@approved_coordinators.count%>)")
-$("#approved_admins").html("<%= j render @approved_admins %>").prepend("<h3>Admins (<%=@approved_admins.count%>)")
+$("#admin_list_ints_approved").html("<%= j render @admin_list_ints_approved %>").prepend("<h3>Intercessors (<%=@admin_list_ints_approved.count%>)")
+$("#admin_list_coords_approved").html("<%= j render @admin_list_coords_approved %>").prepend("<h3>Coordinators (<%=@admin_list_coords_approved.count%>)")
+$("#admin_list_admins_approved").html("<%= j render @admin_list_admins_approved %>").prepend("<h3>Admins (<%=@admin_list_admins_approved.count%>)")
