@@ -1,6 +1,10 @@
 # models/customer/private.rb
 # models/customer/public.rb
 
+prayer partial
+	make p option in paged edit
+	p will not be a list of prayers but the action form
+
 
 prayer#index
 	prayer_for	category	affiliation 
@@ -56,8 +60,10 @@ prayer#index
 (30-min)  ** DONE **
 	user#create redirect to thank you page
 
+prayer_partial needs to be dynamic **DONE **
+
 1)intercessor on user/index can see all... not sure why
 
 (45-min) user index/ person should only show up in one list if have multiple roles
 
-prayer request make into partial
+

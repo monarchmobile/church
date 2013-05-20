@@ -147,6 +147,26 @@ label {
   margin:0px -15px 0px 15px;
 }
 
+// prayer_band - not sure if duplication or unique
+
+.prayer_band {
+  background-color: #f4eee4;
+box-shadow: 0 0 2px inset;
+height: 32px;
+margin: -31px 0px 0;
+position: absolute;
+width: 350px;
+  h2{
+    background: url("heading2.png") no-repeat scroll -12px -14px transparent;
+    height: 40px;
+    margin-left: 66px;
+    margin-top: -10px;
+    padding-left: 43px;
+    padding-top: 12px;
+  }
+
+}
+
 .band {
     background-color: #f4eee4;
     box-shadow: 0 0 2px inset;

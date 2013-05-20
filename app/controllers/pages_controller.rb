@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 	end
 
 	def show 
+		@links = Link.all
 		reset_current_state(Announcement)
 		reset_current_state(Event)
 		reset_current_state(Blog)

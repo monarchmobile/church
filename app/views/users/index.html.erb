@@ -14,7 +14,9 @@
 <!-- WAITING TO BE APPROVED -->
 <%= content_tag :h2, "Waiting to be Approved" %>
 <!-- coordinator page -->
-<% if current_user.role? :Coordinator %>
+<% if current_user.role? :Intercessor %>
+	intercessor sees nothing 
+<% elsif current_user.role? :Coordinator %>
 	<!-- coordintators church: intercessors waiting -->
 	<ul class="model_table userStatus" id="coor_list_ints_waiting" data-update-url="<%= sort_users_url %>">
 		<%= content_tag :h3, "Intercessors(#{@coor_list_ints_waiting.count})" %>
@@ -42,7 +44,9 @@
 
 <!-- APPROVED -->
 <%= content_tag :h2, "Approved" %>
-<% if current_user.role? :Coordinator %>
+<% if current_user.role? :Intercessor %>
+	intercessor sees nothing 
+<% elsif current_user.role? :Coordinator %>
 	<!-- coordintators church: approved intercessors-->
 		<ul class="model_table userStatus" id="coor_list_ints_approved" data-update-url="<%= sort_users_url %>">
 			<%= content_tag :h3, "Intercessors (#{@coor_list_ints_approved.count})" %>

@@ -19,13 +19,15 @@ Church::Application.routes.draw do
   resources :links
   resources :partials
   resources :categories
-  resources :prayers
+  resources :prayers 
   resources :affiliations
 
-
+  #partials
   match "announcement_partial", :to => "announcements#announcement_partial"
   match "blog_partial", :to => "blogs#blog_partial"
   match "event_partial", :to => "events#event_partial"
+  match "prayer_partial", :to => "prayers#prayer_partial"
+
 
   # announcements
   match 'announcements/:id/hide', to: 'announcements#hide', as: 'hide_announcement'

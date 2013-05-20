@@ -15,7 +15,7 @@
 	</div>
 	
 	<div class="field">
-		<%= f.label :link_ids, "Links to this page" %>><br />
+		<%= f.label :link_ids, "Links to this page" %><br />
   	<%= hidden_field_tag "page[link_ids][]", nil %>
     <% @links.each do |link| %>
       <%= check_box_tag "page[link_ids][]", link.id, @page.link_ids.include?(link.id), id: dom_id(link) %>  

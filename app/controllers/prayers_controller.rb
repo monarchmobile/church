@@ -1,5 +1,5 @@
 class PrayersController < ApplicationController 
-  layout 'dashboard', :except => [:new]
+  layout 'dashboard', :except => [:new, :prayer_partial]
   load_and_authorize_resource
   def index
     @recent_prayers = Prayer.where("created_at >= ?", Date.today.beginning_of_week)
@@ -32,6 +32,10 @@ class PrayersController < ApplicationController
   end
 
   def prayer_partial
+    @prayer = Prayer.new
+    @prayers_partial = Prayer.new
+    @model_name = "Prayer"
+    render 'shared/quick_partial_view', model_name: @model_name
     
   end
 
