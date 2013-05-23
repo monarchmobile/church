@@ -1,9 +1,9 @@
 <%= form_for @prayer, validate: true do |f| %>
 
   <%= render 'shared/errors', object: @prayer %> 
-  <h4>I would like prayer for...</h4>
   
   <div class="field"> 
+     <%= f.label :pray_for_first_name, "I would like prayer for..." %>
     <%= f.text_field :pray_for_first_name %><%= required_field %>
   </div>
   <div class="field">
@@ -25,7 +25,7 @@
     <%= f.hidden_field :affiliation, value: current_user.affiliation_id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
 
-    <div class="actions">
+    <div class="actions submit">
       <%= f.submit %>
     </div>
 
@@ -43,7 +43,7 @@
     <!-- User already exists -->
     <div class="hidden user_info_container" id="user_exists">
       <div id="existing_user_fields"></div>
-      <div class="actions">
+      <div class="actions submit">
         <%= f.submit %>
       </div>
     </div>
@@ -62,7 +62,7 @@
         <div class="field">
           <%= render('shared/affiliation', f: f) %>
         </div>
-        <div class="actions">
+        <div class="actions submit">
           <%= f.submit %>
         </div>
     </div>

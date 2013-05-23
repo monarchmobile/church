@@ -37,8 +37,11 @@
       <br class="clear" />
      
       <div class="second_tier">
+        <%= yield :prayer_request %>
         <div class="col2">
-            <%= yield %>
+            <div class="col_content">
+              <%= yield %>
+            </div>
         </div>
       </div>
 

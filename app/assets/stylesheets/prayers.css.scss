@@ -14,7 +14,9 @@ padding: 2px 5px;
  }
 
  
-
+.field {
+	margin-bottom: 20px;
+}
  
 
  .user_info_container {
@@ -32,4 +34,24 @@ padding: 2px 5px;
     margin-right: 5px;
     padding: 5px;
     width: 88%;
+ }
+
+ select#prayer_category {
+ 	font-size: 15px;
+    margin-right: 4px;
+    width: 93%;
+    padding:3px;
+    margin-bottom: 10px;
+ }
+
+  select#prayer_duration {
+ 	font-size: 15px;
+    margin-right: 4px;
+    width: 40%;
+    padding:3px;
+    margin-bottom: 10px;
+ }
+
+ .submit input{
+	width: 100%;
  }
