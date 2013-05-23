@@ -1,9 +1,6 @@
 
 if (<%= @found %> == true ){
-	$("#user_exists").show()
-} else if (<%= @found %> == false) {
-	$("#user_does_not_exist").show()
-	$("#user_exists").hide()()
-} else {
-	$("#no_search_yet").show()
-}
+	$("#prayer_user_first_name").val("<%= @user.first_name %>")
+	$("#prayer_user_last_name").val("<%= @user.last_name %>")
+	$("#prayer_affiliation").val("<%= @user.affiliation_id %>")
+} 

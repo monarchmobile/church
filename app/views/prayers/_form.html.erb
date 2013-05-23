@@ -2,20 +2,7 @@
 
   <%= render 'shared/errors', object: @prayer %> 
   
-  <div class="field"> 
-     <%= f.label :pray_for_first_name, "I would like prayer for..." %>
-    <%= f.text_field :pray_for_first_name %><%= required_field %>
-  </div>
-  <div class="field">
-    <%= f.collection_select :category, Category.find(:all), :id, :name, :prompt =>"Select a Category" %><%= required_field %>
-  </div>
-  <% week = Date.today + 7.days %>
-  <% month = Date.today + 30.days %>
   
-  <div class="field">
-    <%= f.label :duration, "Please pray with me" %>
-    <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]] %><%= required_field %>
-  </div>
 
   <!-- User already logged in -->
   <% if current_user %>
@@ -24,13 +11,37 @@
     <%= f.hidden_field :user_last_name, value: current_user.last_name %>
     <%= f.hidden_field :affiliation, value: current_user.affiliation_id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-
+    <div class="field"> 
+      <%= f.label :pray_for_first_name, "I would like prayer for..." %>
+      <%= f.text_field :pray_for_first_name %><%= required_field %>
+    </div>
+    <div class="field">
+      <%= f.collection_select :category, Category.find(:all), :id, :name, :prompt =>"Select a Category" %><%= required_field %>
+    </div>
+    <% week = Date.today + 7.days %>
+    <% month = Date.today + 30.days %>
+    
+    <div class="field">
+      <%= f.label :duration, "Please pray with me" %>
+      <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]], {:prompt => "Choose a duration"} %><%= required_field %>
+    </div>
     <div class="actions submit">
       <%= f.submit %>
     </div>
 
   <!-- User NOT logged in -->
   <% else %>
+    <div class="field"> 
+      <%= f.label :pray_for_first_name, "I would like prayer for..." %>
+      <%= f.text_field :pray_for_first_name %><%= required_field %>
+    </div>
+    <div class="field">
+      <%= f.collection_select :category, Category.find(:all), :id, :name, :prompt =>"Select a Category" %><%= required_field %>
+    </div>
+    <% week = Date.today + 7.days %>
+    <% month = Date.today + 30.days %>
+    
+    
 
     <!-- NO search performed yet -->
     <div class="user_info_container" id="no_search_yet">
@@ -40,17 +51,8 @@
       </div>
     </div>
     
-    <!-- User already exists -->
-    <div class="hidden user_info_container" id="user_exists">
-      <div id="existing_user_fields"></div>
-      <div class="actions submit">
-        <%= f.submit %>
-      </div>
-    </div>
-
-
     <!-- User does NOT exist -->
-    <div class="hidden user_info_container" id="user_does_not_exist">
+    <div class="user_info_container" id="user_does_not_exist">
         <div class="field">
           <%= f.label :user_first_name, "Your first name" %><br />
           <%= f.text_field :user_first_name %>
@@ -62,9 +64,17 @@
         <div class="field">
           <%= render('shared/affiliation', f: f) %>
         </div>
-        <div class="actions submit">
-          <%= f.submit %>
-        </div>
+        
+    </div>
+    
+
+    <div class="field">
+      <%= f.label :duration, "Please pray with me" %>
+      <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]], {:prompt => "Choose a duration"} %><%= required_field %>
+    </div>
+
+    <div class="actions submit">
+      <%= f.submit %>
     </div>
     
     

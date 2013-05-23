@@ -48,16 +48,16 @@ class Prayer < ActiveRecord::Base
   def create_user
     user = User.where(email: user_email)
     if user.blank? # new user
-      create_new_user
+      @user = create_new_user
+      church = nil
       if affiliation.blank?
-        create_affiliation_from_church
-        new_affiliation = @affiliation
-        @user.affiliation_id = new_affiliation.id
-        @user.save
+        church = create_affiliation_from_church
       else
-        @user.affiliation_id = affiliation.to_i
-        @user.save
+        church = Affiliation.find(self.affiliation)
       end
+      @user.affiliation = church
+      church.users << @user
+      @user.save
 
       guest = Role.find_by_name("Guest").id 
       @user.role_ids=[guest]
@@ -72,7 +72,7 @@ class Prayer < ActiveRecord::Base
   end
 
   def create_affiliation_from_church
-  	@affiliation = Affiliation.create(:church => new_church_name, :city => church_city, :state => church_state) unless new_church_name.blank?
+  	affiliation = Affiliation.create(:church => new_church_name, :city => church_city, :state => church_state) unless new_church_name.blank?
   end
 
   def affiliation=(id)
