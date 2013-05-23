@@ -35,8 +35,8 @@
     <!-- NO search performed yet -->
     <div class="user_info_container" id="no_search_yet">
       <div class="field">
-        <%= f.label :user_email, "Your email" %><%= required_field %><br />
-        <%= f.text_field :user_email %>
+        <%= f.label :user_email, "Your email" %><br />
+        <%= f.text_field :user_email %><%= required_field %>
       </div>
     </div>
     
@@ -52,7 +52,7 @@
     <!-- User does NOT exist -->
     <div class="hidden user_info_container" id="user_does_not_exist">
         <div class="field">
-          <%= f.label :user_first_name %><br />
+          <%= f.label :user_first_name, "Your first name" %><br />
           <%= f.text_field :user_first_name %>
         </div>
         <div class="field">

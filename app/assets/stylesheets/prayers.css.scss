@@ -26,7 +26,7 @@ padding: 2px 5px;
  	
  }
 
- input#prayer_pray_for_first_name {
+ input#prayer_pray_for_first_name,  input#prayer_user_email {
  	border-radius: 8px 8px 8px 8px;
     color: black;
     font-size: 15px;
@@ -44,6 +44,14 @@ padding: 2px 5px;
     margin-bottom: 10px;
  }
 
+ select#prayer_affiliation {
+ 	font-size: 15px;
+    margin-right: 4px;
+    width: 103%;
+    padding:3px;
+    margin-bottom: 10px;
+ }
+
   select#prayer_duration {
  	font-size: 15px;
     margin-right: 4px;
@@ -54,4 +62,8 @@ padding: 2px 5px;
 
  .submit input{
 	width: 100%;
+ }
+
+ .add_your_church {
+ 	text-align: right;
  }

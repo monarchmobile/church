@@ -8,8 +8,8 @@ Choose affiliation.  If user's church is not in list, user can add his/her churc
 -->
 
 <%= f.label :affiliation, "What church do you belong to?" %> <br />  
-<%= f.collection_select :affiliation, Affiliation.find(:all), :id, :church, prompt: "no affiliation" %>
-<div class="add_your_church" >Or <span>click here</span> to add your church</div>
+<%= f.collection_select :affiliation, Affiliation.find(:all), :id, :church, prompt: "no current affiliation" %>
+<div class="add_your_church" ><em>Not listed? <span>Click here</span> to add your church.</em></div>
 <div id="new_church_name" class="hidden">
 	<%= f.label :new_church_name, "Name of church" %>
 	<%= f.text_field :new_church_name %><%= required_field %><br />
