@@ -4,7 +4,6 @@
   <h4>I would like prayer for...</h4>
   
   <div class="field"> 
-    <%= f.label :pray_for_first_name %> <br />
     <%= f.text_field :pray_for_first_name %><%= required_field %>
   </div>
   <div class="field">
@@ -14,8 +13,8 @@
   <% month = Date.today + 30.days %>
   
   <div class="field">
-    <%= f.label :duration %><%= required_field %><br />
-    <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]] %>
+    <%= f.label :duration, "Please pray with me" %>
+    <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]] %><%= required_field %>
   </div>
 
   <!-- User already logged in -->
