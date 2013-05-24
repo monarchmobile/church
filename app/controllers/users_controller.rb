@@ -14,6 +14,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def edit
+    load_user
     @admin_roles = Role.all
   end
 
@@ -107,5 +108,9 @@ class UsersController < Devise::RegistrationsController
     @admin_list_coords_approved = User.approved.with_role(role_id(:coordinator))
     @admin_list_admins_approved = User.approved.with_role(role_id(:admin))
    
+  end
+
+  def load_user
+    @user = User.find(params[:id])
   end
 end
