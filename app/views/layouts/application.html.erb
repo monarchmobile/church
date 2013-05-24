@@ -13,11 +13,10 @@
 <body>
   
   <%= render "shared/header" %>
-  <%= render 'shared/flash_messages' if !flash.empty? %>
   <%= render "shared/announcements" %>
   
     <div class="container main">
-     
+     <%= render 'shared/flash_messages' if !flash.empty? %>
       <div class="header">
         <div class="col1">
           <div class="logo">
