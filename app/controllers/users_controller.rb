@@ -1,5 +1,5 @@
 class UsersController < Devise::RegistrationsController
-  load_and_authorize_resource
+  authorize_resource
   layout :resolve_layout
   def index
     all_user_states
@@ -10,6 +10,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def show
+    load_user
     recent_prayers_for_intercessor
   end
 
@@ -39,6 +40,7 @@ class UsersController < Devise::RegistrationsController
   end
   
   def update
+    load_user
     @approved_status = params[:user][:approved] if params[:user][:approved]
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]
@@ -66,6 +68,7 @@ class UsersController < Devise::RegistrationsController
   end
     
   def destroy
+    load_user
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     
     unless @user == current_user
@@ -112,5 +115,7 @@ class UsersController < Devise::RegistrationsController
 
   def load_user
     @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url, :flash => { :error => "Record not found." }
   end
 end

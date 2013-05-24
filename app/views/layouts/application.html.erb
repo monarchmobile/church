@@ -13,16 +13,11 @@
 <body>
   
   <%= render "shared/header" %>
+  <%= render 'shared/flash_messages' if !flash.empty? %>
   <%= render "shared/announcements" %>
+  
     <div class="container main">
      
-
-
-      <div class="error">
-        <% flash.each do |name, msg| %>
-          <%= content_tag :p, msg, id: "flash_#{name}" %>
-        <% end %>
-      </div>
       <div class="header">
         <div class="col1">
           <div class="logo">
