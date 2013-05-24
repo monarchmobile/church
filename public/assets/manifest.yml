@@ -31,8 +31,8 @@ web-logo.png: web-logo-b5167e7f8bbd99b90d96a57d11115675.png
 web-logo/index.png: web-logo-b5167e7f8bbd99b90d96a57d11115675.png
 white-opac.png: white-opac-e536376728c0b4f77430bb143531cc01.png
 white-opac/index.png: white-opac-e536376728c0b4f77430bb143531cc01.png
-application.js: application-798b7c48f8172181a5b8f36b1f3bb50e.js
-application/index.js: application-798b7c48f8172181a5b8f36b1f3bb50e.js
+application.js: application-a697616ae62f6bae591cecfbb9a34672.js
+application/index.js: application-a697616ae62f6bae591cecfbb9a34672.js
 application.css: application-50487922f63cf490d2656f69185c3715.css
 application/index.css: application-50487922f63cf490d2656f69185c3715.css
 static_pages.css: static_pages-15de4dc3638f5753e5c97f2a57058788.css
