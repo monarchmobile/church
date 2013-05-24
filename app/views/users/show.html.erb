@@ -1,4 +1,4 @@
-	<% if current_user.approved %>
+	<% if current_user && current_user.approved %>
 		<%= content_tag :h3, "This weeks Prayers (#{@recent_prayers.count})" %>
 		<ul class="model_table">
 		    <%= render @recent_prayers %>

@@ -24,7 +24,7 @@
 	</ul>
 
 <!-- Admin/Superadmin page -->
-<% elsif current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin)] %>
+<% elsif (current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin)]).count > 0 %>
 	<!-- intercessors waiting -->
 	<ul class="model_table userStatus" id="admin_list_ints_waiting" data-update-url="<%= sort_users_url %>">
 		<%= content_tag :h3, "Intercessors(#{@admin_list_ints_waiting.count})" %>
@@ -54,7 +54,7 @@
 		</ul>
 
 <!-- Admin/Superadmin page -->
-<% elsif current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin)] %>	
+<% elsif (current_user.role_ids && [role_id(:Admin), role_id(:SuperAdmin)]).count > 0 %>	
 	<!-- approved intercessors-->
 	<ul class="model_table userStatus" id="admin_list_ints_approved" data-update-url="<%= sort_users_url %>">
 		<%= content_tag :h3, "Intercessors (#{@admin_list_ints_approved.count})" %>
