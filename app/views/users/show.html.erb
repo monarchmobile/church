@@ -13,7 +13,7 @@
 			<ul class="model_table">
 			    <%= render @prayers_with_month_duration %>
 			</ul>
-		<% if !current_user.approved %>
+		<% elsif !current_user.approved %>
 			<%= content_tag :p, "Thank you for signing up as an interescessor with #{Affiliation.find(current_user.affiliation_id).church}" %>
 		<% end %>
 	<% end %>
