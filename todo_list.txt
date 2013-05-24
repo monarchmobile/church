@@ -67,3 +67,6 @@ prayer_partial needs to be dynamic **DONE **
 (45-min) user index/ person should only show up in one list if have multiple roles
 
 
+
+
+

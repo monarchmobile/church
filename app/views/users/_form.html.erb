@@ -14,7 +14,7 @@
 		<%= f.text_field :email %>
 	</div>
 
-	<% if current_user.role_ids && ([role_id(:Admin), role_id(:SuperAdmin), role_id(:Coordinator)]).count > 0 %>
+	<% if current_user.role_ids & ([role_id(:Admin), role_id(:SuperAdmin), role_id(:Coordinator)]).count > 0 %>
 		<%= render 'users/choose_role', f: f  %>
 	<% end %>
 
