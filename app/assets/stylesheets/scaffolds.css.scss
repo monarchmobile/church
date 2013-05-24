@@ -400,6 +400,20 @@ img.ns {
   }
 }
 
+#flash_messages {
+    color: black;
+    margin-left: 400px;
+    margin-top: 309px;
+    position: absolute;
+    text-align: center;
+    z-index: 500;
+  p {
+    font-size: 16px;
+    margin-bottom: 4px;
+    padding: 3px 10px 0;
+  }
+}
+
 // shared/quick_partial_view
 .partial_title {
   color:black;
