@@ -1,17 +1,19 @@
-	<% if current_user && current_user.approved %>
-		<%= content_tag :h3, "This weeks Prayers (#{@recent_prayers.count})" %>
-		<ul class="model_table">
-		    <%= render @recent_prayers %>
-		</ul>
-		<%= content_tag :h3, "Prayers created between last Monday & this past Monday (#{@prayers_with_week_duration.count})" %>
-		<ul class="model_table">
-		    <%= render @prayers_with_week_duration %>
-		</ul>
+	<% if current_user %>
+		<% if current_user.approved %>
+			<%= content_tag :h3, "This weeks Prayers (#{@recent_prayers.count})" %>
+			<ul class="model_table">
+			    <%= render @recent_prayers %>
+			</ul>
+			<%= content_tag :h3, "Prayers created between last Monday & this past Monday (#{@prayers_with_week_duration.count})" %>
+			<ul class="model_table">
+			    <%= render @prayers_with_week_duration %>
+			</ul>
 
-		<%= content_tag :h3, "Prayers created between 30 days ago & last Monday (#{@prayers_with_month_duration.count})" %>
-		<ul class="model_table">
-		    <%= render @prayers_with_month_duration %>
-		</ul>
+			<%= content_tag :h3, "Prayers created between 30 days ago & last Monday (#{@prayers_with_month_duration.count})" %>
+			<ul class="model_table">
+			    <%= render @prayers_with_month_duration %>
+			</ul>
+		<% if !current_user.approved %>
 	<% else %>
 		<%= content_tag :p, "Thank you for signing up as an interescessor with #{Affiliation.find(current_user.affiliation_id).church}" %>
 	<% end %>
