@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
     church = Affiliation.find(self.affiliation_id)
   end
 
-  def create_affiliation_from_church
+  def create_affiliation
     @affiliation = Affiliation.create(:church => new_church_name, :city => church_city, :state => church_state) unless new_church_name.blank?
   end
 

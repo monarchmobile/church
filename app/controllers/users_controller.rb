@@ -20,8 +20,16 @@ class UsersController < Devise::RegistrationsController
   end
 
   def create
-    
+    @affiliation = Affiliation.find(params[:user][:affiliation])
     @user = User.new(params[:user])
+    if @affiliation
+      @affiliation.users << @user
+      @user.affiliation = @affiliation
+    else
+      @affiliation = User.create_affiliation
+      @affiliation.users << @user
+      @user.affiliation = @affiliation
+    end
     
     
     if params[:user][:role_ids]
