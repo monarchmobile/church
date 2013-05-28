@@ -1,2 +1,9 @@
-$("#approved_churches").html("<%= j render @approved_churches %>")
-$("#non_approved_churches").html("<%= j render @non_approved_churches %>")
+
+$("#non_approved_churches")
+	.prepend("<h2>(<%= @non_approved_churches.count %>) churches waiting to be approved</h2>")
+	.html("<%= j render @non_approved_churches %>")
+
+
+$("#approved_churches")
+	.prepend("<h2>(<%= @approved_churches.count %>) approved churches</h2>")
+	.html("<%= j render @approved_churches %>")
