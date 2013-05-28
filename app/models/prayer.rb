@@ -1,5 +1,5 @@
 class Prayer < ActiveRecord::Base  
-  attr_accessible :duration, :request, :pray_for_first_name, :pray_for_last_name
+  attr_accessible :duration, :request, :pray_for_first_name, :pray_for_last_name, :we_care
   attr_accessible :share_with, :category, :user_id
   attr_accessible :user_first_name, :user_last_name, :user_email, :affiliation
   attr_accessible :new_church_name, :church_city, :church_state

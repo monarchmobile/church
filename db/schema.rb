@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508194333) do
+ActiveRecord::Schema.define(:version => 20130528165927) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "church"
@@ -103,6 +103,11 @@ ActiveRecord::Schema.define(:version => 20130508194333) do
     t.integer "page_id"
   end
 
+  create_table "navigations", :id => false, :force => true do |t|
+    t.integer "parent_id"
+    t.integer "child_id"
+  end
+
   create_table "page_partials", :id => false, :force => true do |t|
     t.integer "page_id"
     t.integer "partial_id"
@@ -134,9 +139,10 @@ ActiveRecord::Schema.define(:version => 20130508194333) do
     t.string   "pray_for_last_name"
     t.integer  "share_with"
     t.integer  "category"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.integer  "user_id"
+    t.boolean  "we_care",             :default => false
   end
 
   create_table "profiles", :force => true do |t|
@@ -193,8 +199,8 @@ ActiveRecord::Schema.define(:version => 20130508194333) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -203,13 +209,13 @@ ActiveRecord::Schema.define(:version => 20130508194333) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.boolean  "approved",               :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "username"
     t.integer  "affiliation_id"
+    t.boolean  "approved"
   end
 
   add_index "users", ["affiliation_id"], :name => "index_users_on_affiliation_id"
