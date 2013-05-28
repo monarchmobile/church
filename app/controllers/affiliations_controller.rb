@@ -2,10 +2,7 @@ class AffiliationsController < ApplicationController
   layout :resolve_layout
   load_and_authorize_resource
   def index
-    
-    @approved_churches = Affiliation.where(approved: true)
-    @non_approved_churches = Affiliation.where(approved: false)
-
+    church_lists
     respond_to do |format|
       format.html 
     end
@@ -44,8 +41,12 @@ class AffiliationsController < ApplicationController
 
     respond_to do |format|
       if @affiliation.update_attributes(params[:affiliation])
-        format.html { redirect_to affiliations_path, notice: 'Affiliation was successfully updated.' }
-        format.js
+        if params[:affiliation][:approved]
+          church_lists
+          format.js
+        else
+          format.html { redirect_to affiliations_path, notice: 'Affiliation was successfully updated.' }
+        end
       else
         format.html { render action: "edit" }
       end
@@ -58,5 +59,10 @@ class AffiliationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to affiliations_path }
     end
+  end
+
+  def church_lists
+    @approved_churches = Affiliation.where(approved: true)
+    @non_approved_churches = Affiliation.where(approved: false)
   end
 end
