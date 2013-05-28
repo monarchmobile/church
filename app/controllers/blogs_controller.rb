@@ -3,6 +3,7 @@
   layout :resolve_layout
   load_and_authorize_resource
   def index
+    reset_current_state(Blog)
     all_blog_states
     @blogs = Blog.all
 

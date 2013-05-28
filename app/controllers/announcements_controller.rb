@@ -3,6 +3,7 @@ class AnnouncementsController < ApplicationController
 	layout :resolve_layout
 	load_and_authorize_resource	
 	def index
+		reset_current_state(Announcement)
 		all_announcement_states
 		@announcements = Announcement.all
 	end

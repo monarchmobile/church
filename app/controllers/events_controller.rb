@@ -3,6 +3,7 @@
   load_and_authorize_resource
 
   def index
+    reset_current_state(Event)
     all_event_states
     @events = Event.all
 

@@ -14,7 +14,8 @@ class Announcement < ActiveRecord::Base
   private
     def set_position
       if self.current_state == 3
-        self.position = (Announcement.published.count)+1
+        self.position = (Describe.new(Announcement).published.count)+1
+        # self.position = (Announcement.published.count)+1
       else
         self.position = nil
       end
