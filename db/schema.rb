@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528165927) do
+ActiveRecord::Schema.define(:version => 20130528171112) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "church"
     t.string   "city"
     t.string   "state"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "approved",   :default => false
   end
 
   create_table "announcements", :force => true do |t|

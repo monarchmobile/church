@@ -13,6 +13,10 @@
     <%= f.label :state %><br />
     <%= f.select(:state, Arrays::STATES, { prompt: true }) %><%= required_field %>
   </div>
+  <div class="field">
+    <%= f.label :approved %><br />
+    <%= f.text_field :approved %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
