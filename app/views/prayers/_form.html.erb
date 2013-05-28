@@ -12,8 +12,8 @@
     <%= f.hidden_field :affiliation, value: current_user.affiliation_id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <div class="field"> 
-      <%= f.label :pray_for_first_name, "I would like prayer for..." %>
-      <%= f.text_field :pray_for_first_name %><%= required_field %>
+      <%= f.label :pray_for_first_name, "I would like prayer for...(first name only)" %>
+      <%= f.text_field :pray_for_first_name, :maxlength => 45 %><%= required_field %>
     </div>
     <div class="field">
       <%= f.collection_select :category, Category.find(:all), :id, :name, :prompt =>"Select a Category" %><%= required_field %>
@@ -38,8 +38,8 @@
   <!-- User NOT logged in -->
   <% else %>
     <div class="field"> 
-      <%= f.label :pray_for_first_name, "I would like prayer for..." %>
-      <%= f.text_field :pray_for_first_name %><%= required_field %>
+      <%= f.label :pray_for_first_name, "I would like prayer for this person or group (first name only)" %>
+      <%= f.text_field :pray_for_first_name, :maxlength => 40 %><%= required_field %>
     </div>
     <div class="field">
       <%= f.collection_select :category, Category.find(:all), :id, :name, :prompt =>"Select a Category" %><%= required_field %>
@@ -57,7 +57,7 @@
       </div>
     </div>
     
-    <!-- User does NOT exist -->
+    <!-- these fields are autofilled if user exists -->
     <div class="user_info_container" id="user_does_not_exist">
         <div class="field">
           <%= f.label :user_first_name, "Your first name" %><br />

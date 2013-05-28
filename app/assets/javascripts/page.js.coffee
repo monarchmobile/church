@@ -41,6 +41,11 @@ jQuery ->
 	    checkbox.attr "checked", "checked"
 	    checkbox.closest("form").submit()
 
+	value = $("#page_current_state").val()
+	if value == "1"
+		$(".schedule_container").hide()
+		$("input[type=submit]").val("Save Draft")
+
 
 	
 	    

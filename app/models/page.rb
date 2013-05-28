@@ -2,6 +2,7 @@ class Page < ActiveRecord::Base
   attr_accessible :content, :current_state, :slug, :title, :position, :starts_at, :ends_at
   attr_accessible :link_ids, :partial_ids
   before_create :make_slug
+  before_save :check_draft
   # validates :slug, :uniqueness => true
 
   has_many :links_pages 
@@ -9,6 +10,7 @@ class Page < ActiveRecord::Base
 
   has_many :page_partials 
   has_many :partials, :through => :page_partials
+
 
   def locations?(location)
      return !!self.links.find_by_location(location.to_s)
@@ -19,6 +21,13 @@ class Page < ActiveRecord::Base
   friendly_id :slug
 
   private
+
+    def check_draft
+      if self.current_state == 1
+        self.starts_at = nil
+      end
+    end
+
     def make_slug
       self.slug = self.title.downcase.gsub(/[^a-z1-9]+/, '-').chomp('-')
     end

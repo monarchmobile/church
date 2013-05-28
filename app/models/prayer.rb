@@ -17,6 +17,7 @@ class Prayer < ActiveRecord::Base
   attr_accessor :new_church_name, :church_city, :church_state
   # before_save :create_affiliation_from_church
   before_save :create_user
+  before_save :limit_pray_for
   # after_save :send_new_prayer
 
   # validates :request,
@@ -73,6 +74,11 @@ class Prayer < ActiveRecord::Base
 
   def create_affiliation_from_church
   	affiliation = Affiliation.create(:church => new_church_name, :city => church_city, :state => church_state) unless new_church_name.blank?
+  end
+
+  def limit_pray_for
+    name = self.pray_for_first_name
+    self.pray_for_first_name = name.split(" ") ? name.split(" ")[0] : name
   end
 
   def affiliation=(id)

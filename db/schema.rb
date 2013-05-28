@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528171112) do
+ActiveRecord::Schema.define(:version => 20130528205551) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "church"
@@ -160,6 +160,16 @@ ActiveRecord::Schema.define(:version => 20130528171112) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "references", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -217,6 +227,11 @@ ActiveRecord::Schema.define(:version => 20130528171112) do
     t.string   "username"
     t.integer  "affiliation_id"
     t.boolean  "approved"
+    t.string   "clergy_first_name"
+    t.string   "clergy_last_name"
+    t.string   "clergy_email"
+    t.string   "clergy_phone_number"
+    t.string   "phone"
   end
 
   add_index "users", ["affiliation_id"], :name => "index_users_on_affiliation_id"

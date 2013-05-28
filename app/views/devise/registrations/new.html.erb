@@ -12,10 +12,32 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
   <div>
-
-    <%= render('shared/affiliation', f: f) %>
-  	
-  	<%= collection_select :user, :role_ids, @guest_roles, :id, :name %>
+    <fieldset>
+      <legend>Affiliation</legend>
+      <div class="field">
+        <%= render 'shared/affiliation', f: f %>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Clergy</legend>
+      <%= render 'users/shared/clergy', f: f %>
+    </fieldset>
+    <%= content_tag :h2, "if you do not belong to a church, please provide 2 references" %>
+    <fieldset>
+      <legend>Reference 1</legend>
+      <%= f.fields_for :references do |builder| %>
+        <%= render 'users/shared/references', f: builder %>
+      <% end %>
+    </fieldset>
+      
+    <fieldset>
+      <legend>Reference 2</legend>
+      <%= f.fields_for :references do |builder| %>
+        <%= render 'users/shared/references', f: builder %>
+      <% end %>
+    </fieldset>
+    	
+    	<%= collection_select :user, :role_ids, @guest_roles, :id, :name %>
 
     <%= f.hidden_field :approved, :value => false %>
   </div>
