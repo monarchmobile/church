@@ -12,23 +12,16 @@
     
   </div>
 
-  <ul class="model_table">
-    <% @affiliations.each do |affiliation| %>
-      <li>
-        <ul class="instance_detail">
-          <%= content_tag :li, affiliation.church, class:"name" %>
-          <%= content_tag :li, affiliation.city, class:"name" %>
-          <%= content_tag :li, affiliation.state, class:"name" %>
-          <%= content_tag :li, affiliation.users.count, class:"name" %>
-          <!-- button to approve users -->
-          <%= form_for affiliation, :html => {:class => 'affiliation_ajax_edit'}, remote: true do |a| %>    
-            <%= a.select :approved, [['Approved', true], ['Not Approved Yet', false]] %>
-            <%= content_tag :div, user_approved_status(affiliation), class: "affiliation_approval_status index_form_btns #{green_if_approved(affiliation)}" %>
-          <% end %>
-          
-          <%= render "shared/crud_btns_without_view", object: affiliation %>
-        </ul>
-        <br class="clear">
-      </li>
-    <% end %>
+  
+
+  <ul class="model_table" id="non_approved_churches">
+    <%= content_tag :h2, "(#{@non_approved_churches.count}) churches waiting to be approved" %> 
+    <%= render @non_approved_churches %>
+    
+  </ul>
+
+  <ul class="model_table" id="approved_churches">
+    <%= content_tag :h2, "(#{@approved_churches.count}) approved churches" %> 
+    <%= render @approved_churches %>
+    
   </ul>
