@@ -6,13 +6,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :phone
+  attr_accessible :clergy_first_name, :clergy_last_name, :clergy_email, :clergy_phone_number
 	attr_accessible :first_name, :last_name, :role, :username, :approved
-  attr_accessible :affiliation, :affiliation_id
+  attr_accessible :affiliation, :affiliation_id, :references_attributes
   attr_accessible :new_church_name, :church_city, :church_state
   attr_accessor :new_church_name, :church_city, :church_state, :affiliation
   attr_accessible :role_ids
   has_and_belongs_to_many :roles
+  has_many :references
+  accepts_nested_attributes_for :references, allow_destroy: true
   before_create :setup_role
   # before_create :attach_affiliation
   has_many :prayers, dependent: :destroy

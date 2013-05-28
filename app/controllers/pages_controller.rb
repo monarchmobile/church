@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 
 	def index
 		all_page_states
-		
+		publish_page_if_in_range
 	end
 
 	def show 
@@ -17,6 +17,7 @@ class PagesController < ApplicationController
 		reset_current_state(Announcement)
 		reset_current_state(Event)
 		reset_current_state(Blog)
+		publish_page_if_in_range
 		@partials = Partial.all
 		@prayer = Prayer.new
 		@announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
@@ -46,9 +47,11 @@ class PagesController < ApplicationController
 		position = params[:page][:position]
 		current_state = params[:page][:current_state]
 		published = Status.find_by_status_name("published").id
+		draft = Status.find_by_status_name("draft").id
 		if (!current_state ==  published) 
 			@page.position = nil
 		end
+
 		respond_to do |format|
 			if @page.update_attributes(params[:page])
 				# reorder_pages(@page)

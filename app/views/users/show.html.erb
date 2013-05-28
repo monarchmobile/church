@@ -1,15 +1,22 @@
 	<% if current_user %>
 		<% if current_user.approved %>
-			<%= content_tag :h3, "This weeks Prayers (#{@recent_prayers.count})" %>
+			<% if @user.fullname.blank? %>
+				<%= content_tag :h2, "please update your profile with your first name and last name" %>
+				<%= content_tag :h2, link_to("edit profile", user_path(@user)) %>
+				<%= content_tag :h2, @user.email %>
+			<% else %>
+				<%= content_tag :h2, @user.fullname %>
+			<% end %>
+			
 			<ul class="model_table">
 			    <%= render @recent_prayers %>
 			</ul>
-			<%= content_tag :h3, "Prayers created between last Monday & this past Monday (#{@prayers_with_week_duration.count})" %>
+			
 			<ul class="model_table">
 			    <%= render @prayers_with_week_duration %>
 			</ul>
 
-			<%= content_tag :h3, "Prayers created between 30 days ago & last Monday (#{@prayers_with_month_duration.count})" %>
+			
 			<ul class="model_table">
 			    <%= render @prayers_with_month_duration %>
 			</ul>
@@ -17,5 +24,8 @@
 			<%= content_tag :p, "Thank you for signing up as an interescessor with #{Affiliation.find(current_user.affiliation_id).church}" %>
 		<% end %>
 	<% end %>
+
+	<%= render 'announcements/announcement_partial' %>
+	<%= render 'prayers/prayer_partial' %>
 
 

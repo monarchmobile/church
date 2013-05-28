@@ -6,16 +6,21 @@ class UsersController < Devise::RegistrationsController
   end
 
   def new
+    @user = User.new
     @guest_roles = Role.find(:all, :conditions => ["name IN (?)", ["Intercessor", "Coordinator"]])
+    @user.references.build
   end
 
   def show
     load_user
     recent_prayers_for_intercessor
+    @prayer = Prayer.new
+    @announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
   end
 
   def edit
     load_user
+   
     @admin_roles = Role.all
   end
 

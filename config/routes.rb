@@ -21,6 +21,7 @@ Church::Application.routes.draw do
   resources :categories
   resources :prayers 
   resources :affiliations
+  resources :references
 
   #partials
   match "announcement_partial", :to => "announcements#announcement_partial"

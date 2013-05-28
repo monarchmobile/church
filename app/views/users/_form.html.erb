@@ -13,6 +13,11 @@
 		<%= f.label :email %>
 		<%= f.text_field :email %>
 	</div>
+	<div class="field">
+		<%= f.label :phone %>
+		<%= f.text_field :phone %>
+	</div>
+	
 
 	<% if (current_user.role_ids & [role_id(:Admin), role_id(:SuperAdmin), role_id(:Coordinator)]).count > 0 %>
 		<%= render 'users/choose_role', f: f  %>
