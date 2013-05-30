@@ -67,7 +67,26 @@ prayer_partial needs to be dynamic **DONE **
 (45-min) user index/ person should only show up in one list if have multiple roles
 
 
-May 28th
+May 29th
+just push to staging for user form with refernces
+	1452
+		test out new user
+	
+	1453 
+	1456
+	1457
+Jane 10:30 am
+
+new user
+
+personal login stuff
+	do you belong to a church yes not
+	if yes
+		affiliation
+			clergy
+	if no
+		reference 1
+		reference 2
 
 
 

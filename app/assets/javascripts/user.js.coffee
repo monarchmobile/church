@@ -29,4 +29,19 @@ jQuery ->
 		else
 			$("#new_church_name").addClass "hidden"
 
+	$("body").delegate ".church_answer", "click", ->
+		value = $(this).data("answer")
+		console.log value
+		if $(".section").is(":visible")
+			$(".section").addClass "hidden"
+		if value is "yes"
+			$("#affiliation_container").removeClass "hidden"
+			$("#clergy_container").removeClass "hidden"
+			$("#final_container").removeClass "hidden"
+		else if value is "no"
+			$("#reference_container").removeClass "hidden"
+			$("#final_container").removeClass "hidden"
+
+
+
 		

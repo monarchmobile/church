@@ -11,18 +11,33 @@
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
-  <div>
+
+  <div class="church_question">
+    <%= content_tag :h3, "Are you affiliated with a church?" %>
+    <div class="answer_container">
+      <%= content_tag :div, "Yes", class: "church_answer", :"data-answer" => "yes" %>
+      <%= content_tag :div, "No", class: "church_answer", :"data-answer" => "no" %>
+    </div>
+  </div>
+  
+  <div id="affiliation_container" class="hidden section">
     <fieldset>
       <legend>Affiliation</legend>
       <div class="field">
         <%= render 'shared/affiliation', f: f %>
       </div>
     </fieldset>
+  </div>
+
+  <div id="clergy_container" class="hidden section">
     <fieldset>
       <legend>Clergy</legend>
       <%= render 'users/shared/clergy', f: f %>
     </fieldset>
-    <%= content_tag :h2, "if you do not belong to a church, please provide 2 references" %>
+  </div>
+
+  <div id="reference_container" class="hidden section">
+    <%= content_tag :h2, "please provide 2 references" %>
     <fieldset>
       <legend>Reference 1</legend>
       <%= f.fields_for :references do |builder| %>
@@ -36,13 +51,17 @@
         <%= render 'users/shared/references', f: builder %>
       <% end %>
     </fieldset>
+  </div>
     	
-    	<%= collection_select :user, :role_ids, @guest_roles, :id, :name %>
+  <div id="final_container" class="hidden section">
+    <%= collection_select :user, :role_ids, @guest_roles, :id, :name %>
 
     <%= f.hidden_field :approved, :value => false %>
-  </div>
 
-  <div><%= f.submit "Sign up" %></div>
+
+    <div><%= f.submit "Sign up" %></div>
+    <%= render "devise/shared/links" %>
+  </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+

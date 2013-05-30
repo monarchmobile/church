@@ -53,6 +53,10 @@ label {
   color:gray;
 }
 
+fieldset {
+  clear:both;
+}
+
 .field {
   background: url(image_path('black_opac.png')) repeat;
   margin:10px;
@@ -661,7 +665,7 @@ ul.instance_detail li.page_position {
   margin-top:15px;
 }
 
-// user
+// user index
 
 .affiliation_ajax_edit select {
   display:none;
@@ -672,8 +676,6 @@ ul.instance_detail li.page_position {
   width: 115px;
   text-align: center;
 }
-
-// user
 
 .user_ajax_edit select {
   display:none;
@@ -728,3 +730,33 @@ div.user_details {
   clear: both;
   min-height: 40px;
 }
+
+// user new/form 
+.answer_container {
+  width:250px;
+  height:auto;
+  clear:both;
+}
+
+.church_answer {
+  width: 45px;
+height: 25px;
+border-radius: 5px;
+webkit-border-radius: 5px;
+moz-border-radius: 5px;
+background: gray;
+color: #fff;
+margin-left: 5px;
+float: left;
+text-align: center;
+padding-top: 5px;
+cursor:pointer;
+  &:hover {
+    background:#3b5998;
+  }
+}
+
+.section {
+  clear:both;
+}
+
