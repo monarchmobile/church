@@ -1,7 +1,7 @@
 module DeviseHelper   
-	def devise_error_messages!     
+	def devise_error_messages!   
 	  flash.each do |key,msg|  
-		  content_tag :p, msg, :id => key  
+		  content_tag :p, msg, :id => key
 		end
 	end 
 end 

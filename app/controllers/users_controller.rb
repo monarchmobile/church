@@ -14,29 +14,29 @@ class UsersController < Devise::RegistrationsController
 
   def show
     load_user
-    recent_prayers_for_intercessor
+    recent_prayers_for_intercessor if @user.approved
     @prayer = Prayer.new
     @announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
   end
 
   def edit
     load_user
-   
     @admin_roles = Role.all
   end
 
   def create
-    @affiliation = Affiliation.find(params[:user][:affiliation])
     @user = User.new(params[:user])
-    if @affiliation
-      @affiliation.users << @user
-      @user.affiliation = @affiliation
-    else
-      @affiliation = User.create_affiliation
-      @affiliation.users << @user
-      @user.affiliation = @affiliation
+    if !params[:user][:affiliation].blank?
+      @affiliation = Affiliation.find(params[:user][:affiliation])
+      if @affiliation
+        @affiliation.users << @user
+        @user.affiliation = @affiliation
+      else
+        @affiliation = User.create_affiliation
+        @affiliation.users << @user
+        @user.affiliation = @affiliation
+      end
     end
-    
     
     if params[:user][:role_ids]
       @user.role_ids = params[:user][:role_ids]

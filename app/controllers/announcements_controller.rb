@@ -19,6 +19,7 @@ class AnnouncementsController < ApplicationController
 		@announcement = Announcement.new(params[:announcement])
 		respond_to do |format|
 			if @announcement.save
+				@announcement.send_announcement_email
 				format.html { redirect_to announcements_path }
 				format.js
 			else

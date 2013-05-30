@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530155559) do
+ActiveRecord::Schema.define(:version => 20130530171000) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "church"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130530155559) do
     t.string   "send_list"
     t.boolean  "sent",          :default => false
     t.string   "show_list"
+    t.date     "send_at"
   end
 
   create_table "blogs", :force => true do |t|
