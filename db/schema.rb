@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528205551) do
+ActiveRecord::Schema.define(:version => 20130530155559) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "church"
@@ -29,8 +29,11 @@ ActiveRecord::Schema.define(:version => 20130528205551) do
     t.date     "ends_at"
     t.integer  "current_state"
     t.integer  "position"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "send_list"
+    t.boolean  "sent",          :default => false
+    t.string   "show_list"
   end
 
   create_table "blogs", :force => true do |t|

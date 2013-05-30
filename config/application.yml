@@ -5,20 +5,18 @@ GMAIL_PASSWORD: 'lkasjdflkm'
 
 development:
   MAILER_HOST: 'localhost:3000'
-  AWS_ACCESS_KEY_ID: 'AKIAI2RBWCHGQILXRHUQ'
-  AWS_SECRET_ACCESS_KEY: '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'
   AWS_S3_BUCKET: 'church-development'
 
 staging:
   MAILER_HOST: 'http://infinite-tundra-1954.herokuapp.com/'
-  AWS_ACCESS_KEY_ID: 'AKIAI2RBWCHGQILXRHUQ'
-  AWS_SECRET_ACCESS_KEY: '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'
   AWS_S3_BUCKET: 'church-staging'
 
 production:
-  MAILER_HOST: 'Hhttp://infinite-tundra-1954.herokuapp.com/'
-  AWS_ACCESS_KEY_ID: 'AKIAI2RBWCHGQILXRHUQ'
-  AWS_SECRET_ACCESS_KEY: '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'
+  MAILER_HOST: 'http://infinite-tundra-1954.herokuapp.com/'
   AWS_S3_BUCKET: 'church-production'
 
 SECRET_TOKEN: '34dc7509df6fc3fd1e6e6b3234818ad083b72d6c698d70b2c040d1b26a1221bc0df13427f267022868a70b911ed196b20e39f4bb1740948f8f35e3da91686099'
+
+# AWS 
+AWS_ACCESS_KEY_ID: "AKIAI2RBWCHGQILXRHUQ"
+AWS_SECRET_ACCESS_KEY: "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"

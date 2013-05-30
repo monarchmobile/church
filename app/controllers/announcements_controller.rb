@@ -10,6 +10,9 @@ class AnnouncementsController < ApplicationController
 
 	def new
 		@announcement = Announcement.new
+		@recipients = Role.all
+		@announcement.send_list = []
+		@announcement.show_list = []
 	end
 
 	def create
