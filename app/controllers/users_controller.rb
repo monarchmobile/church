@@ -7,8 +7,9 @@ class UsersController < Devise::RegistrationsController
 
   def new
     @user = User.new
-    @guest_roles = Role.find(:all, :conditions => ["name IN (?)", ["Intercessor", "Coordinator"]])
+    @guest_roles = Role.where("name IN (?)", ["Intercessor", "Coordinator"]).order("name DESC")
     @user.references.build
+    render :layout => 'application'
   end
 
   def show

@@ -54,7 +54,7 @@
   </div>
     	
   <div id="final_container" class="hidden section">
-    <%= collection_select :user, :role_ids, @guest_roles, :id, :name %>
+    <%= collection_select :user, :role_ids, @guest_roles, :id, :name, {:prompt => "choose a role"} %>
 
     <%= f.hidden_field :approved, :value => false %>
 
