@@ -10,7 +10,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class='<%= "#{params[:controller]}_#{params[:action]}" %>'>
 	<div class="top_bar">
 		<a class="dash_button" href="/">Home</a>
 		<a class="dash_button dashboard" href="/dashboard">Dashboard</a>
