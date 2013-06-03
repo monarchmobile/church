@@ -10,7 +10,7 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class='<%= "#{params[:controller]}_#{params[:action]}" %>'>
   
   <%= render "shared/header" %>
   <%= render "shared/announcements" %>

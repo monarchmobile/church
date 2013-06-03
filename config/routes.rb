@@ -59,8 +59,9 @@ Church::Application.routes.draw do
   # pages
   resources :pages do
     collection { post :sort }
+    member { put :link, :status }
   end
-  match 'pages/:id/status', to: 'pages#status', as: 'status'
+  # match 'pages/:id/status', to: 'pages#status', as: 'status'
 
   # supermodels
   resources :supermodels do

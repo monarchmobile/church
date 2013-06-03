@@ -13,7 +13,6 @@
 		<%= f.label :current_state %>
 		<%= collection_select(:page, :current_state, Status.all, :id, :status_name, option = { :selected => @page.current_state}) %>
 	</div>
-
 	<div class="schedule_container">
 		<div class="field schedule_fields">
 			<%= f.label :starts_at %>
@@ -32,7 +31,6 @@
 			<% end %>
 		</div>
 	</div>
-	
 	<div class="field">
 		<%= f.label :link_ids, "Links to this page" %><br />
   	<%= hidden_field_tag "page[link_ids][]", nil %>

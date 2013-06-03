@@ -98,6 +98,14 @@ class PagesController < ApplicationController
 	  
 	end
 
+	def link
+	  load_page
+	  if @page.update_attributes(params[:page])
+	  	all_page_states
+	  	render "update.js"
+	  end
+	end
+
 	def all_page_states
 		@published_pages = Describe.new(Page).published
 		@scheduled_pages = Describe.new(Page).scheduled
