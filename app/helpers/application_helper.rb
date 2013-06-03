@@ -85,6 +85,10 @@ module ApplicationHelper
       if !a.ends_at.blank? && a.ends_at <= Date.today-1
         a.update_attributes(current_state: draft)
       end
+
+      if a.starts_at.blank?
+        a.update_attributes(current_state: draft)
+      end
     end
   end
 # ###################### END Stock Methods END #######################

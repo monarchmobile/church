@@ -31,12 +31,12 @@ web-logo.png: web-logo-b5167e7f8bbd99b90d96a57d11115675.png
 web-logo/index.png: web-logo-b5167e7f8bbd99b90d96a57d11115675.png
 white-opac.png: white-opac-e536376728c0b4f77430bb143531cc01.png
 white-opac/index.png: white-opac-e536376728c0b4f77430bb143531cc01.png
-application.js: application-6393ca4c61e7bc2cccd32fd63802cf18.js
-application/index.js: application-6393ca4c61e7bc2cccd32fd63802cf18.js
+application.js: application-bec28586ee47462ccb8fedfedf566b37.js
+application/index.js: application-bec28586ee47462ccb8fedfedf566b37.js
 application.css: application-3ed40440a89c1c7dde7e24d64c25c1e2.css
 application/index.css: application-3ed40440a89c1c7dde7e24d64c25c1e2.css
-static_pages.css: static_pages-8812169168510c3699c2f4e4912464f2.css
-static_pages/index.css: static_pages-8812169168510c3699c2f4e4912464f2.css
+static_pages.css: static_pages-c40f51370a7dc45e8b5f84416c9913f3.css
+static_pages/index.css: static_pages-c40f51370a7dc45e8b5f84416c9913f3.css
 ckeditor/application.js: ckeditor/application-6d796595ef93aaeb19a9474406efa939.js
 ckeditor/application/index.js: ckeditor/application-6d796595ef93aaeb19a9474406efa939.js
 ckeditor/config.js: ckeditor/config-7114d1e00ccb3505e145e6c6dc1fbd22.js
