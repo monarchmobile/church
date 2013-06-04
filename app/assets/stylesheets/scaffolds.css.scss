@@ -401,12 +401,14 @@ img.ns {
 }
 
 #flash_messages {
-    color: black;
-    margin-left: 400px;
-    margin-top: 309px;
-    position: absolute;
-    text-align: center;
-    z-index: 500;
+  color: black;
+  margin-left: 364px;
+  margin-top: 314px;
+  position: absolute;
+  text-align: center;
+  z-index: 500;
+  width: 645px;
+  font-size: 20px;
   p {
     font-size: 16px;
     margin-bottom: 4px;
@@ -445,4 +447,9 @@ img.ns {
   a {
     color:#3b5998;
   }
+}
+
+a.user_name li{
+  color: white;
+  padding-top: 10px;
 }

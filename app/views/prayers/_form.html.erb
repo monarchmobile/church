@@ -22,12 +22,12 @@
     <% month = Date.today + 30.days %>
     
     <div class="field">
-      <%= f.label :duration, "Please pray with me" %>
+      <%= f.label :duration, "Please pray with me" %><br/>
       <%= f.select :duration, [["Today", 1], ["This week", 2], ["This month", 3]], {:prompt => "Choose a duration"} %><%= required_field %>
     </div>
     <% if current_user.role? :Admin %>
       <div class="field"> 
-        <%= f.label :we_care, "This is a We Care prayer" %>
+        <%= f.label :we_care, "Add this prayer to all lists" %>
         <%= f.check_box :we_care %>
       </div>
     <% end %>

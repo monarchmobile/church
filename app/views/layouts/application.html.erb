@@ -13,7 +13,6 @@
 <body class='<%= "#{params[:controller]}_#{params[:action]}" %>'>
   
   <%= render "shared/header" %>
-  <%= render "shared/announcements" %>
   
     <div class="container main">
      <%= render 'shared/flash_messages' if !flash.empty? %>
@@ -33,6 +32,7 @@
       <div class="second_tier">
         <%= yield :prayer_request %>
         <div class="col2">
+            <%= render "shared/announcements" %>
             <div class="col_content">
               <%= yield %>
             </div>

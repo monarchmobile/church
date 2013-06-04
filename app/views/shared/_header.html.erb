@@ -3,7 +3,7 @@
     <ul class="right"> 
       <% if user_signed_in? %>
             <%= content_tag :li, link_to("Dashboard", dashboard_path) if can? :read, User %>
-            <%= link_to content_tag(:li, "#{current_user.fullname}"), user_path(current_user) %>
+            <%= link_to content_tag(:li, "Welcome, #{current_user.first_name}"), user_path(current_user), class: "user_name" %>
       <% end %>
     </ul>
      
