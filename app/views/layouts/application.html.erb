@@ -32,7 +32,9 @@
       <div class="second_tier">
         <%= yield :prayer_request %>
         <div class="col2">
-            <%= render "shared/announcements" %>
+            <div class="announcement_content">
+              <%= render "shared/announcements" %>
+            </div>
             <div class="col_content">
               <%= yield %>
             </div>
