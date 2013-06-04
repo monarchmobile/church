@@ -1,5 +1,5 @@
 <%= content_tag :h1, @page.title %>
-
+<%= render 'announcements/last_announcement' %>
 <% @partials.each do |partial| %>
 	<% if @page.partial_ids.include?(partial.id) %>
 		<%= render "#{partial.name.downcase}s/#{partial.name.downcase}_partial" %>

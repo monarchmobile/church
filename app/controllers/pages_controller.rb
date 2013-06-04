@@ -14,6 +14,7 @@ class PagesController < ApplicationController
 
 	def show 
 		@links = Link.all
+		@announcement = Describe.new(Announcement).published.limit(1).order("created_at DESC").first
 		reset_current_state(Announcement)
 		reset_current_state(Event)
 		reset_current_state(Blog)
