@@ -2,6 +2,7 @@ class Announcement < ActiveRecord::Base
   attr_accessible :ends_at, :message, :starts_at, :title, :current_state, :position
   attr_accessible :send_list, :sent, :send_list_array, :show_list_array, :show_list
   before_create :set_position
+  # after_create :check_announcement_status
   include MyDateFormats
  
 
@@ -19,10 +20,12 @@ class Announcement < ActiveRecord::Base
   # turn into array
   def send_list_array
     new_array = []
-    if self.send_list.length > 0
-      group_array = self.send_list.split(',').to_a
-      group_array.each do |g|
-        new_array.push(g.to_i)
+    if self.send_list
+      if self.send_list.length > 0
+        group_array = self.send_list.split(',').to_a
+        group_array.each do |g|
+          new_array.push(g.to_i)
+        end
       end
     end
       
@@ -54,6 +57,11 @@ class Announcement < ActiveRecord::Base
         self.save
       end
       self.send_announcement_email
+    end
+    if !self.current_state == published
+      if self.starts_at <= Date.today
+        self.send_announcement_email
+      end
     end
   end
 
