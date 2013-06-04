@@ -22,10 +22,8 @@ class AnnouncementsController < ApplicationController
 				@announcement.check_announcement_status
 				# @announcement.send_announcement_email if @announcement.current_state == 3
 				format.html { redirect_to announcements_path }
-			
 			else
 				format.html { redirect_to new_announcement_path, :notice => "You must fill out all required fields"}
-			
 			end
 		end
 	end
