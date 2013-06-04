@@ -17,6 +17,7 @@ class Page < ActiveRecord::Base
      return !!self.links.find_by_location(location.to_s)
   end
 
+  # on update, this checks to see whether a page about to be published has a start date that is valid
   def check_start_date
     if self.current_state == 3
       if self.starts_at.blank?
