@@ -3,6 +3,7 @@ class Page < ActiveRecord::Base
   attr_accessible :link_ids, :partial_ids
   before_create :make_slug
   before_save :check_draft
+  before_update :check_start_date
   # validates :slug, :uniqueness => true
 
   has_many :links_pages 
@@ -14,6 +15,18 @@ class Page < ActiveRecord::Base
 
   def locations?(location)
      return !!self.links.find_by_location(location.to_s)
+  end
+
+  def check_start_date
+    if self.current_state == 3
+      if self.starts_at.blank?
+        self.starts_at = Date.today
+      else
+        if self.starts_at > Date.today
+          self.starts_at = Date.today
+        end
+      end
+    end
   end
 
   # pretty url

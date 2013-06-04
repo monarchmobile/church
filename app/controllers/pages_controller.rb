@@ -48,6 +48,7 @@ class PagesController < ApplicationController
 		current_state = params[:page][:current_state]
 		published = Status.find_by_status_name("published").id
 		draft = Status.find_by_status_name("draft").id
+		@page.check_start_date
 		if (!current_state ==  published) 
 			@page.position = nil
 		end
@@ -85,8 +86,12 @@ class PagesController < ApplicationController
 		current_state = params[:page][:current_state]
 		total_published = @published_pages.count
 		published = Status.find_by_status_name("published").id
-		if (current_state ==  published) 
-			@page.update_attributes({current_state: current_state, position: total_published + 1})
+		if (current_state.to_i == published) 
+			if @page.starts_at.blank?
+				@page.update_attributes({current_state: current_state, starts_at: Date.today})
+			else
+				@page.update_attributes({current_state: current_state})
+			end
 		else
 			@page.update_attributes({current_state: current_state, position: nil })
 		end

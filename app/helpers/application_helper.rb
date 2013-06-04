@@ -77,7 +77,7 @@ module ApplicationHelper
     pages.each do |a|
       if !a.starts_at.blank? && a.starts_at <= Date.today
         count = (Describe.new(Page).published.count)
-        a.update_attributes(current_state: published, position: count+1)
+        a.update_attributes(current_state: published)
       elsif !a.starts_at.blank? && a.starts_at > Date.today
         a.update_attributes(current_state: scheduled)
       end
