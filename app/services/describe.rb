@@ -37,9 +37,7 @@ class Describe
     object = @model.find(id)
     if !object.ends_at.blank?
         object.ends_at.strftime("%B %d, %Y")
-      else
-        Date.today
-      end
+    end
   end
 
   def month_day_year(date)

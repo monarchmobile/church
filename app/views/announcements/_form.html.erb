@@ -44,6 +44,7 @@ $(document).ready(function() {
 	</div>
 	<div class="field">
 	    <%= f.label :send_list_array, "Check the groups that will receive an Email Notice" %><br />
+	    <%= hidden_field_tag "announcement[send_list_array][]", nil %>
     	<% @recipients.each do |rec| %>
 	      <%= check_box_tag "announcement[send_list_array][]", rec.id, @announcement.send_list_array.include?(rec.id), id: dom_id(rec) %>  
       	<%= label_tag dom_id(rec), rec.name, class: "check_box_label" %><br> 
@@ -51,6 +52,7 @@ $(document).ready(function() {
 	</div>
 	<div class="field">
 	    <%= f.label :show_list_array, "Check the groups that will see this announcement" %><br />
+	    <%= hidden_field_tag "announcement[show_list_array][]", nil %>
     	<% @recipients.each do |rec| %>
 	      <%= check_box_tag "announcement[show_list_array][]", rec.id, @announcement.show_list_array.include?(rec.id), id: dom_id(rec) %>  
       	<%= label_tag dom_id(rec), rec.name, class: "check_box_label" %><br> 
