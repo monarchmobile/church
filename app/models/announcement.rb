@@ -54,7 +54,7 @@ class Announcement < ActiveRecord::Base
     if self.current_state == published
       if self.starts_at.blank?
         self.starts_at = Date.today
-        self.save
+        save!
       end
       self.send_announcement_email
     end
