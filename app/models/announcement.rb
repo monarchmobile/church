@@ -46,7 +46,18 @@ class Announcement < ActiveRecord::Base
     return new_array
   end
 
-  # send email to user to reset password
+  def check_announcement_status
+    published = Status.find_by_status_name("published").id
+    if self.current_state == published
+      if self.starts_at.blank?
+        self.starts_at = Date.today
+        self.save
+      end
+      self.send_announcement_email
+    end
+  end
+
+  # send email for new announcement
   def send_announcement_email
     self.send_at = Time.zone.now
     save!

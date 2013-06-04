@@ -19,7 +19,8 @@ class AnnouncementsController < ApplicationController
 		@announcement = Announcement.new(params[:announcement])
 		respond_to do |format|
 			if @announcement.save
-				@announcement.send_announcement_email if @announcement.current_state == 3
+				@announcement.check_announcement_status
+				# @announcement.send_announcement_email if @announcement.current_state == 3
 				format.html { redirect_to announcements_path }
 				format.js
 			else
