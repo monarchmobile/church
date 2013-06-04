@@ -1,10 +1,6 @@
 <%= content_tag :h1, @page.title %>
+<%= render 'shared/sidebar' %>
 <%= render 'announcements/last_announcement' %>
-<% @partials.each do |partial| %>
-	<% if @page.partial_ids.include?(partial.id) %>
-		<%= render "#{partial.name.downcase}s/#{partial.name.downcase}_partial" %>
-	<% end %>
-<% end %>
 
 <%= content_tag :div, raw(@page.content) %>
 
