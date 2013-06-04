@@ -25,9 +25,9 @@ window.CalculateDate =
 	startWasClicked: ->
 		@compareDates()
 		if this.start_val <= this.today
-				@resetCurrentState("Publish", 3)
+				@resetCurrentState("Publish Now", 3)
 		else if this.start_val > this.today
-				@resetCurrentState("Schedule", 2)
+				@resetCurrentState("Schedule For", 2)
 
 	endWasClicked: ->
 		@compareDates()
@@ -37,9 +37,9 @@ window.CalculateDate =
 			$("input#"+this.klass+"_"+this.clicked+"s_at").val("")
 		else if this.end_val >= this.today
 			if this.start_val < this.today
-				@resetCurrentState("Publish", 3)
+				@resetCurrentState("Publish Now", 3)
 			else if this.start_val >= this.today
-				@resetCurrentState("Schedule", 2)
+				@resetCurrentState("Schedule For", 2)
 
 	prepDate: (start_date, end_date) ->
 		this.start_val = new Date(start_date).valueOf()
