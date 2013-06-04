@@ -25,7 +25,7 @@
 
   def blog_partial
     reset_current_state(Blog)
-    @blogs_partial = Describe.new(Blog).partial.published
+    @blogs_partial = Describe.new(Blog).partial
     @model_name = "Blog"
     render 'shared/quick_partial_view', model_name: @model_name
   end

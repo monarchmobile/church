@@ -47,7 +47,7 @@ class Describe
   end
 
   def partial
-    @model.limit(5).order("created_at DESC")
+    @model.limit(5).order("created_at DESC").where(current_state: 3)
   end
 
 
