@@ -21,7 +21,8 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-
+    @scriptures = Scripture.all
+    @category.scripture_list = []
     respond_to do |format|
       format.html
     end
@@ -29,6 +30,8 @@ class CategoriesController < ApplicationController
 
 
   def edit
+    @scriptures = Scripture.all
+    @category.scripture_list = []
   end
 
 

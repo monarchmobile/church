@@ -1,0 +1,20 @@
+
+<ul class="model_table">
+	<li>
+		<ul class="instance_detail">
+			<%= content_tag :li, @scripture.name, class:"name" %><br />
+			<ul class="crud_buttons">
+
+				<%= content_tag :li, link_to("edit", edit_scripture_path(@scripture)), class:"edit" %>
+				
+				<%= content_tag :li, link_to("delete", scripture_path(@scripture), :confirm => "are you sure?", :method => :delete ), class:"delete" %>
+			</ul>
+		</ul>
+		<br class="clear">
+	</li>
+	<br />
+
+	<%= content_tag :li, link_to('View All Scriptures', scriptures_path) %>
+</ul>
+
+

@@ -1,0 +1,18 @@
+<%= form_for @scripture do |f| %> 
+	<%= render 'shared/errors', object: @scripture %> 
+	<div class="field">
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+
+	<div class="field">
+		<%= f.label :content %>
+		<%= f.text_field :content %>
+	</div>
+	
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+
+
+<% end %>

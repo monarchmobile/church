@@ -92,6 +92,9 @@ make intercessor default on user form role choice
 highlight yes/no
 test to see if this push works
 
+groups that can see is not showing up
+index dates are wrong
+
 
 
 
