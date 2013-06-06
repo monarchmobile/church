@@ -33,7 +33,10 @@ module ApplicationHelper
   end
 
   # this removes events and blogs from dashboard, not needed as of yet
-
+  def category_name(cat_id)
+    category = Category.find(cat_id.to_i)
+    category.name
+  end
   def check_status(blog)
     if blog.published == true
       "published"
