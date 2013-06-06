@@ -11,12 +11,13 @@
 			<ul class="model_table">
 				<% @categories.sort.each do |category, recent_prayers| %>
 					<% @category = Category.find(category.to_i) %>
-					<% scripts = @category.scripture_ids %>
-
-					<% @scripture = Scripture.where("id IN(?)", scripts).order("RANDOM()").first %>
-					<%= @scripture.content %>
-			
 					<%= content_tag :h2, @category.name %>
+
+					<% scripts = @category.scripture_ids %>
+					<% @scripture = Scripture.where("id IN(?)", scripts).order("RANDOM()").first %>
+					<%= @scripture.content if @scripture %>
+			
+					
 			    <%= render recent_prayers %>
 			  <% end %>
 			</ul>
