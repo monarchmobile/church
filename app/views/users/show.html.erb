@@ -12,8 +12,9 @@
 				<% @categories.sort.each do |category, recent_prayers| %>
 					<% @category = Category.find(category.to_i) %>
 					<% scripts = @category.scripture_ids %>
-					<% scriptures = scripts.collect {|id| Scripture.detect {|x| x.id == id}} %>
-					<%= scriptures.order("RANDOM()").first %>
+
+					<% @scripture = Scripture.where("id IN(?)", scripts).order("RANDOM()").first %>
+					<%= @scripture.content %>
 			
 					<%= content_tag :h2, @category.name %>
 			    <%= render recent_prayers %>
