@@ -3,7 +3,7 @@
       <ul class="instance_detail">
       		<% @affiliation = Affiliation.find(prayer.user.affiliation_id) %>
           <%= content_tag :li, prayer.pray_for_first_name, class:"name" %>
-          <%= content_tag :li, prayer.category_name(prayer.category), class:"name" %>
+          
           <%= content_tag :li, @affiliation.church, class:"name" unless params[:action] == "show" %>
           
           <%= render "shared/crud_btns", object: prayer if current_user.role? :admin %>
@@ -12,3 +12,11 @@
 
 
 <% end %>
+
+
+<!-- prayer category -->
+	<!-- scripture 
+<%= content_tag :li, prayer.category_name(prayer.category), class:"name" %>-->
+
+
+	<!-- prayers -->
