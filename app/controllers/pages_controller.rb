@@ -14,17 +14,13 @@ class PagesController < ApplicationController
 
 	def show 
 		@links = Link.all
-		@announcement = Describe.new(Announcement).published.limit(1).order("created_at DESC").first
 		reset_current_state(Announcement)
 		reset_current_state(Event)
 		reset_current_state(Blog)
 		publish_page_if_in_range
-		@partials = Partial.all
+		sidebar_partials
 		@prayer = Prayer.new
-		@announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
-		@blogs_partial = Describe.new(Blog).published.limit(5).order("starts_at DESC")
-		@events_partial = Describe.new(Event).published.limit(5).order("starts_at DESC")
-
+		
 	end
 
 	def edit 

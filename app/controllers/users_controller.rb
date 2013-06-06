@@ -16,7 +16,8 @@ class UsersController < Devise::RegistrationsController
     load_user
     recent_prayers_for_intercessor if @user.approved
     @prayer = Prayer.new
-    @announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
+
+    sidebar_partials
   end
 
   def edit

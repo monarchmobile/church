@@ -14,15 +14,26 @@
 
 		<!-- all other partials -->
 		<% Partial.all.each do |partial| %>
-			<% if @page.partial_ids.include?(partial.id) %>
-				<% prayer = Partial.find_by_name("Prayer").id %>
-				<% unless partial.id == prayer %>
-					<div class="col1">
-			 			<div class="side_table">
-							<%= render "#{partial.name.downcase}s/#{partial.name.downcase}_partial" %>
+			<% if @page %>
+				<% if @page.partial_ids.include?(partial.id) %>
+					<% prayer = Partial.find_by_name("Prayer").id %>
+					<% unless partial.id == prayer %>
+						<div class="col1">
+				 			<div class="side_table">
+								<%= render "#{partial.name.downcase}s/#{partial.name.downcase}_partial" %>
+							</div>
 						</div>
-					</div>
+					<% end %>
 				<% end %>
+			<% else %>
+				<% prayer = Partial.find_by_name("Prayer").id %>
+					<% unless partial.id == prayer %>
+						<div class="col1">
+				 			<div class="side_table">
+								<%= render "#{partial.name.downcase}s/#{partial.name.downcase}_partial" %>
+							</div>
+						</div>
+					<% end %>
 			<% end %>
 		<% end %>
 	</div>

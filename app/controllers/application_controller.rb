@@ -26,6 +26,14 @@
     @prayers_with_month_duration = Prayer.expiring_within_the_month
 	end
 
+	def sidebar_partials
+		@announcement = Describe.new(Announcement).published.limit(1).order("created_at DESC").first
+    @blogs_partial = Describe.new(Blog).published.limit(5).order("starts_at DESC")
+    @events_partial = Describe.new(Event).published.limit(5).order("starts_at DESC")
+    @announcements_partial = Describe.new(Announcement).published.limit(5).order("starts_at DESC")
+    @partials = Partial.all
+  end
+
 	private
 
 	def resolve_layout
