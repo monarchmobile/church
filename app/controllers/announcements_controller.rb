@@ -54,6 +54,8 @@ class AnnouncementsController < ApplicationController
 
 	def update
 		all_announcement_states
+		@announcement.send_list = params[:announcement][:send_list_array]
+		@announcement.show_list = params[:announcement][:show_list_array]
 		position = params[:announcement][:position]
 		current_state = params[:announcement][:current_state]
 		published = Status.find_by_status_name("published").id

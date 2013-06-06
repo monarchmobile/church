@@ -6,10 +6,10 @@
 	</div>
 
 	<div class="field">
-	    <%= f.label :scripture_list_array, "Check the scriptures that go with this category" %><br />
-	    <%= hidden_field_tag "category[scripture_list_array][]", nil %>
+	    <%= f.label :scripture_ids, "Check the scriptures that go with this category" %><br />
+	    <%= hidden_field_tag "category[scripture_ids][]", nil %>
     	<% @scriptures.each do |script| %>
-	      <%= check_box_tag "category[scripture_list_array][]", script.id, @category.scripture_list_array.include?(script.id), id: dom_id(script) %>  
+	      <%= check_box_tag "category[scripture_ids][]", script.id, @category.scripture_ids.include?(script.id), id: dom_id(script) %>  
       	<%= label_tag dom_id(script), script.title, class: "check_box_label" %><br> 
 	    <% end %>
 		    
