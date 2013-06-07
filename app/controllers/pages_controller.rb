@@ -1,7 +1,7 @@
 class PagesController < ApplicationController 
 	# before_filter :authenticate_user!, :except => [:show] # devise method
 	layout :resolve_layout
-	load_and_authorize_resource
+	authorize_resource
 	def new 
 		@page = Page.new
 		all_page_states
@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 	end
 
 	def show 
+		load_page
 		@links = Link.all
 		reset_current_state(Announcement)
 		reset_current_state(Event)
@@ -24,6 +25,7 @@ class PagesController < ApplicationController
 	end
 
 	def edit 
+		load_page
 		all_page_states
 	end
 
@@ -40,6 +42,7 @@ class PagesController < ApplicationController
 	end
 
 	def update
+		load_page
 		all_page_states
 		position = params[:page][:position]
 		current_state = params[:page][:current_state]
@@ -62,6 +65,7 @@ class PagesController < ApplicationController
 	end
 
 	def destroy
+		load_page
 		@page.link_ids=[]
 		@page.destroy
 		respond_to do |format|
@@ -114,6 +118,10 @@ class PagesController < ApplicationController
 		@draft_pages = Describe.new(Page).draft
 		@links = Link.all
 		@partials = Partial.all
+	end
+
+	def load_page
+		@page = Page.find(params[:id])
 	end
 
 

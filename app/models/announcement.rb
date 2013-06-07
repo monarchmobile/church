@@ -20,12 +20,10 @@ class Announcement < ActiveRecord::Base
   # turn into array
   def send_list_array
     new_array = []
-    if self.send_list
-      if self.send_list.length > 0
-        group_array = self.send_list.split(',').to_a
-        group_array.each do |g|
-          new_array.push(g.to_i)
-        end
+    if self.send_list.length > 0
+      group_array = self.send_list.split(',').to_a
+      group_array.each do |g|
+        new_array.push(g.to_i)
       end
     end
       
