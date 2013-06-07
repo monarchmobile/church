@@ -31,7 +31,7 @@ class CategoriesController < ApplicationController
 
   def edit
     @scriptures = Scripture.all
-    @category.scripture_list = []
+    
   end
 
 
