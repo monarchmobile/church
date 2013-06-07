@@ -45,6 +45,9 @@ padding: 2px 5px;
     padding: 5px;
     width: 84%;
    }
+input#prayer_user_first_name, input#prayer_user_last_name {
+    width:225px;
+}
 
  select#prayer_category {
  	font-size: 15px;
@@ -65,7 +68,7 @@ padding: 2px 5px;
   select#prayer_duration {
  	font-size: 15px;
     margin-right: 4px;
-    width: 93%;
+    width: 91%;
     padding:3px;
     margin-bottom: 10px;
  }

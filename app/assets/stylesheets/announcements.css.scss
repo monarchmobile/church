@@ -1,4 +1,4 @@
- 
+
 // announcement_partial
 .announcement_partial_container {
 	background: url("white-opac.png") repeat;
@@ -6,8 +6,15 @@
 	box-shadow: 0 0 4px inset;
 	width: 87%;
 	margin-left: 20px;
+	padding-top: 10px;
 	li{
-		padding: 20px 5%;
+		padding: 5px 5%;
+	}
+	li.announcement_title {
+		font-weight: bold;
+	}
+	li.announcment_message {
+		
 	}
 }
 
