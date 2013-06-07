@@ -1,6 +1,6 @@
 class AffiliationsController < ApplicationController
   layout :resolve_layout
-  load_and_authorize_resource
+  authorize_resource
   def index
     church_lists
     respond_to do |format|
@@ -9,6 +9,7 @@ class AffiliationsController < ApplicationController
   end
 
   def show
+    load_affiliation
     respond_to do |format|
       format.html
     end
@@ -23,6 +24,7 @@ class AffiliationsController < ApplicationController
   end
 
   def edit
+    load_affiliation
   end
 
   def create
@@ -38,14 +40,14 @@ class AffiliationsController < ApplicationController
   end
 
   def update
-
+    load_affiliation
     respond_to do |format|
       if @affiliation.update_attributes(params[:affiliation])
-        if params[:affiliation][:approved]
+        if params[:action] == "index"
           church_lists
           format.js
         else
-          format.html { redirect_to affiliations_path, notice: 'Affiliation was successfully updated.' }
+          format.html { redirect_to @affiliation, notice: 'Affiliation was successfully updated.' }
         end
       else
         format.html { render action: "edit" }
@@ -54,11 +56,16 @@ class AffiliationsController < ApplicationController
   end
 
   def destroy
+    load_affiliation
     @affiliation.destroy
 
     respond_to do |format|
       format.html { redirect_to affiliations_path }
     end
+  end
+
+  def load_affiliation
+    @affiliation = Affiliation.find(params[:id])
   end
 
   def church_lists
