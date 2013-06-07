@@ -10,7 +10,8 @@
 	    <%= hidden_field_tag "category[scripture_ids][]", nil %>
     	<% @scriptures.each do |script| %>
 	      <%= check_box_tag "category[scripture_ids][]", script.id, @category.scripture_ids.include?(script.id), id: dom_id(script) %>  
-      	<%= label_tag dom_id(script), "#{script.title} #{script.content}", class: "check_box_label" %><br> 
+      	<%= label_tag dom_id(script), truncate("#{script.title} #{script.content}", :length => 100, :omission => '... (continued)'), class: "check_box_label" %><br> 
+
 	    <% end %>
 		    
 	</div>
