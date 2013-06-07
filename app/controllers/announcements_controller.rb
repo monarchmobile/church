@@ -43,8 +43,7 @@ class AnnouncementsController < ApplicationController
   end
   
 	def edit
-		@announcement.send_list = []
-		@announcement.show_list = []
+		
 		@recipients = Role.all
 		respond_to do |format|
 			format.html { render 'edit' }

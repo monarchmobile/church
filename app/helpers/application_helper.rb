@@ -171,6 +171,12 @@ module ApplicationHelper
     end
   end
 
+  def scripture_verse(cat)
+    scripts = cat.scripture_ids
+    @scripture = Scripture.where("id IN(?)", scripts).order("RANDOM()").first
+    @scripture.content if @scripture
+  end
+
   
 
 end
