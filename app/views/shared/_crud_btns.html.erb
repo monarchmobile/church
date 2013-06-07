@@ -4,9 +4,9 @@
 	<% else %>
  		<% klass = object.class.name.downcase %>
  	<% end %>
-	
-	<%= content_tag :li, link_to("edit", "#{klass}s/#{object.id}/edit"), class: "edit" %>
-	<%= content_tag :li, link_to("view", "#{klass}s/#{object.id}"), class: "view" %>
-	<%= content_tag :li, link_to("delete", "#{klass}s/#{object.id}", :confirm => "are you sure?", :method => :delete ), class: "delete" %>
+	<% modelK = object.class.name.classify.constantize %>
+	<%= content_tag :li, link_to("edit", "#{klass}s/#{object.id}/edit"), class: "edit" if can? :update, modelK %>
+	<%= content_tag :li, link_to("view", "#{klass}s/#{object.id}"), class: "view" if can? :show, modelK%>
+	<%= content_tag :li, link_to("delete", "#{klass}s/#{object.id}", :confirm => "are you sure?", :method => :delete ), class: "delete" if can? :delete, modelK %>
 	
 </ul>

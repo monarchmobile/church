@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
 	layout 'dashboard'
 
 	def dashboard
+		authorize_dashboard(current_user)
 		@pages = Page.all
 		static_array = %w[Partial Profile Role Supermodel]
 		@active_models = Supermodel.where("visible = true AND name NOT IN (?)", static_array).order("name ASC")

@@ -1,7 +1,7 @@
 
 	<h1>Categories</h1> 
 	<div class="column_title pages">
-		<%= content_tag :p, link_to("+ New", new_category_path), class: "new_instance_button" %>
+		<%= content_tag :p, link_to("+ New", new_category_path), class: "new_instance_button" if can? :create, Category %>
 		<ul>
 			<li class="title">Name</li>
 		</ul>

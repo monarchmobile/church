@@ -95,6 +95,14 @@ test to see if this push works
 groups that can see is not showing up
 index dates are wrong
 
+text_area for scripture edit **
+change title to reference
+
+category scripture checkbox
+	title + content
+
+sidebar pretty date
+
 
 
 

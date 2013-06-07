@@ -18,7 +18,7 @@ $(document).ready(function() {
 	</div>
 	<div class="field">
 		<%= f.label :message %>
-		<%= f.text_area :message, rows: 4 %>
+		<%= f.text_area :message, :class => 'ckeditor' %>
 	</div>
 	<div class="field schedule_fields">
 		<%= f.label :current_state %>

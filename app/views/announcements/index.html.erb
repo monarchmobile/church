@@ -1,7 +1,7 @@
   
 <h1>Announcements</h1>
 <div class="column_title pages">
-	<%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" %>
+	<%= content_tag :p, link_to("+ New", new_announcement_path), class: "new_instance_button" if can? :create, Announcement %>
 	<ul>
 		<li class="title">Title</li>
 		<li>Status</li>

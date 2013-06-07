@@ -6,7 +6,6 @@
 	  redirect_to main_app.root_url
 	end
 
-
 	def after_sign_in_path_for(resource)
 		superadmin = Role.find_by_name(:SuperAdmin)
 		admin = Role.find_by_name(:Admin)

@@ -66,6 +66,7 @@ class AffiliationsController < ApplicationController
 
   def load_affiliation
     @affiliation = Affiliation.find(params[:id])
+    rescue_code
   end
 
   def church_lists

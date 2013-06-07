@@ -16,6 +16,7 @@ end
 gem 'jquery-rails'
 gem "devise"
 gem "cancan"
+gem 'prawn'
 gem "rake", ">= 0.9.2"
 gem "jquery-ui-rails", :group => :assets
 gem "thin"

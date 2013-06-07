@@ -122,6 +122,7 @@ class PagesController < ApplicationController
 
 	def load_page
 		@page = Page.find(params[:id])
+		rescue_code
 	end
 
 

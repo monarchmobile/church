@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   layout :resolve_layout
-  load_and_authorize_resource
+  before_filter :load_category, :only => [:show, :edit, :update, :destroy] 
+
+  authorize_resource
   def index
     @categories = Category.all
 
@@ -67,6 +69,11 @@ class CategoriesController < ApplicationController
       format.html { redirect_to categories_url }
       format.js
     end
+  end
+
+  def load_category
+    @category = Category.find(params[:id])
+    rescue_code
   end
 
 end

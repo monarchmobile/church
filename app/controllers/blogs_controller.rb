@@ -1,7 +1,9 @@
  class BlogsController < ApplicationController 
   before_filter :authenticate_user!, :except => [:show] # devise method
+  before_filter :load_blog, :only => [:show, :edit, :update, :destroy, :blog_status, :blog_starts_at, :blog_ends_at] 
+
   layout :resolve_layout
-  load_and_authorize_resource
+  authorize_resource
   def index
     reset_current_state(Blog)
     all_blog_states
@@ -156,5 +158,10 @@
     @published_blogs = Describe.new(Blog).published
     @scheduled_blogs = Describe.new(Blog).scheduled
     @draft_blogs = Describe.new(Blog).draft
+  end
+
+  def load_blog
+    @blog = Blog.find(params[:id])
+    rescue_code
   end
 end

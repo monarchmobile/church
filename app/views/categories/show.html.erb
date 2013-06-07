@@ -5,9 +5,9 @@
 			<%= content_tag :li, @category.name, class:"name" %><br />
 			<ul class="crud_buttons">
 
-				<%= content_tag :li, link_to("edit", edit_category_path(@category)), class:"edit" %>
+				<%= content_tag :li, link_to("edit", edit_category_path(@category)), class:"edit" if can? :update, Category %>
 				
-				<%= content_tag :li, link_to("delete", category_path(@category), :confirm => "are you sure?", :method => :delete ), class:"delete" %>
+				<%= content_tag :li, link_to("delete", category_path(@category), :confirm => "are you sure?", :method => :delete ), class:"delete" if can? :destroy, Category %>
 			</ul>
 		</ul>
 		<br class="clear">

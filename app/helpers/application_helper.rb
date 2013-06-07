@@ -10,8 +10,12 @@ module ApplicationHelper
   end
 
   def current_users_page?(user)
-      current_user && current_user.id == user.id
-    end
+    current_user && current_user.id == user.id
+  end
+
+  def authorize_dashboard(user)
+    redirect_to root_path unless (user.role_ids & [1,2]).length > 0
+  end
 
     # generates red stars for required fields in any form
   def required_field
@@ -30,6 +34,11 @@ module ApplicationHelper
       instance = Supermodel.find_by_name(cm)
       instance.update_attributes(visible: true)
     end
+  end
+
+  def rescue_code
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url, :flash => { :error => "Record not found." }
   end
 
   # this removes events and blogs from dashboard, not needed as of yet

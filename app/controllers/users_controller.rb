@@ -3,6 +3,7 @@ class UsersController < Devise::RegistrationsController
   layout :resolve_layout
   def index
     all_user_states
+
   end
 
   def new
@@ -14,10 +15,21 @@ class UsersController < Devise::RegistrationsController
 
   def show
     load_user
-    recent_prayers_for_intercessor if @user.approved
-    @prayer = Prayer.new
-    @categories = @recent_prayers.group_by { |t| t.category } if current_user.approved
-    sidebar_partials
+    if @user 
+      recent_prayers_for_intercessor if @user.approved
+      @prayer = Prayer.new
+      @categories = @recent_prayers.group_by { |t| t.category } if current_user.approved
+      sidebar_partials
+      # respond_to do |format|
+      #   format.html
+      #   format.pdf do
+      #     pdf = OrderPdf.new
+      #     send_data pdf.render, filename: "prayer list for #{current_user.last_name}.pdf"
+      #   end
+      # end
+    else
+      rescue_code
+    end
   end
 
   def edit

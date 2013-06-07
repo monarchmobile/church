@@ -1,7 +1,7 @@
 class AnnouncementsController < ApplicationController 
-
+	before_filter :load_announcement, :only => [:show, :edit, :update, :destroy, :announcement_status, :announcement_starts_at, :announcement_ends_at] 
 	layout :resolve_layout
-	load_and_authorize_resource	
+	authorize_resource	
 	def index
 		reset_current_state(Announcement)
 		all_announcement_states
@@ -43,7 +43,6 @@ class AnnouncementsController < ApplicationController
   end
   
 	def edit
-		
 		@recipients = Role.all
 		respond_to do |format|
 			format.html { render 'edit' }
@@ -71,6 +70,7 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def destroy
+		
 		@announcement.destroy
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
@@ -79,6 +79,7 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def announcement_status
+		
 		all_announcement_states
 		current_state = params[:announcement][:current_state]
 		total_published = @published_announcements.count
@@ -96,6 +97,7 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def announcement_starts_at
+		
 		all_announcement_states
 		starts_at = params[:announcement][:starts_at]
 		current_state = params[:announcement][:current_state]
@@ -114,6 +116,7 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def announcement_ends_at
+		
 		all_announcement_states
 		ends_at = params[:announcement][:ends_at]
 		current_state = params[:announcement][:current_state]
@@ -150,5 +153,10 @@ class AnnouncementsController < ApplicationController
 		ids = [params[:id], *cookies.signed[:hidden_announcement_ids]]
 		cookies.permanent.signed[:hidden_announcement_ids] = ids
 		redirect_to :back
+	end
+
+	def load_announcement
+		@announcement = Announcement.find(params[:id])
+		rescue_code
 	end
 end
