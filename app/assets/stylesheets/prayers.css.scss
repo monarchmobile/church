@@ -21,25 +21,35 @@ padding: 2px 5px;
 
  .user_info_container {
  	height:auto;
- 	width:300px;
+ 	width:240px;
  	clear:both;
  	
  }
 
- input#prayer_pray_for_first_name,  input#prayer_user_email {
+ input#prayer_pray_for_first_name {
  	border-radius: 8px 8px 8px 8px;
     color: black;
     font-size: 15px;
     margin-bottom: 20px;
     margin-right: 5px;
     padding: 5px;
-    width: 88%;
+    width: 84%;
  }
+
+   input#prayer_user_email {
+    border-radius: 8px 8px 8px 8px;
+    color: black;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    padding: 5px;
+    width: 84%;
+   }
 
  select#prayer_category {
  	font-size: 15px;
     margin-right: 4px;
-    width: 93%;
+    width: 91%;
     padding:3px;
     margin-bottom: 10px;
  }

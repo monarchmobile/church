@@ -114,11 +114,6 @@ ActiveRecord::Schema.define(:version => 20130606145704) do
     t.integer "page_id"
   end
 
-  create_table "navigations", :id => false, :force => true do |t|
-    t.integer "parent_id"
-    t.integer "child_id"
-  end
-
   create_table "page_partials", :id => false, :force => true do |t|
     t.integer "page_id"
     t.integer "partial_id"
@@ -227,8 +222,8 @@ ActiveRecord::Schema.define(:version => 20130606145704) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -237,13 +232,13 @@ ActiveRecord::Schema.define(:version => 20130606145704) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.boolean  "approved",               :default => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "username"
     t.integer  "affiliation_id"
-    t.boolean  "approved"
     t.string   "clergy_first_name"
     t.string   "clergy_last_name"
     t.string   "clergy_email"

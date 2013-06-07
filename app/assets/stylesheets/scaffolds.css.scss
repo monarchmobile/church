@@ -158,9 +158,9 @@ width: 350px;
   h2{
     background: url("heading2.png") no-repeat scroll -12px -14px transparent;
     height: 40px;
-    margin-left: 53px;
-    margin-top: -10px;
-    padding-left: 43px;
+    margin-left: 15px;
+    margin-top: -18px;
+    padding-left: 49px;
     padding-top: 12px;
   }
 
@@ -309,11 +309,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55638a', end
 }
 
 .side_table{
-    background: url('white-opac.png') repeat;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 0 4px inset;
-    padding: 20px 5%;
-    width: 90%;
+  background: url("white-opac.png") repeat;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0 0 4px inset;
+  padding: 14px;
+  width: 240px;
 }
 
 .col_content{
@@ -363,7 +363,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55638a', end
   float: left;
   padding: 10px;
   width: 275px;
-  text-align: center;
   margin-bottom:20px;
 
   img{
