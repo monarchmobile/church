@@ -58,6 +58,7 @@ class AnnouncementsController < ApplicationController
 		position = params[:announcement][:position]
 		current_state = params[:announcement][:current_state]
 		published = Status.find_by_status_name("published").id
+		@announcement.check_start_date
 		if (!current_state ==  published) 
 			@announcement.position = nil
 		end

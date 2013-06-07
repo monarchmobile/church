@@ -2,9 +2,21 @@ class Announcement < ActiveRecord::Base
   attr_accessible :ends_at, :message, :starts_at, :title, :current_state, :position
   attr_accessible :send_list, :sent, :send_list_array, :show_list_array, :show_list
   before_create :set_position
+  before_update :check_start_date
   # after_create :check_announcement_status
   include MyDateFormats
  
+  def check_start_date
+    if self.current_state == 3
+      if self.starts_at.blank?
+        self.starts_at = Date.today
+      else
+        if self.starts_at > Date.today
+          self.starts_at = Date.today
+        end
+      end
+    end
+  end
 
   # scope :current, -> { where("starts_at <= :now and ends_at >= :now", now: Time.zone.now)}
   def self.current(hidden_ids = nil)
