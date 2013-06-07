@@ -20,13 +20,14 @@ class Announcement < ActiveRecord::Base
   # turn into array
   def send_list_array
     new_array = []
-    if self.send_list.length > 0
-      group_array = self.send_list.split(',').to_a
-      group_array.each do |g|
-        new_array.push(g.to_i)
+    if self.send_list
+      if self.send_list.length > 0
+        group_array = self.send_list.split(',').to_a
+        group_array.each do |g|
+          new_array.push(g.to_i)
+        end
       end
     end
-      
     return new_array
   end
 
@@ -37,13 +38,14 @@ class Announcement < ActiveRecord::Base
   # turn into array
   def show_list_array
     new_array = []
-    if self.show_list.length > 0
-      group_array = self.show_list.split(',').to_a
-      group_array.each do |g|
-        new_array.push(g.to_i)
+    if self.show_list
+      if self.show_list.length > 0
+        group_array = self.show_list.split(',').to_a
+        group_array.each do |g|
+          new_array.push(g.to_i)
+        end
       end
     end
-      
     return new_array
   end
 
