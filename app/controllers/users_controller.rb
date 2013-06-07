@@ -16,7 +16,7 @@ class UsersController < Devise::RegistrationsController
     load_user
     recent_prayers_for_intercessor if @user.approved
     @prayer = Prayer.new
-    @categories = @recent_prayers.group_by { |t| t.category }
+    @categories = @recent_prayers.group_by { |t| t.category } if current_user.approved
     sidebar_partials
   end
 
