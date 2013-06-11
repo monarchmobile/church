@@ -387,13 +387,14 @@ img.ns {
   box-shadow: none;
 }
 
-.error {
+.error, .notice {
     color: black;
-    margin-left: 400px;
-    margin-top: 309px;
-    position: absolute;
-    text-align: center;
-    z-index: 500;
+right: 5px;
+margin-top: 309px;
+position: absolute;
+text-align: right;
+z-index: 500;
+width: 605px;
   p {
     font-size: 16px;
     margin-bottom: 4px;
