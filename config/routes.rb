@@ -9,6 +9,7 @@ Church::Application.routes.draw do
   devise_scope :user do  
     match "/users/search" => "users#search" 
     match "/users" => "users#index"
+    match "users/:id/user_prayer_list", :to => "users#user_prayer_list", :as => "user_prayer_list"
     resources :users
   end
   resources :roles
@@ -23,6 +24,8 @@ Church::Application.routes.draw do
   resources :affiliations
   resources :references
   resources :scriptures
+
+
 
   #partials
   match "announcement_partial", :to => "announcements#announcement_partial"

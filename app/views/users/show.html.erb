@@ -8,24 +8,9 @@
 				<%= content_tag :h2, @user.fullname %>
 			<% end %>
 			
-			<ul class="model_table">
-				<% @categories.sort.each do |category, recent_prayers| %>
-					<% @category = Category.find(category.to_i) %>
-					<%= content_tag :h2, @category.name %> <!-- groups by category name -->
-					<%= scripture_verse(@category) %> <!-- random verse associate with category (app_helper)-->
-			    <%= render recent_prayers %>
-			  <% end %>
-			</ul>
+			<%= render 'users/shared/user_prayer_list' %>
 
-			<ul class="model_table">
-				<%= content_tag :h3, "last week" %>
-			  <%= render @prayers_with_week_duration %>
-			</ul>
-			
-			<ul class="model_table">
-				<%= content_tag :h3, "within the month" %>
-		    <%= render @prayers_with_month_duration %>
-			</ul>
+			<%= content_tag :li, link_to("printable view", user_prayer_list_path(@user)) %>
 		<% elsif !current_user.approved %>
 
 			<%= content_tag :p, "Thank you for signing up as an interescessor" %>

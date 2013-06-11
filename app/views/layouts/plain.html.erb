@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= content_tag :title, "#{Rails.application.class.to_s.split("::").first}" %>
+  <%= stylesheet_link_tag    "plain", :media => "all" %>
+  <%= javascript_include_tag "application" %>          
+  <%= csrf_meta_tags %>
+</head>
+<body class='<%= "#{params[:controller]}_#{params[:action]}" %>'>
+  
+  
+  <%= yield %>
+           
+
+</body>
+</html>

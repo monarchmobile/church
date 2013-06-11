@@ -64,13 +64,13 @@ module Church
 
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 	config.assets.initialize_on_precompile = false
 	config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
 	config.serve_static_assets = true
-	config.assets.precompile += ['static_pages.css']
+	config.assets.precompile += ['static_pages.css', 'plain.css']
 	config.autoload_paths += %W(#{config.root}/app/models/ckeditor #{config.root}/lib)
   end
 end

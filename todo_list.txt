@@ -103,7 +103,12 @@ category scripture checkbox
 
 sidebar pretty date
 
+flash show up diff between sign and lost record
 
+Andrew
+#1493 unable to replicate bug
+
+work on we care logic to send out to all lists
 
 
 

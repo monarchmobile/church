@@ -16,7 +16,24 @@
  *= require scaffolds.css
  *= require prayers.css 
  *= require users.css 
+ */
+
+ @media print {
+  body {
+    background-color: #FFF;
+  }
+
+  
+  
+  #line_items {
+    page-break-before: always;
+  }
+  
+  #pdf_link {
+    display: none;
+  }
+}
 
 
  
- */
+

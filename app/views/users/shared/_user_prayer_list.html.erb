@@ -1,0 +1,18 @@
+<ul class="model_table">
+	<% @categories.sort.each do |category, recent_prayers| %>
+		<% @category = Category.find(category.to_i) %>
+		<%= content_tag :h2, @category.name %> <!-- groups by category name -->
+		<%= scripture_verse(@category) %> <!-- random verse associate with category (app_helper)-->
+    <%= render recent_prayers %>
+  <% end %>
+</ul>
+
+<ul class="model_table">
+	<%= content_tag :h3, "last week" %>
+  <%= render @prayers_with_week_duration %>
+</ul>
+
+<ul class="model_table">
+	<%= content_tag :h3, "within the month" %>
+  <%= render @prayers_with_month_duration %>
+</ul>

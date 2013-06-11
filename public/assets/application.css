@@ -1,4 +1,4 @@
-/*
+@media print{body{background-color:#FFF}#line_items{page-break-before:always}#pdf_link{display:none}}/*
  * jQuery UI CSS Framework 1.10.0
  * http://jqueryui.com
  *

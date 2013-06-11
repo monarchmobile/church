@@ -145,4 +145,11 @@ class UsersController < Devise::RegistrationsController
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url, :flash => { :error => "Record not found." }
   end
+
+  def user_prayer_list
+    @user = User.find(params[:id])
+    recent_prayers_for_intercessor
+    @categories = @recent_prayers.group_by { |t| t.category } if current_user.approved
+    render :layout => "plain"
+  end
 end
