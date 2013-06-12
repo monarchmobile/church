@@ -2,7 +2,7 @@
 	<% count = visible.name.constantize.all.count %>
 	<% model_name = visible.name.downcase %>
 		<% if visible.name == "Category" %>
-			<%= content_tag :li, link_to("#{visible.name}s (#{count})", send("categories_path")) if can? :index, visible.name.classify.constantize %>
+			<%= content_tag :li, link_to("Categories (#{count})", send("categories_path")) if can? :index, visible.name.classify.constantize %>
 		<% else %>
 			<%= content_tag :li, link_to("#{visible.name}s (#{count})", send("#{model_name}s_path")) if can? :index, visible.name.classify.constantize %>
 		<% end %>
