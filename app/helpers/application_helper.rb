@@ -193,7 +193,7 @@ module ApplicationHelper
   end
 
   def prayer_list(user, key)
-    affiliation = Affiliation.find(user.affiliation.id)
+    affiliation = user.affiliation
     if (user.role_ids & [role_id(:Admin)]).length > 0
       query = {
         this_week: Prayer.where("prayers.created_at >= ?", Date.today.beginning_of_week),
@@ -202,15 +202,15 @@ module ApplicationHelper
       }
     elsif (user.role_ids & [role_id(:Coordinator)]).length > 0
       query = {
-        this_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).where("prayers.created_at >= ?", Date.today.beginning_of_week),
-        past_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_week,
-        past_month: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_month
+        this_week: Prayer.joins(:user => :affiliation).where("affiliations.id = ?", affiliation.id).where("prayers.created_at >= ?", Date.today.beginning_of_week),
+        past_week: Prayer.joins(:user => :affiliation).where("affiliations.id = ?", affiliation.id).expiring_within_the_week,
+        past_month: Prayer.joins(:user => :affiliation).where("affiliations.id = ?", affiliation.id).expiring_within_the_month
       }
     elsif (user.role_ids & [role_id(:Intercessor)]).length > 0
       query = {
-        this_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).where("prayers.created_at >= ?", Date.today.beginning_of_week),
-        past_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_week,
-        past_month: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_month
+        this_week: Prayer.joins(:user => :affiliation).where("affiliations.id = ?", affiliation.id).where("prayers.created_at >= ?", Date.today.beginning_of_week),
+        past_week: Prayer.joins(:user => :affiliation).where("affiliations.id = ?", affiliation.id).expiring_within_the_week,
+        past_month: Prayer.joins(:user => :affiliation).where("affiliations.id = ?", affiliation.id).expiring_within_the_month
       }
     end  
     query[key]
