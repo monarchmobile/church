@@ -193,7 +193,7 @@ module ApplicationHelper
   end
 
   def prayer_list(user, key)
-    affiliation = Affiliation.find(user.affiliation_id)
+    affiliation = Affiliation.find(user.affiliation.id)
     if (user.role_ids & [role_id(:Admin)]).length > 0
       query = {
         this_week: Prayer.where("prayers.created_at >= ?", Date.today.beginning_of_week),
