@@ -16,7 +16,7 @@ class UsersController < Devise::RegistrationsController
   def show
     load_user
     if @user 
-      recent_prayers_for_intercessor if @user.approved
+      recent_prayers_for_intercessor(@user) if @user.approved
       @prayer = Prayer.new
       @categories = @recent_prayers.group_by { |t| t.category } if current_user.approved
       sidebar_partials

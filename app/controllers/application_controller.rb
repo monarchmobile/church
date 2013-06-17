@@ -18,12 +18,7 @@
 	  end
 	end
 
-	def recent_prayers_for_intercessor
-		affiliation = Affiliation.find(current_user.affiliation_id)
-		@recent_prayers = Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).where("prayers.created_at >= ?", Date.today.beginning_of_week)
-    @prayers_with_week_duration = Prayer.expiring_within_the_week
-    @prayers_with_month_duration = Prayer.expiring_within_the_month
-	end
+	
 
 	def sidebar_partials
 		@announcement = Describe.new(Announcement).published.limit(1).order("created_at DESC").first

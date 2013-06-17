@@ -186,6 +186,40 @@ module ApplicationHelper
     @scripture.content if @scripture
   end
 
+  def recent_prayers_for_intercessor(user)
+    @recent_prayers = prayer_list(user, :this_week )
+    @prayers_with_week_duration = prayer_list(user, :past_week )
+    @prayers_with_month_duration = prayer_list(user, :past_month )
+  end
+
+  def prayer_list(user, key)
+    affiliation = Affiliation.find(user.affiliation_id)
+    if (user.role_ids & [role_id(:Admin)]).length > 0
+      query = {
+        this_week: Prayer.where("prayers.created_at >= ?", Date.today.beginning_of_week),
+        past_week: Prayer.expiring_within_the_week,
+        past_month: Prayer.expiring_within_the_month
+      }
+    elsif (user.role_ids & [role_id(:Coordinator)]).length > 0
+      query = {
+        this_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).where("prayers.created_at >= ?", Date.today.beginning_of_week),
+        past_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_week,
+        past_month: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_month
+      }
+    elsif (user.role_ids & [role_id(:Intercessor)]).length > 0
+      query = {
+        this_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).where("prayers.created_at >= ?", Date.today.beginning_of_week),
+        past_week: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_week,
+        past_month: Prayer.includes(:user).where(:users => {affiliation_id: affiliation.id}).expiring_within_the_month
+      }
+    end  
+    query[key]
+  end
+
+  def two_am_mailer
+    UserMailer.send_new_list
+  end
+
   
 
 end

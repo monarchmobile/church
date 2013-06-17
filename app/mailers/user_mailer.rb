@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
     default from: "from@example.com"
-
+    include ApplicationHelper
 	def announcement_notice(announcement)
         @announcement = announcement
         groups = @announcement.send_list_array
@@ -24,6 +24,13 @@ class UserMailer < ActionMailer::Base
 
         @announcement.sent = true
      	@announcement.save!
+    end
+
+    def send_new_list
+        users = User.where(approved: true)
+        users.each do |user|
+            recent_prayers_for_intercessor(user)
+        end
     end
 
 end

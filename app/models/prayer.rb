@@ -98,11 +98,11 @@ class Prayer < ActiveRecord::Base
   end
 
   def self.expiring_within_the_week
-    where("created_at >= ? AND created_at < ?", beg_of_last_week.beginning_of_day+2.hours, end_of_last_week)
+    where("prayers.created_at >= ? AND prayers.created_at < ?", beg_of_last_week.beginning_of_day+2.hours, end_of_last_week)
   end
 
   def self.expiring_within_the_month
-    where("created_at >= ? AND created_at < ?", beg_of_last_week-30.days, end_of_last_week-30.days)
+    where("prayers.created_at >= ? AND prayers.created_at < ?", beg_of_last_week-30.days, end_of_last_week-30.days)
   end
 
   def category_name(id)

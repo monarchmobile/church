@@ -1,114 +1,15 @@
-# models/customer/private.rb
-# models/customer/public.rb
-
-prayer partial
-	make p option in paged edit
-	p will not be a list of prayers but the action form
 
 
-prayer#index
-	prayer_for	category	affiliation 
-
-	coor approve interecessor for his church
-	admin can approve for all churchs
-
-	prayer index
-		this week
-		last week
-		past month if interecessor
-		all for affiliation if coordinator
-		all prayers if admin
-			break down by affiliation
-			ability to delete prayer if admin
-
-	mailings
-		new email for each request
-		email each mon 2am
-
-	pdf format to print out a list
-
-	set affiliation to nothing if someone clicks "here"
-	flash not showing up
-
-
-(15-min) 9:40 -- 9:54   **DONE **
-	categories crashing when included as supermodel visible
-
-(1-hour) 9:55 -- 10:20
-	ablity to add 
-		churchs ** DONE** 
-		categories ** DONE **
-
-(1 hour) 10:30--10:40 **DONE **
-	enable editing
-	admin cannot edit interecessor
-
-(15-min) 10:21 -- 10:30 **DONE **
-	if current user, show create prayer button on prayer request
-
-(30-min)reenable abilities  ** DONE** 
-
-(1 hour) 10:40 -- **DONE **
-	user edit page
-	user index page coords/vs admin ablity to see users
-		
-
-(45-min) [3 min] 
-	get flash messages working
-	{} in sign up form
-
-(30-min)  ** DONE **
-	user#create redirect to thank you page
-
-prayer_partial needs to be dynamic **DONE **
-
-1)intercessor on user/index can see all... not sure why
-
-(45-min) user index/ person should only show up in one list if have multiple roles
-
-
-May 29th
-just push to staging for user form with refernces
-	1452
-		test out new user
-	
-	1453 
-	1456
-	1457
-Jane 10:30 am
-
-new user
-
-personal login stuff
-	do you belong to a church yes not
-	if yes
-		affiliation
-			clergy
-	if no
-		reference 1
-		reference 2
-
-make intercessor default on user form role choice
-highlight yes/no
-test to see if this push works
-
-groups that can see is not showing up
-index dates are wrong
-
-text_area for scripture edit **
-change title to reference
-
-category scripture checkbox
-	title + content
-
-sidebar pretty date
-
-flash show up diff between sign and lost record
 
 Andrew
 #1493 unable to replicate bug
 
 work on we care logic to send out to all lists
+
+at mon 2am
+	sent prayer list to each member
+		-gets all prayers less than a week old
+		-get all prayers that are affiliated with for last week
 
 
 
