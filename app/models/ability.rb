@@ -22,6 +22,7 @@ class Ability
       can :index, [Affiliation, Announcement, Prayer, User]
       can [:show], Announcement
       can [:create, :show], Prayer
+      can :create, User
       can :manage, User do |u|
         u.affiliation == user.affiliation && user.role?(:Coordinator) #checks if comment belongs to user
       end
@@ -30,6 +31,7 @@ class Ability
       can :create, Affiliation
       can [:index, :show], Announcement
       can [:create, :show], Prayer
+      can :create, User
       can [:manage], User do |u|
         u == user
       end

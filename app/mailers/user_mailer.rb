@@ -29,7 +29,9 @@ class UserMailer < ActionMailer::Base
     def send_new_list
         users = User.where(approved: true)
         users.each do |user|
-            recent_prayers_for_intercessor(user)
+            @user = user
+            recent_prayers_for_intercessor(@user)
+            mail :to => user.email, :subject => "New announcement"
         end
     end
 
