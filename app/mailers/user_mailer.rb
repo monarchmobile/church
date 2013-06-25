@@ -26,12 +26,30 @@ class UserMailer < ActionMailer::Base
      	@announcement.save!
     end
 
-    def send_new_list
+    def new_prayer_request(prayer)
+        @cat_name = category_name(prayer.category)
+        @prayer = prayer
         users = User.where(approved: true)
         users.each do |user|
+           mail :to => user.email, :subject => "New prayer"
+        end  
+    end
+
+    def send_new_list
+        users = User.where(approved: true)
+        count = users.count
+
+        past_week_array = EmailList.new(:past_week)
+        past_month_array = EmailList.new(:past_month)
+
+        users.each_with_index do |user, index|
             @user = user
-            recent_prayers_for_intercessor(@user)
-            mail :to => user.email, :subject => "New announcement"
+            @this_week = Prayerlist.new(:this_week).query
+
+            @past_week = past_week_array.list_for_user(index, count)
+            @past_month = past_month_array.list_for_user(index, count)
+
+            mail :to => user.email, :subject => "New prayer list"
         end
     end
 
