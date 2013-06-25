@@ -38,8 +38,13 @@ class User < ActiveRecord::Base
    return !!self.roles.find_by_name(role.to_s)
   end
 
-  scope :with_role, lambda { |role_id| { :joins => :roles, 
-                                             :conditions => {:roles => {:id => role_id} } } }
+  # scope :with_role, lambda { |role_id| { :joins => :roles, 
+  #                                            :conditions => {:roles => {:id => role_id} } } }
+
+  scope :with_role, -> role_id { joins(:roles).where(:roles => {:id => role_id })}
+  scope :without_role, -> role_ids { joins(:roles).where("roles.id IS NOT IN ?", role_ids)}
+
+
 
   def fullname
   	[first_name, last_name].join(" ")

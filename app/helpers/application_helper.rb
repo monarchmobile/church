@@ -172,6 +172,12 @@ module ApplicationHelper
     Role.find_by_name(role).id
   end
 
+  def role_ids(role1, role2)
+    role_1 = Role.find_by_name(role1.to_s.camelize).id
+    role_2 = Role.find_by_name(role2.to_s.camelize).id
+    [role_1, role_2]
+  end
+
   # static_pages _table_list.  Allows category to become categories
   # <%= pluralize_without_count(item.categories.count, 'Category', ':') %>
   def pluralize_without_count(count, noun, text = nil)
