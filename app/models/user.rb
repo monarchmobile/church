@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :clergy_first_name, :clergy_last_name, :clergy_email, :clergy_phone_number
 	attr_accessible :first_name, :last_name, :role, :username, :approved
   attr_accessible :affiliation_id, :references_attributes
-  attr_accessible :new_church_name, :church_city, :church_state
+  attr_accessible :new_church_name, :church_city, :church_state, :affiliation
   attr_accessor :new_church_name, :church_city, :church_state, :affiliation
   attr_accessible :role_ids
   has_and_belongs_to_many :roles

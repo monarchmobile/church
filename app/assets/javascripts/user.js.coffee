@@ -1,17 +1,35 @@
+UserApproval = 
+	init: (element)-> 
+		this.element = element
+		select = element.prev()
+		this.set_value(select)
+
+	set_value: (select)->
+		if select.val() == true
+			select.val(false) 
+			this.set_background("Approved", "green", "red")
+		else
+			select.val(true)
+			this.set_background("Not Approved", "red", "green")
+		this.submit_form()
+		
+		
+			
+	submit_form: ->
+		this.element.closest("form").unbind('submit').submit()
+		this.element.html("Not Approved").removeClass("green_background").addClass("red_background")
+
+	set_background: (status, add_color, remove_color)->
+		this.element.html(status).addClass(add_color+"_background").removeClass(remove_color+"_background")
+
+
 jQuery ->
 
 	# user approval status
 	$("body").delegate ".user_ajax_edit .user_approval_status", "click", ->
-		select = $(this).prev()
-		if select.val() == "true"
-			select.val("false")
-			console.log(select.val())
-			select.closest("form").submit()
-			$(this).html("Not Approved").removeClass("green_background").addClass("red_background")
-		else if select.val() == "false"
-			select.val("true")
-			select.closest("form").submit()
-			$(this).html("Approved").addClass("green_background").removeClass("red_background")
+		UserApproval.init($(this))
+		
+		
 
 	$("body").delegate "#new_user .add_your_church span", "click", ->
 	  $this = $(this)
