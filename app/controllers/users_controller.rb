@@ -75,7 +75,7 @@ class UsersController < Devise::RegistrationsController
     respond_to do |format|
       if !@approved_status.blank?
         if @user.update_attributes(approved: @approved_status)
-          @roles = index_page_roles
+          index_page_roles
           format.js
         end
       else

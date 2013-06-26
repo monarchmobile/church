@@ -1,12 +1,12 @@
 
-<% @roles.each do |role| %>
+<% index_page_roles.each do |role| %>
 	$("#admin_list_<%= role.name.downcase %>_waiting")
 			.html("<%= j render user_list_for(role.name.downcase.to_sym, 'waiting') %>")
 			.prepend('<h3><%= " #{role.name} (#{user_state(role.name.downcase.to_sym, "waiting").count}) "%></h3>')
 
 <% end %>
 
-<% @roles.each do |role| %>
+<% index_page_roles.each do |role| %>
 	$("#admin_list_<%= role.name.downcase %>_approved")
 			.html("<%= j render user_list_for(role.name.downcase.to_sym, 'approved') %>")
 			.prepend('<h3><%= " #{role.name} (#{user_state(role.name.downcase.to_sym, "approved").count}) "%></h3>')
