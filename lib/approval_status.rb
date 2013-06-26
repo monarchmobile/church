@@ -22,8 +22,8 @@ class ApprovalStatus
 end
 
 
-find all admins that are _waiting
+# find all admins that are _waiting
 
-find all coordinators that are waiting, that are not admins or intercessors
+# find all coordinators that are waiting, that are not admins or intercessors
 
-find all ints, that are not admins or coors
+# find all ints, that are not admins or coors
