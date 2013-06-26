@@ -1,23 +1,30 @@
 class ApprovalStatus
-
-	def initialize(role)
+	include ApplicationHelper
+	def initialize(role, key)
 		@role = role
+		@key = key
+	end
+
+	def find_others(roles)
+		o_roles_array = []
+		roles.each do |x|
+			o_roles_array.push(x) if yield(x)
+		end
+		p o_roles_array
 	end
 
 	def other_roles
-		roles = %w[:admin :coordinator :intercessor]
-		o_roles = roles.map { |x| !x == @role }
+		roles = %w[admin coordinator intercessor]
+		others = find_others(roles) { |x| x != @role.to_s }
+		others_array = others.map { |x| Role.find_by_name(x.capitalize).id }
 	end
 
-	def query(key)
+	def query
+		User.send(@key).with_role(role_id(@role)).without_role(other_roles)
+	end
 
-		query = {
-			"#{@role.to_s}_waiting": User.not_approved.with_role(role_id(@role)).without_role(role_ids(other_roles))
-			"#{@role.to_s}_approved": User.approved.with_role(role_ids(@role))
-		}
-
-		query[key]
-
+	def count
+		query["#{@role.to_s}_#{@key}"].count
 	end
 end
 

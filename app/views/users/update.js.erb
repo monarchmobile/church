@@ -1,14 +1,14 @@
-<%= @approved_status %>
 
-$("#coor_list_ints_waiting").html("<%= j render @coor_list_ints_waiting %>").prepend("<h3>Intercessors (<%=@coor_list_ints_waiting.count%>)")
+<% @roles.each do |role| %>
+	$("#admin_list_<%= role.name.downcase %>_waiting")
+			.html("<%= j render user_list_for(role.name.downcase.to_sym, 'waiting') %>")
+			.prepend('<h3><%= " #{role.name} (#{user_state(role.name.downcase.to_sym, "waiting").count}) "%></h3>')
 
-$("#admin_list_ints_waiting").html("<%= j render @admin_list_ints_waiting %>").prepend("<h3>Intercessors (<%=@admin_list_ints_waiting.count%>)")
-$("#admin_list_coords_waiting").html("<%= j render @admin_list_coords_waiting %>").prepend("<h3>Coordinators (<%=@admin_list_coords_waiting.count%>)")
-$("#admin_list_admins_waiting").html("<%= j render @admin_list_admins_waiting %>").prepend("<h3>Admins (<%=@admin_list_admins_waiting.count%>)")
+<% end %>
 
-$("#coor_list_ints_approved").html("<%= j render @coor_list_ints_approved %>").prepend("<h3>Intercessors (<%=@coor_list_ints_approved.count%>)")
+<% @roles.each do |role| %>
+	$("#admin_list_<%= role.name.downcase %>_approved")
+			.html("<%= j render user_list_for(role.name.downcase.to_sym, 'approved') %>")
+			.prepend('<h3><%= " #{role.name} (#{user_state(role.name.downcase.to_sym, "approved").count}) "%></h3>')
 
-
-$("#admin_list_ints_approved").html("<%= j render @admin_list_ints_approved %>").prepend("<h3>Intercessors (<%=@admin_list_ints_approved.count%>)")
-$("#admin_list_coords_approved").html("<%= j render @admin_list_coords_approved %>").prepend("<h3>Coordinators (<%=@admin_list_coords_approved.count%>)")
-$("#admin_list_admins_approved").html("<%= j render @admin_list_admins_approved %>").prepend("<h3>Admins (<%=@admin_list_admins_approved.count%>)")
+<% end %>

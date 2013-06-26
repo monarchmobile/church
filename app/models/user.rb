@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
     where(approved: false)
   end
 
+  def self.waiting
+    where(approved: false)
+  end
+
+  def self.with_highest_role(role)
+    role_id = Role.find_by_name(role.to_s.capitalize).id
+    role_ids = self.role_ids
+    max(role_ids) == role_id
+  end
+
   def self.order_by_name
     order("last_name ASC")
   end
@@ -42,7 +52,8 @@ class User < ActiveRecord::Base
   #                                            :conditions => {:roles => {:id => role_id} } } }
 
   scope :with_role, -> role_id { joins(:roles).where(:roles => {:id => role_id })}
-  scope :without_role, -> role_ids { joins(:roles).where("roles.id IS NOT IN ?", role_ids)}
+  scope :without_role, -> role_ids { joins(:roles).where("roles.id NOT IN (?)", role_ids)}
+  scope :highest_role, -> role_ids { joins(:roles).where("roles.id = (?)", max(role_ids))}
 
 
 

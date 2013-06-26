@@ -2,8 +2,7 @@ class UsersController < Devise::RegistrationsController
   authorize_resource
   layout :resolve_layout
   def index
-    all_user_states
-
+    @roles = index_page_roles
   end
 
   def new
@@ -76,12 +75,11 @@ class UsersController < Devise::RegistrationsController
     respond_to do |format|
       if !@approved_status.blank?
         if @user.update_attributes(approved: @approved_status)
-          all_user_states
+          @roles = index_page_roles
           format.js
         end
       else
         if @user.update_attributes(params[:user])
-          all_user_states
           if (current_user.role_ids & [role_id(:SuperAdmin), role_id(:Admin), role_id(:Coordinator)]).count > 0
             format.html { redirect_to users_path, :notice => "user updates were successful"}
           else
@@ -129,9 +127,12 @@ class UsersController < Devise::RegistrationsController
   end
 
   def all_user_states
+
+    
+
     @coor_list_ints_waiting = User.not_approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
     @coor_list_ints_approved = User.approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
-    @admin_list_ints_waiting = User.not_approved.with_role(role_id(:intercessor))
+    @admin_list_ints_waiting = ApprovalStatus.new(:intercessor, :waiting)
     @admin_list_coords_waiting = User.not_approved.with_role(role_id(:coordinator))
     @admin_list_admins_waiting = User.not_approved.with_role(role_id(:admin))
     @admin_list_ints_approved = User.approved.with_role(role_id(:intercessor))

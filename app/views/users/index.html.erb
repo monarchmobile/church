@@ -14,70 +14,22 @@
 <!-- WAITING TO BE APPROVED -->
 <%= content_tag :h2, "Waiting to be Approved" %>
 
-<!-- Admin/Superadmin page -->
-<% if (current_user.role_ids & [role_id(:Admin), role_id(:SuperAdmin)]).count > 0 %>
-	<!-- intercessors waiting -->
-	<ul class="model_table userStatus" id="admin_list_ints_waiting" data-update-url="<%= sort_users_url %>">
-		<%= content_tag :h3, "Intercessors(#{@admin_list_ints_waiting.count})" %>
-		<%= render @admin_list_ints_waiting %>
-	</ul>
-	<!-- coordinators waiting -->
-	<ul class="model_table userStatus" id="admin_list_coords_waiting" data-update-url="<%= sort_users_url %>">
-		<%= content_tag :h3, "Coordinators(#{@admin_list_coords_waiting.count})" %>
-		<%= render @admin_list_coords_waiting %>
-	</ul>
-	<!-- admins waiting -->
-	<ul class="model_table userStatus" id="admin_list_admins_waiting" data-update-url="<%= sort_users_url %>">
-		<%= content_tag :h3, "Admins (#{@admin_list_admins_waiting.count})" %>
-		<%= render @admin_list_admins_waiting %>
-	</ul>
-
-<!-- coordinator page -->
-<% elsif current_user.role? :Coordinator %>
-	<!-- coordintators church: intercessors waiting -->
-	<ul class="model_table userStatus" id="coor_list_ints_waiting" data-update-url="<%= sort_users_url %>">
-		<%= content_tag :h3, "Intercessors(#{@coor_list_ints_waiting.count})" %>
-		<%= render @coor_list_ints_waiting %>
-	</ul>
-
-<!-- intercessor page -->
-<% elsif current_user.role? :Intercessor %>
-	intercessor sees nothing 
+<% @roles.each do |role| %>
+		<ul class="model_table userStatus" id="admin_list_<%= role.name.downcase %>_waiting" data-update-url="<%= sort_users_url %>">
+			<%= content_tag :h3, "#{role.name} (#{user_state(role.name.downcase.to_sym, 'waiting').count})" %>
+			<%= render user_list_for(role.name.downcase.to_sym, "waiting") %>
+		</ul>
 <% end %>
 
-
-<!-- APPROVED -->
 <%= content_tag :h2, "Approved" %>
 
-
-<!-- Admin/Superadmin page -->
-<% if (current_user.role_ids & [role_id(:Admin), role_id(:SuperAdmin)]).count > 0 %>	
-	<!-- approved intercessors-->
-	<ul class="model_table userStatus" id="admin_list_ints_approved" data-update-url="<%= sort_users_url %>">
-		<%= content_tag :h3, "Intercessors (#{@admin_list_ints_approved.count})" %>
-		<%= render @admin_list_ints_approved %>
-	</ul>
-	<!-- approved coordinators-->
-	<ul class="model_table userStatus" id="admin_list_coords_approved" data-update-url="<%= sort_users_url %>">
-		<%= content_tag :h3, "Coordinators (#{@admin_list_coords_approved.count})" %>
-		<%= render @admin_list_coords_approved %>
-	</ul>
-	<!-- approved admins-->
-	<ul class="model_table userStatus" id="admin_list_admins_approved" data-update-url="<%= sort_users_url %>">
-		<%= content_tag :h3, "Admins (#{@admin_list_admins_approved.count})" %>
-		<%= render @admin_list_admins_approved %>
-	</ul>
-
-<!-- coordinator page -->
-<% elsif current_user.role? :Coordinator %>
-	<!-- coordintators church: approved intercessors-->
-		<ul class="model_table userStatus" id="coor_list_ints_approved" data-update-url="<%= sort_users_url %>">
-			<%= content_tag :h3, "Intercessors (#{@coor_list_ints_approved.count})" %>
-			<%= render @coor_list_ints_approved %>
+<% @roles.each do |role| %>
+		<ul class="model_table userStatus" id="admin_list_<%= role.name.downcase %>_approved" data-update-url="<%= sort_users_url %>">
+			<%= content_tag :h3, "#{role.name} (#{user_state(role.name.downcase.to_sym, 'approved').count})" %>
+			<%= render user_list_for(role.name.downcase.to_sym, "approved") %>
 		</ul>
-		
-<!-- intercessor page -->
-<% elsif current_user.role? :Intercessor %>
-	intercessor sees nothing
 <% end %>
+
+
+
 

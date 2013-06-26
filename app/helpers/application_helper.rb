@@ -172,9 +172,9 @@ module ApplicationHelper
     Role.find_by_name(role).id
   end
 
-  def role_ids(role1, role2)
-    role_1 = Role.find_by_name(role1.to_s.camelize).id
-    role_2 = Role.find_by_name(role2.to_s.camelize).id
+  def role_ids(ids)
+    role_1 = Role.find_by_name(role_ids[0].to_s.camelize).id
+    role_2 = Role.find_by_name(role_ids[1].to_s.camelize).id
     [role_1, role_2]
   end
 
@@ -226,7 +226,29 @@ module ApplicationHelper
     UserMailer.send_new_list.deliver
   end
 
-  
+
+  ## user_index
+
+  def user_state(role, status)
+    users = User.with_role(role_id(role)).send(status.to_sym)
+    highest_role_only(users, role)
+  end
+
+  def user_list_for(role, status)
+    instance_variable_set "@admin_list_#{role.to_s}_#{status}".to_sym, user_state(role, status)
+  end
+
+  def index_page_roles
+    superadmin = Role.find_by_name("SuperAdmin").id
+    guest = Role.find_by_name("Guest").id
+    Role.where("id NOT IN (?)", [superadmin, guest])
+  end
+
+  def highest_role_only(users, role)
+    unique_users = []
+    users.map { |user| unique_users.push(user) if role_id(role) == user.role_ids.min }
+    return unique_users
+  end
 
 end
 
