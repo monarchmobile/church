@@ -8,10 +8,10 @@ UserApproval =
 	set_value: (select) ->
 		if select.val() == "true"
 			select.val("false") 
-			this.set_background("Approved", "green", "red")
+			this.set_background("Not Approved", "red", "green")
 		else
 			select.val("true")
-			this.set_background("Not Approved", "red", "green")
+			this.set_background("Approved", "green", "red")
 		this.submit_form()
 			
 	submit_form: ->
