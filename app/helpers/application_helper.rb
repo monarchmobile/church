@@ -230,8 +230,9 @@ module ApplicationHelper
   ## user_index
 
   def user_state(role, status)
-    users = User.with_role(role_id(role)).send(status.to_sym)
-    highest_role_only(users, role)
+    r_id = role_id(role)
+    users = User.with_role(r_id).send(status.to_sym)
+    highest_role_only(users, r_id)
   end
 
   def user_list_for(role, status)
@@ -244,9 +245,9 @@ module ApplicationHelper
     Role.where("id NOT IN (?)", [superadmin, guest])
   end
 
-  def highest_role_only(users, role)
+  def highest_role_only(users, id)
     unique_users = []
-    users.map { |user| unique_users.push(user) if role_id(role) == user.role_ids.min }
+    users.map { |user| unique_users << user if id.to_i == user.role_ids.min.to_i }
     return unique_users
   end
 

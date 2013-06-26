@@ -14,7 +14,7 @@
 <!-- WAITING TO BE APPROVED -->
 <%= content_tag :h2, "Waiting to be Approved" %>
 
-<% @roles.each do |role| %>
+<% index_page_roles.each do |role| %>
 		<ul class="model_table userStatus" id="admin_list_<%= role.name.downcase %>_waiting" data-update-url="<%= sort_users_url %>">
 			<%= content_tag :h3, "#{role.name} (#{user_state(role.name.downcase.to_sym, 'waiting').count})" %>
 			<%= render user_list_for(role.name.downcase.to_sym, "waiting") %>
@@ -23,7 +23,7 @@
 
 <%= content_tag :h2, "Approved" %>
 
-<% @roles.each do |role| %>
+<% index_page_roles.each do |role| %>
 		<ul class="model_table userStatus" id="admin_list_<%= role.name.downcase %>_approved" data-update-url="<%= sort_users_url %>">
 			<%= content_tag :h3, "#{role.name} (#{user_state(role.name.downcase.to_sym, 'approved').count})" %>
 			<%= render user_list_for(role.name.downcase.to_sym, "approved") %>

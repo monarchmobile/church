@@ -21,7 +21,7 @@ class PagesController < ApplicationController
 		publish_page_if_in_range
 		sidebar_partials
 		@prayer = Prayer.new
-		two_am_mailer
+		# two_am_mailer
 	end
 
 	def edit 
