@@ -34,12 +34,6 @@ class User < ActiveRecord::Base
     where(approved: false)
   end
 
-  def self.with_highest_role(role)
-    role_id = Role.find_by_name(role.to_s.capitalize).id
-    role_ids = self.role_ids
-    max(role_ids) == role_id
-  end
-
   def self.order_by_name
     order("last_name ASC")
   end

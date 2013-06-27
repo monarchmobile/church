@@ -11,23 +11,15 @@
 	</ul>
 	
 </div>
-<!-- WAITING TO BE APPROVED -->
-<%= content_tag :h2, "Waiting to be Approved" %>
 
-<% index_page_roles.each do |role| %>
-		<ul class="model_table userStatus" id="admin_list_<%= role.name.downcase %>_waiting" data-update-url="<%= sort_users_url %>">
-			<%= content_tag :h3, "#{role.name} (#{user_state(role.name.downcase.to_sym, 'waiting').count})" %>
-			<%= render user_list_for(role.name.downcase.to_sym, "waiting") %>
-		</ul>
-<% end %>
-
-<%= content_tag :h2, "Approved" %>
-
-<% index_page_roles.each do |role| %>
-		<ul class="model_table userStatus" id="admin_list_<%= role.name.downcase %>_approved" data-update-url="<%= sort_users_url %>">
-			<%= content_tag :h3, "#{role.name} (#{user_state(role.name.downcase.to_sym, 'approved').count})" %>
-			<%= render user_list_for(role.name.downcase.to_sym, "approved") %>
-		</ul>
+<% %w[waiting approved].each do |state| %>
+	<%= content_tag :h2, "#{state.capitalize}" %>
+	<% index_page_roles.each do |role| %>
+			<ul class="model_table userStatus" id="admin_list_<%= role.name.downcase %>_<%= state %>" data-update-url="<%= sort_users_url %>">
+				<%= content_tag :h3, "#{role.name} (#{user_state(role.name.downcase.to_sym, state).count})" if user_state(role.name.downcase.to_sym, state).count > 0 %>
+				<%= render user_list_for(role.name.downcase.to_sym, state) %>
+			</ul>
+	<% end %>
 <% end %>
 
 

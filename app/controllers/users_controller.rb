@@ -75,7 +75,7 @@ class UsersController < Devise::RegistrationsController
     respond_to do |format|
       if !@approved_status.blank?
         if @user.update_attributes(approved: @approved_status)
-          index_page_roles
+         
           format.js
         end
       else
@@ -132,12 +132,7 @@ class UsersController < Devise::RegistrationsController
 
     @coor_list_ints_waiting = User.not_approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
     @coor_list_ints_approved = User.approved.with_role(role_id(:coordinator)).where(affiliation_id: current_user.affiliation_id)
-    # @admin_list_ints_waiting = ApprovalStatus.new(:intercessor, :waiting)
-    # @admin_list_coords_waiting = User.not_approved.with_role(role_id(:coordinator))
-    # @admin_list_admins_waiting = User.not_approved.with_role(role_id(:admin))
-    # @admin_list_ints_approved = User.approved.with_role(role_id(:intercessor))
-    # @admin_list_coords_approved = User.approved.with_role(role_id(:coordinator))
-    # @admin_list_admins_approved = User.approved.with_role(role_id(:admin))
+    
    
   end
 

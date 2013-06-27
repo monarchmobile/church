@@ -110,9 +110,15 @@ class Prayer < ActiveRecord::Base
   end
 
 
-  # def send_new_prayer
-  # 	RequestMailer.new_prayer_request(self).deliver
-  # end
+  def send_new_prayer
+    
+    users = User.where(approved: true)
+    users.each do |user|
+      UserMailer.new_prayer_request(self, user).deliver
+    end
+  	
+  end
+
 
   # def self.send_follow_up_email_to_prayer_requestor
   #   today = Date.today.strftime("%b %d, %Y")

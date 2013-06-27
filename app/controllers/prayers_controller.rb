@@ -50,6 +50,7 @@ class PrayersController < ApplicationController
 
     respond_to do |format|
       if @prayer.save
+        @prayer.send_new_prayer
         format.html { redirect_to current_user || root_path, notice: 'Prayer request was successfully submitted and sent out to the intercessors.' }
         format.json { render json: @prayer, status: :created, location: @prayer }
       else
