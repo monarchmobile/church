@@ -1,15 +1,15 @@
 
-    <% @section[:this_week].each do |prayer| %>
-			<%= prayer.pray_for_first_name %>
-    <% end %>
+    <p><% @section[:this_week].each do |prayer| %>
+			<%= prayer.pray_for_first_name %><br />
+    <% end %></p>
 
-    <% @section[:past_week].each do |prayer| %>
-			<%= prayer.pray_for_first_name %>
-    <% end %>
+    <p><% @section[:past_week].each do |prayer| %>
+			<%= prayer.pray_for_first_name %><br />
+    <% end %></p>
 
-    <% @section[:past_month].each do |prayer| %>
-			<%= prayer.pray_for_first_name %>
-    <% end %>
+    <p><% @section[:past_month].each do |prayer| %>
+			<%= prayer.pray_for_first_name %><br />
+    <% end %></p>
   
 
 
